@@ -1,0 +1,161 @@
+<Window x:Class="AzureTools.Views.ContainerRegistries.ContainerRegistryManifestDetailView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:AzureTools.ViewModels.ContainerRegistries;assembly=AzureTools"
+        xmlns:res="clr-namespace:AzureTools.Properties;assembly=AzureTools"
+        xmlns:svc="clr-namespace:AzureTools.Services.ContainerRegistries;assembly=AzureTools"
+        x:DataType="vm:ContainerRegistryManifestDetailViewModel"
+        Title="{Binding WindowTitle}"
+        Width="900"
+        Height="700"
+        MinWidth="600"
+        MinHeight="400"
+        WindowStartupLocation="CenterScreen">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10">
+            <!-- Basic Info Section -->
+            <GroupBox Header="{x:Static res:FormResources.LblBasicInfo}" Padding="8" Margin="0,0,0,10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static res:FormResources.LblName}" FontWeight="Bold" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Detail.RepositoryName}" TextWrapping="Wrap" Margin="0,0,0,5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="{x:Static res:FormResources.LblRegistryUrl}" FontWeight="Bold" Margin="20,0,10,5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Detail.Digest}" TextWrapping="Wrap" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static res:FormResources.LblCreated}" FontWeight="Bold" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Detail.CreatedOn, StringFormat=yyyy-MM-dd HH:mm}" Margin="0,0,0,5"/>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{x:Static res:FormResources.LblLastUpdated}" FontWeight="Bold" Margin="20,0,10,5"/>
+                    <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Detail.LastUpdatedOn, StringFormat=yyyy-MM-dd HH:mm}" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static res:FormResources.LblArchitecture}" FontWeight="Bold" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Detail.Architecture}" Margin="0,0,0,5"/>
+                    <TextBlock Grid.Row="2" Grid.Column="2" Text="{x:Static res:FormResources.LblOperatingSystem}" FontWeight="Bold" Margin="20,0,10,5"/>
+                    <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding Detail.OperatingSystem}" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static res:FormResources.LblSize}" FontWeight="Bold" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Detail.SizeInBytes}" Margin="0,0,0,5"/>
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="{x:Static res:FormResources.LblTags}" FontWeight="Bold" Margin="20,0,10,5"/>
+                    <ItemsControl Grid.Row="3" Grid.Column="3" ItemsSource="{Binding Detail.Tags}" Margin="0,0,0,5">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="#E0E0E0" CornerRadius="3" Padding="6,2" Margin="2">
+                                    <TextBlock Text="{Binding}"/>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Static res:FormResources.LblAuthor}" FontWeight="Bold" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Detail.Author}" TextWrapping="Wrap" Margin="0,0,0,5"/>
+                    <TextBlock Grid.Row="4" Grid.Column="2" Text="{x:Static res:FormResources.LblComment}" FontWeight="Bold" Margin="20,0,10,5"/>
+                    <TextBlock Grid.Row="4" Grid.Column="3" Text="{Binding Detail.Comment}" TextWrapping="Wrap" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="{x:Static res:FormResources.LblParent}" FontWeight="Bold" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Detail.Parent}" TextWrapping="Wrap" Margin="0,0,0,5"/>
+                    <TextBlock Grid.Row="5" Grid.Column="2" Text="{x:Static res:FormResources.LblEntrypoint}" FontWeight="Bold" Margin="20,0,10,5"/>
+                    <ItemsControl Grid.Row="5" Grid.Column="3" ItemsSource="{Binding Detail.Entrypoint}" Margin="0,0,0,5">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="#E0E0E0" CornerRadius="3" Padding="6,2" Margin="2">
+                                    <TextBlock Text="{Binding}"/>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </GroupBox>
+
+            <!-- Exposed Ports -->
+            <GroupBox Header="{x:Static res:FormResources.LblExposedPorts}" Padding="8" Margin="0,0,0,10">
+                <DataGrid ItemsSource="{Binding Detail.ExposedPorts}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          CanUserResizeColumns="True"
+                          CanUserSortColumns="True"
+                          MaxHeight="120">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{x:Static res:FormResources.LblKey}"
+                                            Binding="{Binding Key}"
+                                            Width="*"/>
+                        <DataGridTextColumn Header="{x:Static res:FormResources.LblValue}"
+                                            Binding="{Binding Value}"
+                                            Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+
+            <!-- Volumes -->
+            <GroupBox Header="{x:Static res:FormResources.LblVolumes}" Padding="8" Margin="0,0,0,10">
+                <ItemsControl ItemsSource="{Binding Detail.Volumes}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#E0E0E0" CornerRadius="3" Padding="8,3" Margin="3">
+                                <TextBlock Text="{Binding}"/>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </GroupBox>
+
+            <!-- Environment Variables -->
+            <GroupBox Header="{x:Static res:FormResources.LblEnvironmentVariables}" Padding="8" Margin="0,0,0,10">
+                <DataGrid ItemsSource="{Binding Detail.EnvironmentVariables}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          CanUserResizeColumns="True"
+                          CanUserSortColumns="True"
+                          MaxHeight="200">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{x:Static res:FormResources.LblKey}"
+                                            Binding="{Binding Key}"
+                                            Width="*"/>
+                        <DataGridTextColumn Header="{x:Static res:FormResources.LblValue}"
+                                            Binding="{Binding Value}"
+                                            Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+
+            <!-- Layers -->
+            <GroupBox Header="{x:Static res:FormResources.LblLayers}" Padding="8">
+                <ListBox ItemsSource="{Binding Detail.Layers}" MaxHeight="150">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </GroupBox>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

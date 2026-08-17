@@ -1,0 +1,75 @@
+<Window x:Class="AzureTools.Views.Options.OptionsView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:AzureTools.ViewModels.Options;assembly=AzureTools"
+        xmlns:res="clr-namespace:AzureTools.Properties;assembly=AzureTools"
+        xmlns:models="clr-namespace:AzureTools.Models;assembly=AzureTools.Domain"
+        x:DataType="vm:OptionsViewModel"
+        Title="{x:Static res:FormResources.TitleOptions}"
+        Width="520"
+        Height="580"
+        MinWidth="460"
+        MinHeight="500"
+        WindowStartupLocation="CenterScreen"
+        CanResize="True">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20" Spacing="14">
+            <GroupBox Header="{x:Static res:FormResources.LblAppProfile}" Padding="14">
+                <StackPanel Spacing="10">
+                 
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Static res:FormResources.LblTheme}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"/>
+                        <ComboBox Grid.Column="1"
+                                  ItemsSource="{Binding ThemeModeOptions}"
+                                  SelectedItem="{Binding SelectedThemeMode}"
+                                  ItemContainerTheme="{StaticResource OptionComboBoxItemTheme}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:IOption">
+                                    <TextBlock Text="{Binding DisplayName}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+
+              
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="{x:Static res:FormResources.LblSecuritySettings}" Padding="14">
+                <StackPanel Spacing="10">
+                    <Button Content="{x:Static res:FormResources.BtnEnablePassword}"
+                            Command="{Binding EnablePasswordCommand}"
+                            IsVisible="{Binding !LoginUsePassword}"
+                            HorizontalAlignment="Left"
+                            Padding="20,6"/>
+                    <Button Content="{x:Static res:FormResources.BtnDisablePassword}"
+                            Command="{Binding DisablePasswordCommand}"
+                            IsVisible="{Binding LoginUsePassword}"
+                            HorizontalAlignment="Left"
+                            Padding="20,6"/>
+                </StackPanel>
+            </GroupBox>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Spacing="10"
+                        Margin="0,6,0,0">
+                <Button Content="{x:Static res:FormResources.BtnAbout}"
+                        Command="{Binding AboutCommand}"/>
+                <Button Content="{x:Static res:FormResources.BtnCancel}"
+                        IsCancel="True"
+                        Command="{Binding CloseCommand}"/>
+                <Button Content="{x:Static res:FormResources.BtnSave}"
+                        IsDefault="True"
+                        Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

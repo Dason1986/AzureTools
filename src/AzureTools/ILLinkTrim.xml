@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<linker>
+  <assembly fullname="AzureTools">
+    <!-- WinForms 数据绑定通过反射访问 ViewModel 属性，需要保留所有公共类型和成员 -->
+    <namespace name="AzureTools.ViewModels" preserve="all" />
+    <namespace name="AzureTools.ViewModels.Tools" preserve="all" />
+    <namespace name="AzureTools.ViewModels.Tenants" preserve="all" />
+    <namespace name="AzureTools.ViewModels.Projects" preserve="all" />
+    <namespace name="AzureTools.ViewModels.KeyVaults" preserve="all" />
+    <namespace name="AzureTools.ViewModels.AppContainers" preserve="all" />
+    <namespace name="AzureTools.ViewModels.ContainerRegistries" preserve="all" />
+    <namespace name="AzureTools.Stores" preserve="all" />
+  </assembly>
+  <assembly fullname="AzureTools.Domain">
+    <!-- Model 类作为 BindingSource 数据源，需要保留公共属性 -->
+    <namespace name="AzureTools.Models" preserve="all" />
+    <namespace name="AzureTools.Models.KeyVaults" preserve="all" />
+    <namespace name="AzureTools.Models.ContainerRegistries" preserve="all" />
+    <namespace name="AzureTools.Models.AppContainers" preserve="all" />
+    <namespace name="AzureTools.Stores" preserve="all" />
+  </assembly>
+</linker>

@@ -1,0 +1,66 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.csproj.user
+*.csproj.orig
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+[Uu]serSecrets.json
+
+# Visual Studio cache/options
+.vs/
+*.[Cc]ache
+*.[Oo]pts
+
+# Visual Studio auto-generated files
+_UpgradeReport_*
+
+# NuGet
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nupkg
+**/[Pp]ackages/**
+!**/[Pp]ackages/**/lib/*
+snupkg
+**/[Aa]rtifacts/
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.DotSettings.user
+.RiderSettings
+
+# Test results
+TestResults/
+**/[Tt]estResults/
+
+# Publish
+[Pp]ublish/
+[Aa]rtifacts/
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# VS Code
+.vscode/

@@ -1,0 +1,89 @@
+<Window x:Class="AzureTools.Views.KeyVaults.KeyVaultEnvManageView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:AzureTools.ViewModels.KeyVaults;assembly=AzureTools"
+        xmlns:res="clr-namespace:AzureTools.Properties;assembly=AzureTools"
+        
+        x:DataType="vm:KeyVaultEnvManageViewModel"
+        Title="{x:Static res:FormResources.TitleEnvManage}"
+        Width="900"
+        Height="560"
+        MinWidth="600"
+        MinHeight="400"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="10">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal">
+                    <!-- <Button Content="{x:Static res:FormResources.BtnAdd}"
+                            Click="OnAddClick"
+                            Padding="20,8"
+                            Margin="0,0,10,0"/> -->
+                    <Button Content="{x:Static res:FormResources.BtnEdit}"
+                            Command="{Binding EditCommand}"
+                            Padding="20,8"
+                            Margin="0,0,10,0"/>
+                    <Button Content="{x:Static res:FormResources.BtnDelete}"
+                            Command="{Binding DeleteCommand}"
+                            Padding="20,8"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <Button Content="{x:Static res:FormResources.BtnImport}"
+                            Command="{Binding ImportCommand}"
+                            Padding="20,8"
+                            Margin="0,0,10,0"/>
+                    <Button Content="{x:Static res:FormResources.BtnRefresh}"
+                            Command="{Binding RefreshCommand}"
+                            Padding="20,8"
+                            Margin="0,0,10,0"/>
+                    <Button Content="{x:Static res:FormResources.BtnSave}"
+                            Command="{Binding SaveCommand}"
+                            Padding="20,8"/>
+                </StackPanel>
+            </DockPanel>
+        </StackPanel>
+
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding Items}"
+                  SelectedItem="{Binding SelectedItem}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserResizeColumns="True"
+                  CanUserSortColumns="True"
+                  Margin="10,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static res:FormResources.LblName}"
+                                    Binding="{Binding Name}"
+                                    Width="*"/>
+                <DataGridTextColumn Header="{x:Static res:FormResources.LblKeyVault}"
+                                    Binding="{Binding KeyVault}"
+                                    Width="*"/>
+                <DataGridTextColumn Header="{x:Static res:FormResources.LblKeyVaultUrl}"
+                                    Binding="{Binding KeyVaultUrl}"
+                                    Width="*"/>
+                <DataGridTextColumn Header="{x:Static res:FormResources.LblCreated}"
+                                    Binding="{Binding CreatedOn, Converter={StaticResource DateTimeFormat}, ConverterParameter=yyyy-MM-dd}"
+                                    Width="120"/>
+                <DataGridTextColumn Header="{x:Static res:FormResources.LblSubscriptionName}"
+                                    Binding="{Binding SubscriptionName}"
+                                    Width="*"/>
+                <DataGridCheckBoxColumn Header="{x:Static res:FormResources.LblEnableSoftDelete}"
+                                        Binding="{Binding EnableSoftDelete}"
+                                        Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock Grid.Row="2"
+                   Margin="10"
+                   Text="{Binding HasChanges, StringFormat=当前有未保存的更改: {0}}"
+                   IsVisible="{Binding HasChanges}"/>
+    </Grid>
+</Window>

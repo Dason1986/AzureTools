@@ -1,0 +1,35 @@
+<Window x:Class="AzureTools.Views.PromptDialog"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:res="clr-namespace:AzureTools.Properties;assembly=AzureTools.Avalonia"
+        xmlns:local="clr-namespace:AzureTools.Views;assembly=AzureTools.Avalonia"
+        x:DataType="local:PromptDialog"
+        Title="{Binding DialogTitle}"
+        Width="400"
+        Height="200"
+        MinWidth="300"
+        MinHeight="160"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False">
+    <Border Padding="20">
+        <StackPanel>
+            <TextBlock Text="{Binding Prompt}"
+                       TextWrapping="Wrap"
+                       Margin="0,0,0,12"
+                       FontSize="14"/>
+            <TextBox x:Name="InputTextBox"
+                     PasswordChar="*"
+                     Text="{Binding Input}"
+                     Margin="0,0,0,20"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="{x:Static res:DialogResources.BtnCancel}"
+                        Padding="20,5"
+                        Click="OnCancelClick"
+                        Margin="0,0,10,0"/>
+                <Button Content="{x:Static res:DialogResources.BtnConfirm}"
+                        Padding="20,5"
+                        Click="OnConfirmClick"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

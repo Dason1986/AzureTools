@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AzureTools": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+<Window x:Class="AzureTools.Views.Comms.SelectItemsView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:AzureTools.Views.Comms;assembly=AzureTools.Avalonia"
+        xmlns:res="clr-namespace:AzureTools.Properties;assembly=AzureTools.Avalonia"
+        x:DataType="local:SelectItemsView"
+        Title="{Binding ViewTitle}"
+        Width="700"
+        Height="450"
+        MinWidth="400"
+        MinHeight="300"
+        WindowStartupLocation="CenterScreen"
+        CanResize="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="0"
+                  x:Name="ItemsGrid"
+                  ItemsSource="{Binding Items}"
+                  SelectedItem="{Binding SelectedItem}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserResizeColumns="True"
+                  CanUserSortColumns="True"
+                  Margin="10"
+                  SelectionMode="Single"/>
+
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="10">
+            <Button Content="{x:Static res:DialogResources.BtnCancel}"
+                    Padding="20,8"
+                    Click="OnCancelClick"
+                    Margin="0,0,10,0"/>
+            <Button Content="{x:Static res:DialogResources.BtnOk}"
+                    Padding="20,8"
+                    Click="OnOkClick"/>
+        </StackPanel>
+    </Grid>
+</Window>

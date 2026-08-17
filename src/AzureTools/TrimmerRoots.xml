@@ -1,0 +1,12 @@
+<linker>
+  <assembly fullname="AzureTools" preserve="all">
+    <type fullname="AzureTools.ViewModels.*" preserve="all" />
+    <type fullname="AzureTools.Views.*" preserve="all" />
+    <type fullname="AzureTools.Models.*" preserve="all" />
+    <type fullname="AzureTools.Services.*" preserve="all" />
+    <type fullname="AzureTools.Stores.*" preserve="all" />
+    <type fullname="AzureTools.Extensions.*" preserve="all" />
+    <type fullname="AzureTools.Tools.*" preserve="all" />
+    <type fullname="AzureTools.SDK.*" preserve="all" />
+  </assembly>
+</linker>

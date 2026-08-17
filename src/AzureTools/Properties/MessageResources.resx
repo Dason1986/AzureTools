@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AlreadyCopiedToClipboard" xml:space="preserve">
+    <value>已经复制到剪贴版</value>
+  </data>
+  <data name="AppNameRequired" xml:space="preserve">
+    <value>请填写应用名称</value>
+  </data>
+  <data name="BatchSetExpirationSuccess" xml:space="preserve">
+    <value>批量设置过期时间成功</value>
+  </data>
+  <data name="BrowserLoginPrompt" xml:space="preserve">
+    <value>请在浏览器中登陆后输入授权码[{0}],{1}</value>
+  </data>
+  <data name="CertNameEmpty" xml:space="preserve">
+    <value>证书名机构名称为空</value>
+  </data>
+  <data name="CertNotGenerated" xml:space="preserve">
+    <value>证书未生成</value>
+  </data>
+  <data name="CertPasswordEmpty" xml:space="preserve">
+    <value>证书密码为空</value>
+  </data>
+  <data name="CertificateFileNotFound" xml:space="preserve">
+    <value>未找到证书文件</value>
+  </data>
+  <data name="CertificateFileRequired" xml:space="preserve">
+    <value>请选择证书文件</value>
+  </data>
+  <data name="CertificateLoadFailed" xml:space="preserve">
+    <value>证书加载失败</value>
+  </data>
+  <data name="CertificatePasswordRequired" xml:space="preserve">
+    <value>请填写证书密码</value>
+  </data>
+  <data name="CertificateReadFailed" xml:space="preserve">
+    <value>证书读取失败</value>
+  </data>
+  <data name="ClientIdRequired" xml:space="preserve">
+    <value>请填写程序ID</value>
+  </data>
+  <data name="CompareFailed" xml:space="preserve">
+    <value>对比失败: {0}</value>
+  </data>
+  <data name="CompareSummaryFormat" xml:space="preserve">
+    <value>共 {0} 条记录 | 全部存在: {1} | 部分存在: {2}</value>
+  </data>
+  <data name="ConfigFileNotFound" xml:space="preserve">
+    <value>配置文件不存在: {0}</value>
+  </data>
+  <data name="ConfigSaveSuccess" xml:space="preserve">
+    <value>配置保存成功</value>
+  </data>
+  <data name="ConfirmDeleteEnv" xml:space="preserve">
+    <value>确定删除环境: {0} ?</value>
+  </data>
+  <data name="ConfirmDeleteKey" xml:space="preserve">
+    <value>确定删除 Key: {0} ?</value>
+  </data>
+  <data name="ConfirmDeleteManifests" xml:space="preserve">
+    <value>确定删除选中的 {0} 个 Manifest ?</value>
+  </data>
+  <data name="DeleteManifestFailed" xml:space="preserve">
+    <value>{0}/{1} 个 Manifest 删除失败，请查看日志</value>
+  </data>
+  <data name="ConfirmDiscardChanges" xml:space="preserve">
+    <value>确定放弃更改吗？</value>
+  </data>
+  <data name="ConfirmSaveUnsavedChanges" xml:space="preserve">
+    <value>检测到未保存的更改，是否保存？
+选择"是"保存更改，选择"否"放弃更改。</value>
+  </data>
+  <data name="EnvAlreadyExists" xml:space="preserve">
+    <value>已存在环境: {0}</value>
+  </data>
+  <data name="EnvNameCannotBeEmpty" xml:space="preserve">
+    <value>环境名称不能为空</value>
+  </data>
+  <data name="GetConfigDataFirst" xml:space="preserve">
+    <value>请先获取配置数据</value>
+  </data>
+  <data name="GuidFormatInvalid" xml:space="preserve">
+    <value>{0}为Guid格式</value>
+  </data>
+  <data name="ImportFailed" xml:space="preserve">
+    <value>导入失败：{0}</value>
+  </data>
+  <data name="ImportSuccess" xml:space="preserve">
+    <value>成功导入</value>
+  </data>
+  <data name="ExportSuccess" xml:space="preserve">
+    <value>成功导出</value>
+  </data>
+  <data name="ExportFailed" xml:space="preserve">
+    <value>导出失败：{0}</value>
+  </data>
+  <data name="NoDataToExport" xml:space="preserve">
+    <value>没有可导出的数据</value>
+  </data>
+  <data name="InvalidEnvConfig" xml:space="preserve">
+    <value>选中的环境配置无效</value>
+  </data>
+  <data name="KeyAlreadyExists" xml:space="preserve">
+    <value>已存在 Key: {0}</value>
+  </data>
+  <data name="KeyCannotBeEmpty" xml:space="preserve">
+    <value>Key 不能为空</value>
+  </data>
+  <data name="KeyVaultConfigNotFound" xml:space="preserve">
+    <value>未找到名为 '{0}' 的KeyVault配置</value>
+  </data>
+  <data name="LoginFailed" xml:space="preserve">
+    <value>登录失败</value>
+  </data>
+  <data name="LoginFailedErrorDetail" xml:space="preserve">
+    <value>登录失败错误明细：{0}</value>
+  </data>
+  <data name="LoginFailedWithDetail" xml:space="preserve">
+    <value>登录失败: {0}</value>
+  </data>
+  <data name="LoginPasswordPrompt" xml:space="preserve">
+    <value>请输入 "{0}" 的登录密码</value>
+  </data>
+  <data name="LoginPasswordRequired" xml:space="preserve">
+    <value>请填写进入的密码</value>
+  </data>
+  <data name="LoginSuccess" xml:space="preserve">
+    <value>登录成功</value>
+  </data>
+  <data name="LoginSuccessWithAccount" xml:space="preserve">
+    <value>登录成功,操作账号[{0}]</value>
+  </data>
+  <data name="MsgCannotDeleteLastTenant" xml:space="preserve">
+    <value>不能删除，最少保留一个租户</value>
+  </data>
+  <data name="MultipleTenantBrowserNotSupported" xml:space="preserve">
+    <value>当前为多租户模式不能使用浏览器模式。可以使用[浏览器+授权码]或[证书模式]</value>
+  </data>
+  <data name="NoEnvConfigured" xml:space="preserve">
+    <value>未配置环境，请先配置</value>
+  </data>
+  <data name="NoKeyVaultFound" xml:space="preserve">
+    <value>未找到任何密钥保管库</value>
+  </data>
+  <data name="NoContainerRegistryFound" xml:space="preserve">
+    <value>未找到任何容器注册表</value>
+  </data>
+  <data name="NoMissingConfig" xml:space="preserve">
+    <value>没有缺少配置</value>
+  </data>
+  <data name="NoModification" xml:space="preserve">
+    <value>未修改</value>
+  </data>
+  <data name="NoMultipleVersions" xml:space="preserve">
+    <value>不存在多个版本</value>
+  </data>
+  <data name="NoRecordSelected" xml:space="preserve">
+    <value>未选择记录</value>
+  </data>
+  <data name="NoSelection" xml:space="preserve">
+    <value>未选择</value>
+  </data>
+  <data name="NoTenantSelected" xml:space="preserve">
+    <value>未选择租户</value>
+  </data>
+  <data name="NonUiThreadException" xml:space="preserve">
+    <value>非UI线程未处理异常</value>
+  </data>
+  <data name="NotSupportedMode" xml:space="preserve">
+    <value>未支持的模式</value>
+  </data>
+  <data name="PasswordErrorExit" xml:space="preserve">
+    <value>密码错误，程序即将退出</value>
+  </data>
+  <data name="RecordNotInKeyVault" xml:space="preserve">
+    <value>记录不在KeyVault中</value>
+  </data>
+  <data name="SaveSuccess" xml:space="preserve">
+    <value>保存成功</value>
+  </data>
+  <data name="SelectDifferentEnvs" xml:space="preserve">
+    <value>请选择不同的环境进行对比</value>
+  </data>
+  <data name="SelectKeyVaultToImport" xml:space="preserve">
+    <value>选择要导入的密钥保管库</value>
+  </data>
+  <data name="SelectContainerRegistryToImport" xml:space="preserve">
+    <value>选择要导入的容器注册表</value>
+  </data>
+  <data name="SelectItemToDelete" xml:space="preserve">
+    <value>请选择要删除的项</value>
+  </data>
+  <data name="SelectItemToEdit" xml:space="preserve">
+    <value>请选择要编辑的项</value>
+  </data>
+  <data name="SelectTagToRename" xml:space="preserve">
+    <value>选择要重命名的 Tag</value>
+  </data>
+  <data name="NoTagsToRename" xml:space="preserve">
+    <value>当前 Manifest 没有 Tag，无法重命名</value>
+  </data>
+  <data name="TagCannotBeEmpty" xml:space="preserve">
+    <value>Tag 名称不能为空</value>
+  </data>
+  <data name="RenameTagSuccess" xml:space="preserve">
+    <value>Tag 重命名成功</value>
+  </data>
+  <data name="NoManifestsToDelete" xml:space="preserve">
+    <value>所选的 Manifest 均为固定状态，无法删除</value>
+  </data>
+  <data name="ConfirmDeleteManifestsWithFixed" xml:space="preserve">
+    <value>共选中 {0} 个 Manifest，其中 {1} 个已固定将被跳过。确定删除剩余的 Manifest 吗？</value>
+  </data>
+  <data name="ConfirmFixedManifest" xml:space="preserve">
+    <value>确定固定此 Manifest 吗？固定后将无法删除。</value>
+  </data>
+  <data name="FixedManifestSuccess" xml:space="preserve">
+    <value>Manifest 固定成功</value>
+  </data>
+  <data name="ConfirmUnfixedManifest" xml:space="preserve">
+    <value>确定取消固定此 Manifest 吗？取消固定后可被删除。</value>
+  </data>
+  <data name="UnfixedManifestSuccess" xml:space="preserve">
+    <value>Manifest 取消固定成功</value>
+  </data>
+  <data name="SelectTenantToImportEnv" xml:space="preserve">
+    <value>选择要导入环境的租户</value>
+  </data>
+  <data name="SelectTwoEnvs" xml:space="preserve">
+    <value>请至少选择两个环境进行对比</value>
+  </data>
+  <data name="SelectValidEnv" xml:space="preserve">
+    <value>请选择一个有效的环境</value>
+  </data>
+  <data name="SelectValidProject" xml:space="preserve">
+    <value>请选择一个项目</value>
+  </data>
+  <data name="TaskUnobservedException" xml:space="preserve">
+    <value>Task未观察异常</value>
+  </data>
+  <data name="TenantCodeRequired" xml:space="preserve">
+    <value>请填写租户代码</value>
+  </data>
+  <data name="TenantIdRequired" xml:space="preserve">
+    <value>请填写租户ID</value>
+  </data>
+  <data name="TenantNameRequired" xml:space="preserve">
+    <value>请填写租户名称</value>
+  </data>
+  <data name="TitleDiscardChanges" xml:space="preserve">
+    <value>放弃更改</value>
+  </data>
+  <data name="TitleException" xml:space="preserve">
+    <value>异常提示</value>
+  </data>
+  <data name="TitleLoginFailed" xml:space="preserve">
+    <value>登录失败</value>
+  </data>
+  <data name="TitleMissingItems" xml:space="preserve">
+    <value>缺失项</value>
+  </data>
+  <data name="TitleUnsavedChanges" xml:space="preserve">
+    <value>未保存的更改</value>
+  </data>
+  <data name="TitleValidationFailed" xml:space="preserve">
+    <value>校验失败</value>
+  </data>
+  <data name="TitleValidationResult" xml:space="preserve">
+    <value>校验结果</value>
+  </data>
+  <data name="UiThreadException" xml:space="preserve">
+    <value>UI线程未处理异常</value>
+  </data>
+  <data name="UnknownExceptionDetailFormat" xml:space="preserve">
+    <value>发生未知异常（来源：{0}）{1}详细信息：{2}</value>
+  </data>
+  <data name="UnknownExceptionFormat" xml:space="preserve">
+    <value>发生未知异常，来源：{0}</value>
+  </data>
+  <data name="UpdateSuccess" xml:space="preserve">
+    <value>修改成功</value>
+  </data>
+  <data name="ValidatorBooleanInvalid" xml:space="preserve">
+    <value>不是有效的布尔值(支持 Y/Yes/T/True 或 N/No/F/False)</value>
+  </data>
+  <data name="ValidatorCertInvalid" xml:space="preserve">
+    <value>不是有效的base64证书文件(Cer)</value>
+  </data>
+  <data name="ValidatorGuidInvalid" xml:space="preserve">
+    <value>不是有效的GUID格式</value>
+  </data>
+  <data name="ValidatorNumberInvalid" xml:space="preserve">
+    <value>不是有效的数字</value>
+  </data>
+  <data name="ValidatorNumberMinExceeded" xml:space="preserve">
+    <value>数值不能小于 {0}</value>
+  </data>
+  <data name="ValidatorNumberMaxExceeded" xml:space="preserve">
+    <value>数值不能大于 {0}</value>
+  </data>
+  <data name="ValidatorPfxInvalid" xml:space="preserve">
+    <value>不是有效的base64证书文件(Pfx)或密码不正确</value>
+  </data>
+  <data name="ValidatorPfxPasswordKeyNotFound" xml:space="preserve">
+    <value>密码引用项 {0} 不存在</value>
+  </data>
+  <data name="ValidatorRsaInvalid" xml:space="preserve">
+    <value>不是base64处理过后的RSA密钥</value>
+  </data>
+  <data name="ValidatorUrlInvalid" xml:space="preserve">
+    <value>不是有效的URL地址</value>
+  </data>
+  <data name="ValidatorUrlsInvalid" xml:space="preserve">
+    <value>不是有效的URL地址列表(多个URL以;分隔)</value>
+  </data>
+  <data name="PasswordEnabledSuccess" xml:space="preserve">
+    <value>密码已启用</value>
+  </data>
+  <data name="PasswordDisabledSuccess" xml:space="preserve">
+    <value>密码已取消</value>
+  </data>
+  <data name="PasswordIncorrect" xml:space="preserve">
+    <value>原密码不正确</value>
+  </data>
+  <data name="PasswordCannotBeEmpty" xml:space="preserve">
+    <value>密码不能为空</value>
+  </data>
+</root>

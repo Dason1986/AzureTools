@@ -1,0 +1,49 @@
+<Window x:Class="AzureTools.Views.LoginView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:res="clr-namespace:AzureTools.Properties;assembly=AzureTools"
+        xmlns:vm="using:AzureTools.ViewModels"
+        x:DataType="vm:LoginViewModel"
+        Title="{x:Static res:FormResources.TitleLogin}"
+        Width="400"
+        Height="250"
+        MinWidth="350"
+        MinHeight="220"        
+        WindowStartupLocation="CenterScreen"
+        CanResize="False">
+    <StackPanel Margin="20">
+        <TextBlock Text="Azure Tools"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"/>
+
+        <Grid Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Static res:FormResources.LblLoginPassword}"
+                       VerticalAlignment="Center"
+                       Margin="0,0,10,0"/>
+            <TextBox Grid.Column="1"
+                     PasswordChar="*"
+                     PlaceholderText="请输入登录密码"
+                     Text="{Binding Password}"/>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,20,0,0">
+            <Button Content="{x:Static res:FormResources.BtnCancel}"
+                    Command="{Binding CancelCommand}"
+                    IsCancel="True"
+                    Padding="20,8"
+                    Margin="0,0,10,0"/>
+            <Button Content="{x:Static res:FormResources.BtnConfirm}"
+                    Command="{Binding ConfirmCommand}"
+                    IsDefault="True"
+                    Padding="20,8"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

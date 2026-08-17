@@ -1,0 +1,31 @@
+<Window x:Class="AzureTools.Views.ConfirmDialog"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:AzureTools.Views;assembly=AzureTools.Avalonia"
+        xmlns:res="clr-namespace:AzureTools.Properties;assembly=AzureTools.Avalonia"
+        x:DataType="local:ConfirmDialog"
+        Title="{Binding DialogTitle}"
+        Width="400"
+        Height="180"
+        MinWidth="300"
+        MinHeight="150"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False">
+    <Border Padding="20">
+        <StackPanel>
+            <TextBlock Text="{Binding Message}"
+                       TextWrapping="Wrap"
+                       Margin="0,0,0,20"
+                       FontSize="14" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="{x:Static res:DialogResources.BtnYes}"
+                        Click="OnYesClick"
+                        Padding="20,5" 
+                        Margin="0,0,10,0" />
+                <Button Content="{x:Static res:DialogResources.BtnNo}"
+                        Padding="20,5"
+                        Click="OnNoClick" />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

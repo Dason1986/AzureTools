@@ -1,0 +1,36 @@
+<Application x:Class="AzureTools.App"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"             
+             xmlns:styling="using:Avalonia.Styling">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="avares://AzureTools/Themes/AppResources.axaml"/>
+                <ResourceInclude Source="avares://AzureTools/Converters/AppConverters.axaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="{x:Static styling:ThemeVariant.Light}">
+                    <SolidColorBrush x:Key="AppCardBackground" Color="#FFFFFFFF"/>
+                    <SolidColorBrush x:Key="AppCardBorder" Color="#FFE4E7EB"/>
+                    <SolidColorBrush x:Key="AppHeaderText" Color="#FF1F2937"/>
+                    <SolidColorBrush x:Key="AppSubHeaderText" Color="#FF6B7280"/>
+                    <SolidColorBrush x:Key="AppRowHover" Color="#FFEFF6FF"/>
+                    <SolidColorBrush x:Key="AppColumnHeader" Color="#FFF1F5F9"/>
+                    <SolidColorBrush x:Key="AppBadgeBackground" Color="#FFFF4500"/>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="{x:Static styling:ThemeVariant.Dark}">
+                    <SolidColorBrush x:Key="AppCardBackground" Color="#FF1F2937"/>
+                    <SolidColorBrush x:Key="AppCardBorder" Color="#FF374151"/>
+                    <SolidColorBrush x:Key="AppHeaderText" Color="#FFF9FAFB"/>
+                    <SolidColorBrush x:Key="AppSubHeaderText" Color="#FF9CA3AF"/>
+                    <SolidColorBrush x:Key="AppRowHover" Color="#FF1E3A5F"/>
+                    <SolidColorBrush x:Key="AppColumnHeader" Color="#FF111827"/>
+                    <SolidColorBrush x:Key="AppBadgeBackground" Color="#FFFF7B4D"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+    <Application.Styles>
+        <StyleInclude Source="avares://AzureTools/Themes/AppStyles.axaml"/>
+    </Application.Styles>
+</Application>

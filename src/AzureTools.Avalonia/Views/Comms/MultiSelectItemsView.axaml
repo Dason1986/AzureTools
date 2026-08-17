@@ -1,0 +1,62 @@
+<Window x:Class="AzureTools.Views.Comms.MultiSelectItemsView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:AzureTools.Views.Comms;assembly=AzureTools.Avalonia"
+        xmlns:res="clr-namespace:AzureTools.Properties;assembly=AzureTools.Avalonia"
+        x:DataType="local:MultiSelectItemsView"
+        Title="{Binding ViewTitle}"
+        Width="800"
+        Height="500"
+        MinWidth="500"
+        MinHeight="350"
+        WindowStartupLocation="CenterScreen"
+        CanResize="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="0"
+                  x:Name="ItemsGrid"
+                  ItemsSource="{Binding SelectableItems}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserResizeColumns="True"
+                  CanUserSortColumns="True"
+                  Margin="10"
+                  SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="{x:Static res:DialogResources.LabSelect}" Width="50" IsReadOnly="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsSelected}"
+                                      IsCheckedChanged="OnItemCheckedChanged"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="10">
+            <Button Content="{x:Static res:DialogResources.BtnSelectAll}"
+                    Padding="15,8"
+                    Click="OnSelectAllClick"
+                    Margin="0,0,10,0"/>
+            <Button Content="{x:Static res:DialogResources.BtnDeselectAll}"
+                    Padding="15,8"
+                    Click="OnDeselectAllClick"
+                    Margin="0,0,10,0"/>
+            <Button Content="{x:Static res:DialogResources.BtnCancel}"
+                    Padding="20,8"
+                    Click="OnCancelClick"
+                    Margin="0,0,10,0"/>
+            <Button Content="{x:Static res:DialogResources.BtnOk}"
+                    Padding="20,8"
+                    Click="OnOkClick"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,12 @@
+[
+  {
+    "Name": "TestKey1",
+    "DefaultValue": "default1",
+    "Required": true
+  },
+  {
+    "Name": "TestKey2",
+    "DefaultValue": "",
+    "Required": false
+  }
+]

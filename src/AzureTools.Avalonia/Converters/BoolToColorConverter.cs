@@ -1,0 +1,25 @@
+using Avalonia.Data.Converters;
+using Avalonia.Media;
+using System;
+using System.Globalization;
+
+namespace AzureTools.Converters
+{
+    public class BoolToColorConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is bool connected && connected)
+            {
+                return Brushes.LimeGreen;
+            }
+            return Brushes.Gray;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

@@ -1,0 +1,310 @@
+[
+  {
+    "Name": "CORS-ORIGINS",
+    "Required": true,
+    "Description": "全局跨域资源共享(CORS)允许源配置，作用于全部业务项目",
+    "Tags": [],
+    "Type": "Urls"
+  },
+  {
+    "Name": "INSTRUMENTATION",
+    "Description": "Application Insights 监控连接字符串，全项目统一使用",
+    "Tags": [],
+    "Required": true
+  },
+  {
+    "Name": "CONNECTIONSTRINGS-AA-STAFFPROFILE-DB",
+    "Description": "组织架构人员信息数据库连接字符串；当前业务库已合并，但历史代码尚未调整，保持配置兼容",
+    "Tags": [ "Taskhub", "Org" ],
+    "Required": true
+  },
+  {
+    "Name": "CONNECTIONSTRINGS-AA-TASKHUB-DB",
+    "Description": "任务中心(Taskhub)数据库连接字符串；当前业务库已合并，但历史代码尚未调整，保持配置兼容",
+    "Tags": [ "Taskhub" ],
+    "Required": true
+  },
+  {
+    "Name": "CONNECTIONSTRINGS-AA-WEBDB",
+    "Description": "运维门户(Opsportal)数据库连接字符串；当前业务库已合并，但历史代码尚未调整，保持配置兼容",
+    "Tags": [ "Opsportal" ],
+    "Required": true
+  },
+  {
+    "Name": "EMAIL-HOST",
+    "Description": "邮件服务SMTP服务器地址",
+    "Tags": [ "Org" ],
+    "Required": true
+  },
+  {
+    "Name": "EMAIL-PORT",
+    "Description": "邮件服务SMTP端口号",
+    "Tags": [ "Org" ],
+    "Required": true
+  },
+  {
+    "Name": "EMAIL-SENDER",
+    "Description": "邮件发送人地址",
+    "Tags": [ "Org" ],
+    "Required": true
+  },
+  {
+    "Name": "EMAIL-PASSWORD",
+    "Tags": [ "Org" ],
+    "Description": "邮件服务账号密码",
+    "Required": true
+  },
+  {
+    "Name": "EMAIL-ENABLESSL",
+    "Description": "邮件服务是否启用SSL加密传输",
+    "Tags": [ "Org" ],
+    "Required": true,
+    "Type": "Boolean"
+  },
+  {
+    "Name": "ORGCHART-URL",
+    "Required": true,
+    "Tags": [ "Org" ],
+    "Description": "组织架构系统访问域名",
+    "Type": "Url"
+  },
+  {
+    "Name": "UPDATETASKLIST-SYSTEMNAME",
+    "Description": "任务列表更新接口标识系统名称",
+    "Tags": [ "Taskhub" ],
+    "Required": false
+  },
+  {
+    "Name": "UNREADMESSAGE-RESTCLIENTURL",
+    "Description": "未读消息查询REST接口地址",
+    "Tags": [ "Taskhub" ],
+    "Required": false
+  },
+  {
+    "Name": "UNREADMESSAGE-BEARERTOKEN",
+    "Tags": [ "Taskhub" ],
+    "Description": "调用未读消息接口所需Bearer授权令牌",
+    "Required": false
+  },
+  {
+    "Name": "ORACLETASK-REPORTABSOLUTEPATH",
+    "Tags": [ "Taskhub" ],
+    "Description": "Oracle任务WebService报表绝对路径",
+    "Required": true
+  },
+  {
+    "Name": "ORACLETASK-USERID",
+    "Tags": [ "Taskhub" ],
+    "Description": "Oracle任务WebService访问账号",
+    "Required": true
+  },
+  {
+    "Name": "ORACLETASK-PASSWORD",
+    "Tags": [ "Taskhub" ],
+    "Description": "Oracle任务WebService访问密码",
+    "Required": true
+  },
+  {
+    "Name": "SENDTOHKG-USEPROXY",
+    "Description": "调用HKG接口时是否启用代理服务",
+    "Tags": [ "Proxy" ],
+    "Required": true,
+    "Type": "Boolean"
+  },
+  {
+    "Name": "SENDTOHKG-PROXYURL",
+    "Description": "HKG接口转发代理服务地址",
+    "Tags": [ "Proxy" ],
+    "Required": true,
+    "Type": "Url"
+  },
+  {
+    "Name": "SENDTOHKG-ACCESSTOKEN",
+    "Tags": [ "Proxy" ],
+    "Description": "访问HKG代理服务授权令牌",
+    "Required": true
+  },
+  {
+    "Name": "SENDTOHKG-HTTPURL2",
+    "Description": "HKG接口备用地址",
+    "Tags": [ "Proxy" ],
+    "Required": true,
+    "Type": "Url"
+  },
+  {
+    "Name": "SENDTOHKG-HTTPURL",
+    "Description": "HKG接口主地址",
+    "Tags": [ "Proxy" ],
+    "Required": true,
+    "Type": "Url"
+  },
+  {
+    "Name": "RECEIVER-WEBSITE",
+    "Description": "接收回调站点访问地址",
+    "Tags": [ "Opsportal" ],
+    "Required": true,
+    "Type": "Url"
+  },
+  {
+    "Name": "EXTRANET-CLIENTCREDENTIALPASSWORD",
+    "Description": "SharePoint客户端证书密码",
+    "Tags": [ "Opsportal", "Org" ],
+    "Required": true
+  },
+  {
+    "Name": "EXTRANET-CLIENTCREDENTIALRAWDATA",
+    "Description": "SharePoint客户端PFX证书文件内容，需上传至Azure环境",
+    "Tags": [ "Opsportal", "Org" ],
+    "Required": true,
+    "Type": "Pfx_Password",
+    "Option": {
+      "PasswordKey": "EXTRANET-CLIENTCREDENTIALPASSWORD"
+    }
+
+  },
+  {
+    "Name": "EXTRANET-CLIENTID",
+    "Description": "Entra ID应用程序客户端ID，用于访问SharePoint",
+    "Tags": [ "Opsportal", "Org" ],
+    "Required": true,
+    "Type": "Guid"
+  },
+  {
+    "Name": "EXTRANET-TENANTID",
+    "Description": "Entra ID租户ID，用于访问SharePoint",
+    "Tags": [ "Opsportal", "Org" ],
+    "Required": true,
+    "Type": "Guid"
+  },
+  {
+    "Name": "EXTRANET-ADMINSITEURL",
+    "Tags": [ "Opsportal" ],
+    "Required": true,
+    "Description": "SharePoint管理站点地址",
+    "Type": "Url"
+  },
+  {
+    "Name": "EXTRANET-SITEURL",
+    "Tags": [ "Opsportal" ],
+    "Description": "SharePoint对外站点根地址",
+    "Required": true,
+    "Type": "Url"
+  },
+  {
+    "Name": "EXTRANET-OPSPORTALSITE",
+    "Description": "运维门户(Opsportal)对应的SharePoint子站点路径",
+    "Tags": [ "Opsportal" ],
+    "Required": true
+  },
+  {
+    "Name": "CACHE-SEARCHEXPIRATIONSECONDS",
+    "Description": "文档搜索结果缓存有效期（单位：秒）",
+    "Tags": [ "Opsportal" ],
+    "Type": "Number",
+    "Option": {
+      "Min": 10,
+      "Max": 60
+    },
+    "Required": false
+  },
+  {
+    "Name": "CACHE-GLOBALEXPIRATIONSECONDS",
+    "Description": "通用业务数据缓存有效期（单位：秒）",
+    "Tags": [ "Opsportal" ],
+    "Type": "Number",
+    "Option": {
+      "Min": 10,
+      "Max": 60
+    },
+    "Required": false
+  },
+  {
+    "Name": "JWT-AUDIENCE",
+    "Description": "用于SharePoint WebPart授权校验，JWT受众标识",
+    "Tags": [ "Opsportal" ],
+    "Required": true
+  },
+  {
+    "Name": "JWT-ISSUER",
+    "Required": true,
+    "Description": "用于SharePoint WebPart授权校验，JWT签发者地址",
+    "Tags": [ "Opsportal" ],
+    "Type": "Url"
+  },
+  {
+    "Name": "JWT-SIGNINGKEY",
+    "Required": true,
+    "Description": "用于SharePoint WebPart授权校验，JWT签名RSA密钥",
+    "Tags": [ "Opsportal" ],
+    "Type": "Rsa"
+  },
+  {
+    "Name": "STAFF-SHAREPOINT-SITEURL",
+    "Required": true,
+    "Type": "Url",
+    "Tags": [ "Org" ],
+    "Description": "人员信息SharePoint站点访问地址"
+  },
+  {
+    "Name": "ORACLETASK-ENDPOINTADDRESS",
+    "Required": true,
+    "Tags": [ "Taskhub" ],
+    "Description": "Oracle任务WebService接入地址",
+    "Type": "Url"
+  },
+  {
+    "Name": "WEATHER-APIENDPOINT",
+    "Required": true,
+    "Tags": [ "Taskhub" ],
+    "Description": "常规天气信息查询接口地址",
+    "Type": "Url"
+  },
+  {
+    "Name": "SPECIALWEATHER-APIENDPOINT",
+    "Required": true,
+    "Tags": [ "Taskhub" ],
+    "Description": "特殊预警天气信息查询接口地址",
+    "Type": "Url"
+  },
+  {
+    "Name": "ORGCHART-ADDOMAIN",
+    "Required": true,
+    "Tags": [ "Org" ],
+    "Description": "用户登录AD域名后缀；解析登录账号时用于剔除域名前缀/后缀"
+  },
+  {
+    "Name": "ORG-PUBLICKEY-RAWDATA",
+    "Required": false,
+    "Type": "Rsa",
+    "Tags": [ "Org" ],
+    "Description": "登录鉴权RSA公钥；当前业务未使用，保留配置供SharePoint WebPart兼容使用"
+  },
+  {
+    "Name": "ORG-PRIVATEKEY-RAWDATA",
+    "Required": true,
+    "Type": "Rsa",
+    "Tags": [ "Org" ],
+    "Description": "登录鉴权RSA私钥"
+  },
+  {
+    "Name": "VITE-API-BASE-URL",
+    "Required": true,
+    "Type": "Url",
+    "Tags": [ "Opsportal" ],
+    "Description": "前端React应用请求后端API基础地址"
+  },
+  {
+    "Name": "VITE-RESOURCE-URL",
+    "Required": true,
+    "Type": "Url",
+    "Tags": [ "Opsportal" ],
+    "Description": "前端React静态资源访问地址"
+  },
+  {
+    "Name": "VITE-SHAREPOINT-URL",
+    "Required": true,
+    "Tags": [ "Opsportal" ],
+    "Type": "Url",
+    "Description": "前端React嵌入对应的SharePoint站点地址"
+  }
+]
