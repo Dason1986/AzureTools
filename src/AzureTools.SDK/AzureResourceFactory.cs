@@ -14,8 +14,8 @@ using AzureTools.SDK.Models;
 using AzureTools.Services;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
@@ -46,11 +46,8 @@ namespace AzureTools.SDK
             ArgumentNullException.ThrowIfNull(option);
             ArgumentNullException.ThrowIfNull(profile);
             TokenCredential credential = this.GetCredential(profile);
-            if (string.IsNullOrEmpty(option.RegistryUrl))
-            {
-                return new ContainerRegistryManagement(option.Registry, credential);
-            }
-            return new ContainerRegistryManagement(option.Registry, option.RegistryUrl, credential);
+
+            return new ContainerRegistryManagement(option, credential);
         }
 
         public IAppContainerManagement GetAppContainerManagement(AppContainerAzureEnv option, AzureTenant profile)
@@ -215,16 +212,16 @@ namespace AzureTools.SDK
             return credential;
         }
 
-        public async Task<IDictionary<string,string>> TestCertificateAsync(AzureTenant profile)
+        public async Task<IDictionary<string, string>> TestCertificateAsync(AzureTenant profile)
         {
             TokenCredential tokenCredential = CreateCredential(profile);
 
-            var token = await tokenCredential.GetTokenAsync(new Azure.Core.TokenRequestContext(new string[] { "https://graph.microsoft.com/.default" }), CancellationToken.None);
+            AccessToken token = await tokenCredential.GetTokenAsync(new Azure.Core.TokenRequestContext(new string[] { "https://graph.microsoft.com/.default" }), CancellationToken.None);
             if (string.IsNullOrEmpty(token.Token)) return new Dictionary<string, string>();
-            var jwtToken = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler().ReadJwtToken(token.Token);
-           return  jwtToken.Claims.Select(x=>new { Type=x.Type,Value=x.Value}).DistinctBy(x=>x.Type).ToDictionary(x => x.Type, x=>x.Value,StringComparer.OrdinalIgnoreCase
-               );
-          
+            JwtSecurityToken jwtToken = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler().ReadJwtToken(token.Token);
+            return jwtToken.Claims.Select(x => new { Type = x.Type, Value = x.Value }).DistinctBy(x => x.Type).ToDictionary(x => x.Type, x => x.Value, StringComparer.OrdinalIgnoreCase
+                );
+
         }
 
         public void ClearCredentialCache()

@@ -39,7 +39,7 @@ namespace AzureTools.ViewModels
         }
 
         [RelayCommand]
-        private async Task CloseAsync()
+        protected virtual async Task CloseAsync()
         {
             if (CanClose != null)
             {
@@ -52,34 +52,66 @@ namespace AzureTools.ViewModels
         }
 
 
-        protected async Task<TViewModel> ShowDialog<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TView, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(params object[] viewModelParameters)
-            where TView : View
-            where TViewModel : ViewModel
+        protected async Task<TViewModel> ShowDialog<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(params object[] viewModelParameters)
+     where TViewModel : ViewModel
         {
-            ViewModelContext childContext = CreateChildContext();
-            IViewFactory factory = Context.ServiceProvider.GetRequiredService<IViewFactory>();
-            TViewModel viewModel = factory.CreateViewModel<TViewModel>(childContext, viewModelParameters);
-            TView view = factory.CreateView<TView>(childContext, viewModel, childContext);
-            if (viewModel.CanClose != null)
-            {
-
-                view.Closing += async (sender, e) =>
-                {
-                    bool result = await viewModel.CanClose();
-                    if (!result) e.Cancel = true;
-                };
-            }
+            CreateInstance(viewModelParameters, out TViewModel viewModel, out View view);
             await view.ShowDialog(GetWindow());
-            childContext.Dispose();
+
             return viewModel;
         }
 
-
-
-        protected void Show<TView>(TView view) where TView : View
+        protected TViewModel Show<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(params object[] viewModelParameters)
+       where TViewModel : ViewModel
         {
-            view.Closed += (s, e) => view.Context?.Dispose();
+
+            CreateInstance(viewModelParameters, out TViewModel viewModel, out View view);
+
             view.Show(GetWindow());
+            return viewModel;
+        }
+
+        protected async Task<ViewModel> ShowDialog(Type viewModelType, params object[] viewModelParameters)
+        {
+            CreateInstance(viewModelParameters, viewModelType, null, out ViewModel viewModel, out View view);
+            await view.ShowDialog(GetWindow());
+
+            return viewModel;
+        }
+
+        private void CreateInstance(object[] viewModelParameters, Type viewModelType, Type viewType, out ViewModel viewModel, out View view)
+        {
+            ViewModelContext childContext = CreateChildContext();
+            IViewFactory factory = Context.ServiceProvider.GetRequiredService<IViewFactory>();
+            IViewContainerManagement containerManagement = Context.ServiceProvider.GetRequiredService<IViewContainerManagement>();
+            if (viewType == null) viewType = containerManagement.GetViewType(viewModelType);
+            if (viewType == null) throw new Exception("未注入对应的界面");
+            ViewModel _viewModel = factory.CreateViewModel(viewModelType, childContext, viewModelParameters);
+            View _view = factory.CreateView(viewType, childContext, _viewModel, childContext);
+            if (_viewModel.CanClose != null)
+            {
+
+                _view.Closing += async (sender, e) =>
+                {
+                    bool result = await _viewModel.CanClose();
+                    if (!result) e.Cancel = true;
+                };
+            }
+            _view.Closed += (s, e) =>
+            {
+                if (_viewModel is IDisposable disposable) disposable.Dispose();
+                childContext.Dispose();
+            };
+            if (_view.CanMaximize) _view.WindowState = WindowState.Maximized;
+            view = _view;
+            viewModel = _viewModel;
+        }
+        private void CreateInstance<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(object[] viewModelParameters, out TViewModel viewModel, out View view)
+    where TViewModel : ViewModel
+        {
+            CreateInstance(viewModelParameters, typeof(TViewModel), null, out ViewModel _viewModel, out View _view);
+            view = _view;
+            viewModel = _viewModel is TViewModel viewModel1 ? viewModel1 : null;
         }
 
         protected ViewModelContext CreateChildContext()

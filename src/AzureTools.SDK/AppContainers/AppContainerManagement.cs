@@ -2,13 +2,13 @@ using Azure.Core;
 using Azure.Identity;
 using Azure.ResourceManager;
 using Azure.ResourceManager.AppContainers;
-using Azure.ResourceManager.AppContainers.Models;
 using Azure.ResourceManager.Resources;
-using AzureTools.Extensions;
+using AzureTools.Cli;
 using AzureTools.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AzureTools.SDK.AppContainers
@@ -22,38 +22,41 @@ namespace AzureTools.SDK.AppContainers
             _option = option;
             _credential = credential;
             EnvironmentName = option.EnvironmentName;
-            isCli = credential is AzureCliCredential;
+            SupportContainerLogs = credential is AzureCliCredential;
 
         }
-        private readonly bool isCli;
+
         private readonly AppContainerAzureEnv _option;
         private readonly TokenCredential _credential;
 
         public string EnvironmentName { get; }
 
-        public async Task<ContainerAppInfo[]> GetContainerAppsAsync()
+        public bool SupportEnterContainer => SupportContainerLogs;
+
+        public bool SupportContainerLogs { get; }
+
+        public async Task<ContainerAppInfo[]> GetContainerAppsAsync(CancellationToken ct = default)
         {
             ArmClient armClient = new ArmClient(_credential);
             SubscriptionResource subscription = GetSubscription(armClient);
-            if (subscription == null)
-            {
-                return Array.Empty<ContainerAppInfo>();
-            }
+            if (subscription == null) return Array.Empty<ContainerAppInfo>();
+
 
             List<ContainerAppInfo> apps = new List<ContainerAppInfo>();
-            await foreach (ContainerAppResource app in subscription.GetContainerAppsAsync())
+            ContainerAppBuilder appBuilder = new ContainerAppBuilder();
+            await foreach (ContainerAppResource app in subscription.GetContainerAppsAsync(ct))
             {
                 ContainerAppData data = app.Data;
                 if (data.EnvironmentId?.Name == _option.EnvironmentName)
                 {
-                    apps.Add(BuildContainerAppInfo(data));
+                    apps.Add(appBuilder.BuildAppInfo(data));
                 }
             }
 
             return apps.OrderBy(x => x.Name).ToArray();
         }
 
-        public async Task<ContainerAppDetail> GetContainerAppDetailAsync(string containerAppName)
+        public async Task<ContainerAppDetail> GetContainerAppDetailAsync(string containerAppName, CancellationToken ct = default)
         {
             if (string.IsNullOrWhiteSpace(containerAppName))
             {
@@ -67,193 +70,12 @@ namespace AzureTools.SDK.AppContainers
                 return null;
             }
 
-            ContainerAppResource appResource = await FindContainerAppResourceAsync(subscription, containerAppName);
-            if (appResource == null)
-            {
-                return null;
-            }
 
-            ContainerAppData data = appResource.Data;
-            ContainerAppDetail detail = new ContainerAppDetail
-            {
-                Name = data.Name,
-                EnvironmentName = data.EnvironmentId?.Name,
-                ProvisioningState = data.ProvisioningState.ToString(),
-                RunningStatus = data.RunningStatus?.ToString(),
-                Location = data.Location,
-                LatestRevisionName = data.LatestRevisionName,
-                LatestReadyRevisionName = data.LatestReadyRevisionName,
-                LatestRevisionFqdn = data.LatestRevisionFqdn,
-                Scale = BuildScaleInfo(data.Template?.Scale),
-                Volumes = BuildVolumeInfos(data.Template?.Volumes),
-                EnvironmentVariables = BuildEnvVarInfos(data.Template?.Containers)
-            };
+            ContainerAppBuilder appBuilder = new ContainerAppBuilder();
 
-            await PopulateRevisionsAsync(appResource, detail);
-            return detail;
+            return await appBuilder.BuildDetail(subscription, containerAppName, _option.EnvironmentName, ct);
         }
 
-        private async Task<ContainerAppResource> FindContainerAppResourceAsync(SubscriptionResource subscription, string containerAppName)
-        {
-            await foreach (ContainerAppResource app in subscription.GetContainerAppsAsync())
-            {
-                if (app.Data.Name == containerAppName && app.Data.EnvironmentId?.Name == _option.EnvironmentName)
-                {
-                    return app;
-                }
-            }
-            return null;
-        }
-
-        private static async Task PopulateRevisionsAsync(ContainerAppResource appResource, ContainerAppDetail detail)
-        {
-            ContainerAppRevisionCollection revisionCollection = appResource.GetContainerAppRevisions();
-            await foreach (ContainerAppRevisionResource revision in revisionCollection.GetAllAsync())
-            {
-                ContainerAppRevisionData revData = revision.Data;
-                detail.Revisions.Add(new ContainerAppRevisionInfo
-                {
-                    Name = revData.Name,
-                    ProvisioningState = revData.ProvisioningState?.ToString(),
-                    RunningState = revData.RunningState?.ToString(),
-                    HealthState = revData.HealthState?.ToString(),
-                    IsActive = revData.IsActive.GetValueOrDefault(),
-                    Replicas = revData.Replicas,
-                    TrafficWeight = revData.TrafficWeight,
-                    CreatedOn = revData.CreatedOn.ToLocalDateTime(),
-                    LastActiveOn = revData.LastActiveOn.ToLocalDateTime(),
-                    Fqdn = revData.Fqdn
-                });
-
-                if (revData.IsActive.GetValueOrDefault())
-                {
-                    await PopulateReplicasAsync(revision, revData.Name, detail);
-                }
-            }
-            detail.Revisions = detail.Revisions.OrderByDescending(x => x.CreatedOn).ToList();
-        }
-
-        private static async Task PopulateReplicasAsync(ContainerAppRevisionResource revision, string revisionName, ContainerAppDetail detail)
-        {
-            ContainerAppReplicaCollection replicaCollection = revision.GetContainerAppReplicas();
-            await foreach (ContainerAppReplicaResource replica in replicaCollection.GetAllAsync())
-            {
-                detail.Replicas.Add(BuildReplicaInfo(replica.Data, revisionName));
-            }
-        }
-
-        private static ContainerAppReplicaInfo BuildReplicaInfo(ContainerAppReplicaData data, string revisionName)
-        {
-            ContainerAppReplicaInfo info = new ContainerAppReplicaInfo
-            {
-                Name = data.Name,
-                RevisionName = revisionName,
-                CreatedOn = data.CreatedOn.ToLocalDateTime(),
-                RunningState = data.RunningState?.ToString(),
-                RunningStateDetails = data.RunningStateDetails
-            };
-
-            if (data.Containers != null)
-            {
-                foreach (ContainerAppReplicaContainer container in data.Containers)
-                {
-                    info.Containers.Add(new ContainerAppReplicaContainerInfo
-                    {
-                        Name = container.Name,
-                        ContainerId = container.ContainerId,
-                        IsReady = container.IsReady,
-                        IsStarted = container.IsStarted,
-                        RestartCount = container.RestartCount,
-                        RunningState = container.RunningState?.ToString(),
-                        RunningStateDetails = container.RunningStateDetails
-                    });
-                }
-            }
-
-            return info;
-        }
-
-        private static ContainerAppInfo BuildContainerAppInfo(ContainerAppData data)
-        {
-            return new ContainerAppInfo
-            {
-                Name = data.Name,
-                EnvironmentName = data.EnvironmentId?.Name,
-                ProvisioningState = data.ProvisioningState.ToString(),
-                RunningStatus = data.RunningStatus?.ToString(),
-                LatestRevisionName = data.LatestRevisionName,
-                Replicas = data.Template?.Scale?.MaxReplicas,
-                Image = data.Template?.Containers?.FirstOrDefault()?.Image,
-                Location = data.Location,
-                ResourceType = data.ResourceType.ToString(),
-                RevisionCreatedTime = data.LatestRevisionFqdn != null ? DateTime.UtcNow : null
-            };
-        }
-
-        private static ContainerAppScaleInfo BuildScaleInfo(ContainerAppScale scale)
-        {
-            if (scale == null) return null;
-
-            ContainerAppScaleInfo scaleInfo = new ContainerAppScaleInfo
-            {
-                MinReplicas = scale.MinReplicas,
-                MaxReplicas = scale.MaxReplicas,
-                CooldownPeriod = scale.CooldownPeriod?.ToString(),
-                PollingInterval = scale.PollingInterval?.ToString()
-            };
-
-            if (scale.Rules != null)
-            {
-                foreach (ContainerAppScaleRule rule in scale.Rules)
-                {
-                    scaleInfo.ScaleRules.Add(rule.Name);
-                }
-            }
-
-            return scaleInfo;
-        }
-
-        private static List<ContainerAppVolumeInfo> BuildVolumeInfos(IList<ContainerAppVolume> volumes)
-        {
-            List<ContainerAppVolumeInfo> result = new List<ContainerAppVolumeInfo>();
-            if (volumes == null) return result;
-
-            foreach (ContainerAppVolume volume in volumes)
-            {
-                result.Add(new ContainerAppVolumeInfo
-                {
-                    Name = volume.Name,
-                    StorageType = volume.StorageType?.ToString(),
-                    StorageName = volume.StorageName,
-                    MountOptions = volume.MountOptions
-                });
-            }
-
-            return result;
-        }
-
-        private static List<ContainerAppEnvVarInfo> BuildEnvVarInfos(IList<ContainerAppContainer> containers)
-        {
-            List<ContainerAppEnvVarInfo> result = new List<ContainerAppEnvVarInfo>();
-            if (containers == null) return result;
-
-            foreach (ContainerAppContainer container in containers)
-            {
-                if (container.Env == null) continue;
-
-                foreach (ContainerAppEnvironmentVariable envVar in container.Env)
-                {
-                    result.Add(new ContainerAppEnvVarInfo
-                    {
-                        Name = envVar.Name,
-                        Value = envVar.Value,
-                        SecretRef = envVar.SecretRef
-                    });
-                }
-            }
-
-            return result;
-        }
 
         private SubscriptionResource GetSubscription(ArmClient armClient)
         {
@@ -266,5 +88,41 @@ namespace AzureTools.SDK.AppContainers
             }
             return null;
         }
+
+        public async Task<ICliStreamSession> GetContainerLogsFollowAsync(string containerAppName, string resourceGroup, string revision, string replica, CancellationToken ct = default)
+        {
+            if (!SupportContainerLogs) throw new NotSupportedException();
+            IAzureCliClientBuilder builder = await AzureCliBuilder.CreateAzureAsync();
+            await AzureCliBuilder.ChangeSubscription(this._option.SubscriptionId);
+            return await builder.GetAppContainerClient(containerAppName, resourceGroup).GetLogsFollowAsync(revision, replica, ct);
+
+        }
+
+        public async Task<ICliStreamSession> ExecContainerAsync(string containerAppName, string resourceGroup, string revision, string replica, string containerName, CancellationToken ct = default)
+        {
+            if (!SupportEnterContainer) throw new NotSupportedException();
+            await AzureCliBuilder.ChangeSubscription(this._option.SubscriptionId);
+            IAzureCliClientBuilder builder = await AzureCliBuilder.CreateAzureAsync();
+            return await builder.GetAppContainerClient(containerAppName, resourceGroup).ExecAsync(revision, replica, containerName, ct);
+
+        }
+
+        public async Task<IContainerFileProvider> GetContainerFileBrowserAsync(string containerAppName, string resourceGroup, string revision, string replica, string containerName, CancellationToken ct = default)
+        {
+            if (!SupportEnterContainer) throw new NotSupportedException();
+            await AzureCliBuilder.ChangeSubscription(this._option.SubscriptionId);
+            IAzureCliClientBuilder builder = await AzureCliBuilder.CreateAzureAsync();
+            return await builder.GetAppContainerClient(containerAppName, resourceGroup).GetFileBrowserAsync(revision, replica, containerName, ct);
+
+        }
+        public async Task RevisionRestartAsync(string containerAppName, string resourceGroup, string revision, CancellationToken ct = default)
+        {
+
+            if (!SupportContainerLogs) throw new NotSupportedException();
+            await AzureCliBuilder.ChangeSubscription(this._option.SubscriptionId);
+            IAzureCliClientBuilder builder = await AzureCliBuilder.CreateAzureAsync();
+            await builder.GetAppContainerClient(containerAppName, resourceGroup).RevisionRestartAsync(revision, ct);
+        }
+
     }
 }

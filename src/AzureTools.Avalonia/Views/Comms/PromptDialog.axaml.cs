@@ -1,33 +1,43 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using AzureTools.Services;
+using System;
 
 namespace AzureTools.Views
 {
     public partial class PromptDialog : Window
     {
-        public string Prompt { get; }
-        public string DialogTitle { get; }
-        public string Input { get; set; }
 
         public PromptDialog(string title, string prompt, PromptDialogOption dialogOption)
         {
-            InitializeComponent();
+            InitializeComponent(true);
             DialogTitle = title;
             Prompt = prompt;
             Input = dialogOption.DefaultValue ?? string.Empty;
-            DataContext = this;
-            if (!dialogOption.IsPassword)
+            if (dialogOption.Options == null || dialogOption.Options.Length == 0)
             {
-                InputTextBox.PasswordChar = '\0';
+                IsText = true;
+                Options = dialogOption.Options ?? Array.Empty<string>();
             }
+            else
+            {
+                IsText = false;
+                Options = dialogOption.Options;
+                Input = Options[0];
+            }
+            IsOptions = !IsText;
+            PasswordChar = dialogOption.IsPassword ? dialogOption.PasswordChar : char.MinValue;
+            DataContext = this;
         }
+        public string Prompt { get; }
+        public char PasswordChar { get; }
+        public string DialogTitle { get; }
+        public bool IsText { get; }
+        public bool IsOptions { get; }
+        public string Input { get; set; }
+        public string[] Options { get; }
 
-        private void InitializeComponent()
-        {
-            AvaloniaXamlLoader.Load(this);
-        }
+
 
         private void OnConfirmClick(object sender, RoutedEventArgs e)
         {

@@ -1,0 +1,64 @@
+<Window x:Class="AzureTools.Module.Azure.Views.AppContainers.AppContainerListView"
+        x:Name="Root"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:AzureTools.Module.Azure.ViewModels.AppContainers;assembly=AzureTools"
+        xmlns:res="clr-namespace:AzureTools.Properties;assembly=AzureTools"
+        xmlns:ac="clr-namespace:AzureTools.Models.AppContainers;assembly=AzureTools"
+        
+        xmlns:bh="clr-namespace:AzureTools.Behaviors;assembly=AzureTools"
+        x:DataType="vm:AppContainerListViewModel"
+        Title="{Binding WindowTitle}"
+        Width="1200"
+        Height="600"
+        MinWidth="600"
+        MinHeight="350"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="{x:Static res:FormResources.BtnRefresh}"
+                    Command="{Binding RefreshCommand}"
+                    Padding="15,4"
+                    Margin="0,0,10,0"/>
+            <Button Content="{x:Static res:FormResources.BtnDetail}"
+                    Command="{Binding ViewDetailCommand}"
+                    Padding="15,4"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding ContainerApps}"
+                  SelectedItem="{Binding SelectedContainerApp}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserResizeColumns="True"
+                  CanUserSortColumns="True"
+                  bh:DataGridAssist.EnableStoppedRowHighlight="True"
+                  bh:DataGridAssist.HighlightStatusValue="Stopped">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static res:FormResources.LblName}"
+                                    Binding="{Binding Name}"
+                                    Width="*"/>
+                <DataGridTextColumn Header="{x:Static res:FormResources.LblImage}"
+                                    Binding="{Binding Image}"
+                                    Width="2*"/>
+                <DataGridTextColumn Header="{x:Static res:FormResources.LblRunningStatus}"
+                                    Binding="{Binding RunningStatus}"
+                                    Width="120"/>
+                <DataGridTextColumn Header="{x:Static res:FormResources.LblReplicas}"
+                                    Binding="{Binding Replicas}"
+                                    Width="100"/>
+                <DataGridTextColumn Header="{x:Static res:FormResources.LblLatestRevision}"
+                                    Binding="{Binding LatestRevisionName}"
+                                    Width="150"/>
+                <DataGridTextColumn Header="{x:Static res:FormResources.LblRevisionCreatedTime}"
+                                    Binding="{Binding RevisionCreatedTime, Converter={StaticResource DateTimeFormat}, ConverterParameter=yyyy-MM-dd HH:mm}"
+                                    Width="160"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

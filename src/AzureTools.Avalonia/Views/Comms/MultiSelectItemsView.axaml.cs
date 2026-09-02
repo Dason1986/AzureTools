@@ -1,6 +1,5 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,7 +22,7 @@ namespace AzureTools.Views.Comms
         public MultiSelectItemsView(Type itemType, IList dataSource, string title, IDictionary<string, string> propertyMappings = null)
             : base(itemType, propertyMappings)
         {
-            InitializeComponent();
+            InitializeComponent(true);
 
             _dataSource = dataSource;
             InitializeItemsGrid();
@@ -34,10 +33,7 @@ namespace AzureTools.Views.Comms
             LoadData();
         }
 
-        private void InitializeComponent()
-        {
-            AvaloniaXamlLoader.Load(this);
-        }
+
 
         protected override object GetTargetItem(object rowItem) => (rowItem as SelectableItem)?.Item;
 

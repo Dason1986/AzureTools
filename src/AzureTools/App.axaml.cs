@@ -4,12 +4,15 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using AzureTools.Models;
+using AzureTools.Module.Main.ViewModels;
+using AzureTools.Module.Main.Views;
 using AzureTools.Services;
 using AzureTools.Stores;
 using AzureTools.ViewModels;
 using AzureTools.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 namespace AzureTools
@@ -103,15 +106,11 @@ namespace AzureTools
                 if (profile == null)
                 {
 
-                    AppWizardView wizardView = Services.GetRequiredService<Views.AppWizardView>();
-                    AppWizardViewModel wizardVm = (AppWizardViewModel)wizardView.DataContext;
-                    bool completed = false;
-
-                    wizardVm.Completed += (s, e) => completed = true;
+                    AppWizardView wizardView = CreateView<AppWizardView, AppWizardViewModel>();
                     wizardView.Closed += (s, e) =>
                     {
-
-                        if (!completed || store.GetProfile() == null)
+                        AppWizardViewModel wizardVm = wizardView.DataContext as AppWizardViewModel;
+                        if (!wizardVm.Completed || store.GetProfile() == null)
                         {
                             desktop.MainWindow = null;
                             return;
@@ -125,12 +124,11 @@ namespace AzureTools
 
                 if (profile.LoginUsePassword)
                 {
-                    LoginView loginView = Services.GetRequiredService<Views.LoginView>();
-                    LoginViewModel loginVm = (LoginViewModel)loginView.DataContext;
+                    LoginView loginView = CreateView<LoginView, LoginViewModel>();
 
                     loginView.Closed += (s, e) =>
                     {
-
+                        LoginViewModel loginVm = loginView.DataContext as LoginViewModel;
                         if (string.IsNullOrEmpty(loginVm.PasswordHash))
                         {
                             desktop.MainWindow = null;
@@ -151,8 +149,26 @@ namespace AzureTools
 
         private static void ShowMainWindow(IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = Services.GetRequiredService<Views.MainView>();
+            MainView mainView = CreateView<MainView, MainViewModel>();
+            desktop.MainWindow = mainView;
             desktop.MainWindow.Show();
+        }
+
+        private static TView CreateView<
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TView,
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>()
+            where TView : View
+            where TViewModel : ViewModel
+        {
+            ViewModelContext context = new(Services);
+            IViewFactory factory = Services.GetRequiredService<IViewFactory>();
+            IViewContainerManagement containerManagement = Services.GetRequiredService<IViewContainerManagement>();
+
+            Type viewType = containerManagement.GetViewType(typeof(TViewModel));
+            if (viewType == null) throw new Exception("未注入对应的界面");
+
+            TViewModel viewModel = (TViewModel)factory.CreateViewModel(typeof(TViewModel), context);
+            return (TView)factory.CreateView(viewType, context, viewModel, context);
         }
     }
 }

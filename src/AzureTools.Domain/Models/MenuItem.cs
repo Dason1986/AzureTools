@@ -15,10 +15,14 @@ namespace AzureTools.Models
         public Guid Id { get; set; }
         public string Code { get; set; }
 
+        public Guid ModuleId { get; set; }
+
+        public ModuleItem Module { get; set; }
+
         public string Name { get; set; }
 
         public byte[] Icons { get; set; }
-        public string Form { get; set; }
+        public Type ViewModelType { get; set; }
 
         #endregion
     }

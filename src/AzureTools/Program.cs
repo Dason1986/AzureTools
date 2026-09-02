@@ -17,11 +17,8 @@ namespace AzureTools
         static void Main(string[] args)
         {
             CreateHoust();
-
             App.InitializeServices(host.Services);
-
-            AppBuilder builder = AppBuilder.Configure<App>()
-                .UsePlatformDetect();
+            AppBuilder builder = AppBuilder.Configure<App>().UsePlatformDetect();
             builder.StartWithClassicDesktopLifetime(args);
 
         }
@@ -50,8 +47,6 @@ namespace AzureTools
             services.AddJson();
             services.AddStore();
             services.AddComponents();
-
-            services.AddViews();
         }
     }
 }

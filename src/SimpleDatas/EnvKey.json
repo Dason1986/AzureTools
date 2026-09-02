@@ -306,5 +306,17 @@
     "Tags": [ "Opsportal" ],
     "Type": "Url",
     "Description": "前端React嵌入对应的SharePoint站点地址"
+  },
+  {
+    "Name": "STAFF-SHAREPOINT-ORGCHARTLISTTITLE",
+    "Description": "Org charts 同步sharepoint对应部门站点，pdf上传的文档库名称",
+    "Tags": ["Org" ],
+    "Required": true
+  },
+  {
+    "Name": "RECAPTCHA-SECRETKEY",
+    "Description": "Google Recaptcha 私钥，用于验证用户是否为机器人操作",
+    "Tags": ["Opsportal" ],
+    "Required": true
   }
 ]

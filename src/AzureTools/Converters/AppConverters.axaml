@@ -9,5 +9,6 @@
   <conv:ByteArrayToImageConverter x:Key="ByteArrayToImage"/>
   <conv:StringNotEmptyConverter x:Key="StringNotEmpty"/>
   <conv:BoolToColorConverter x:Key="BoolToColor"/>
-  <conv:StringBooleanConverter x:Key="StringBoolean"/> 
+  <conv:StringBooleanConverter x:Key="StringBoolean"/>
+  <conv:FileIconConverter x:Key="FileIcon"/>
 </ResourceDictionary>

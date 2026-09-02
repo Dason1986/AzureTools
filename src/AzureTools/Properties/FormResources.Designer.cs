@@ -146,6 +146,15 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 关闭 的本地化字符串。
+        /// </summary>
+        public static string BtnClose {
+            get {
+                return ResourceManager.GetString("BtnClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 对比 的本地化字符串。
         /// </summary>
         public static string BtnCompare {
@@ -160,6 +169,15 @@ namespace AzureTools.Properties {
         public static string BtnConfirm {
             get {
                 return ResourceManager.GetString("BtnConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 容器日志 的本地化字符串。
+        /// </summary>
+        public static string BtnContainerLogs {
+            get {
+                return ResourceManager.GetString("BtnContainerLogs", resourceCulture);
             }
         }
         
@@ -236,6 +254,15 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 进入容器 的本地化字符串。
+        /// </summary>
+        public static string BtnEnterContainer {
+            get {
+                return ResourceManager.GetString("BtnEnterContainer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 环境 的本地化字符串。
         /// </summary>
         public static string BtnEnvManage {
@@ -252,23 +279,7 @@ namespace AzureTools.Properties {
                 return ResourceManager.GetString("BtnExport", resourceCulture);
             }
         }
-        /// <summary>
-        ///   查找类似 环境名称 的本地化字符串。
-        /// </summary>
-        public static string LblEnvironmentName {
-            get {
-                return ResourceManager.GetString("LblEnvironmentName", resourceCulture);
-            }
-        }  
-        /// <summary>
-        ///   查找类似 App Container 的本地化字符串。
-        /// </summary>
-        public static string MenuAppContainer {
-            get {
-                return ResourceManager.GetString("MenuAppContainer", resourceCulture);
-            }
-        }
-     
+        
         /// <summary>
         ///   查找类似 导出结果 的本地化字符串。
         /// </summary>
@@ -347,6 +358,15 @@ namespace AzureTools.Properties {
         public static string BtnRename {
             get {
                 return ResourceManager.GetString("BtnRename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 重启 的本地化字符串。
+        /// </summary>
+        public static string BtnRestart {
+            get {
+                return ResourceManager.GetString("BtnRestart", resourceCulture);
             }
         }
         
@@ -898,6 +918,15 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 复制 Azure CLI 命令 的本地化字符串。
+        /// </summary>
+        public static string LblAzureCliCommand {
+            get {
+                return ResourceManager.GetString("LblAzureCliCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Base64 的本地化字符串。
         /// </summary>
         public static string LblBase64 {
@@ -976,6 +1005,51 @@ namespace AzureTools.Properties {
         public static string LblComment {
             get {
                 return ResourceManager.GetString("LblComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 容器 的本地化字符串。
+        /// </summary>
+        public static string LblContainer {
+            get {
+                return ResourceManager.GetString("LblContainer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 容器应用 的本地化字符串。
+        /// </summary>
+        public static string LblContainerApp {
+            get {
+                return ResourceManager.GetString("LblContainerApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 容器ID 的本地化字符串。
+        /// </summary>
+        public static string LblContainerId {
+            get {
+                return ResourceManager.GetString("LblContainerId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 容器列表 的本地化字符串。
+        /// </summary>
+        public static string LblContainers {
+            get {
+                return ResourceManager.GetString("LblContainers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 冷却时间 的本地化字符串。
+        /// </summary>
+        public static string LblCooldownPeriod {
+            get {
+                return ResourceManager.GetString("LblCooldownPeriod", resourceCulture);
             }
         }
         
@@ -1088,6 +1162,15 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 环境名称 的本地化字符串。
+        /// </summary>
+        public static string LblEnvironmentName {
+            get {
+                return ResourceManager.GetString("LblEnvironmentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 环境变量 的本地化字符串。
         /// </summary>
         public static string LblEnvironmentVariables {
@@ -1102,6 +1185,15 @@ namespace AzureTools.Properties {
         public static string LblEnvName {
             get {
                 return ResourceManager.GetString("LblEnvName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 值 的本地化字符串。
+        /// </summary>
+        public static string LblEnvVarValue {
+            get {
+                return ResourceManager.GetString("LblEnvVarValue", resourceCulture);
             }
         }
         
@@ -1142,11 +1234,47 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 FQDN 的本地化字符串。
+        /// </summary>
+        public static string LblFqdn {
+            get {
+                return ResourceManager.GetString("LblFqdn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 健康状态 的本地化字符串。
+        /// </summary>
+        public static string LblHealthState {
+            get {
+                return ResourceManager.GetString("LblHealthState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 镜像 的本地化字符串。
+        /// </summary>
+        public static string LblImage {
+            get {
+                return ResourceManager.GetString("LblImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 镜像配置 的本地化字符串。
         /// </summary>
         public static string LblImageConfig {
             get {
                 return ResourceManager.GetString("LblImageConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 活跃 的本地化字符串。
+        /// </summary>
+        public static string LblIsActive {
+            get {
+                return ResourceManager.GetString("LblIsActive", resourceCulture);
             }
         }
         
@@ -1178,6 +1306,15 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 最后活跃时间 的本地化字符串。
+        /// </summary>
+        public static string LblLastActiveOn {
+            get {
+                return ResourceManager.GetString("LblLastActiveOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 最后更新 的本地化字符串。
         /// </summary>
         public static string LblLastUpdated {
@@ -1187,11 +1324,47 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 最新就绪修订 的本地化字符串。
+        /// </summary>
+        public static string LblLatestReadyRevision {
+            get {
+                return ResourceManager.GetString("LblLatestReadyRevision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 最新修订 的本地化字符串。
+        /// </summary>
+        public static string LblLatestRevision {
+            get {
+                return ResourceManager.GetString("LblLatestRevision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 最新修订 FQDN 的本地化字符串。
+        /// </summary>
+        public static string LblLatestRevisionFqdn {
+            get {
+                return ResourceManager.GetString("LblLatestRevisionFqdn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 层 的本地化字符串。
         /// </summary>
         public static string LblLayers {
             get {
                 return ResourceManager.GetString("LblLayers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 位置 的本地化字符串。
+        /// </summary>
+        public static string LblLocation {
+            get {
+                return ResourceManager.GetString("LblLocation", resourceCulture);
             }
         }
         
@@ -1214,11 +1387,47 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 日志流端点 的本地化字符串。
+        /// </summary>
+        public static string LblLogStreamEndpoint {
+            get {
+                return ResourceManager.GetString("LblLogStreamEndpoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 清单 的本地化字符串。
         /// </summary>
         public static string LblManifestList {
             get {
                 return ResourceManager.GetString("LblManifestList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 最大副本 的本地化字符串。
+        /// </summary>
+        public static string LblMaxReplicas {
+            get {
+                return ResourceManager.GetString("LblMaxReplicas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 最小副本 的本地化字符串。
+        /// </summary>
+        public static string LblMinReplicas {
+            get {
+                return ResourceManager.GetString("LblMinReplicas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 挂载选项 的本地化字符串。
+        /// </summary>
+        public static string LblMountOptions {
+            get {
+                return ResourceManager.GetString("LblMountOptions", resourceCulture);
             }
         }
         
@@ -1250,384 +1459,6 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
-        ///   查找类似 镜像 的本地化字符串。
-        /// </summary>
-        public static string LblImage {
-            get {
-                return ResourceManager.GetString("LblImage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 副本数 的本地化字符串。
-        /// </summary>
-        public static string LblReplicas {
-            get {
-                return ResourceManager.GetString("LblReplicas", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 最新修订 的本地化字符串。
-        /// </summary>
-        public static string LblLatestRevision {
-            get {
-                return ResourceManager.GetString("LblLatestRevision", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 位置 的本地化字符串。
-        /// </summary>
-        public static string LblLocation {
-            get {
-                return ResourceManager.GetString("LblLocation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 资源类型 的本地化字符串。
-        /// </summary>
-        public static string LblResourceType {
-            get {
-                return ResourceManager.GetString("LblResourceType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 资源组 的本地化字符串。
-        /// </summary>
-        public static string LblResourceGroup {
-            get {
-                return ResourceManager.GetString("LblResourceGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 运行状态 的本地化字符串。
-        /// </summary>
-        public static string LblRunningStatus {
-            get {
-                return ResourceManager.GetString("LblRunningStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 修订创建时间 的本地化字符串。
-        /// </summary>
-        public static string LblRevisionCreatedTime {
-            get {
-                return ResourceManager.GetString("LblRevisionCreatedTime", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 Container App 详情 - {0} 的本地化字符串。
-        /// </summary>
-        public static string TitleContainerAppDetail {
-            get {
-                return ResourceManager.GetString("TitleContainerAppDetail", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 基本信息 的本地化字符串。
-        /// </summary>
-        public static string TabBasicInfo {
-            get {
-                return ResourceManager.GetString("TabBasicInfo", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 Revisions 的本地化字符串。
-        /// </summary>
-        public static string TabRevisions {
-            get {
-                return ResourceManager.GetString("TabRevisions", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 Scale 的本地化字符串。
-        /// </summary>
-        public static string TabScale {
-            get {
-                return ResourceManager.GetString("TabScale", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 Volumes 的本地化字符串。
-        /// </summary>
-        public static string TabVolumes {
-            get {
-                return ResourceManager.GetString("TabVolumes", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 Environment 的本地化字符串。
-        /// </summary>
-        public static string TabEnvironment {
-            get {
-                return ResourceManager.GetString("TabEnvironment", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 Replicas 的本地化字符串。
-        /// </summary>
-        public static string TabReplicas {
-            get {
-                return ResourceManager.GetString("TabReplicas", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 修订 的本地化字符串。
-        /// </summary>
-        public static string LblRevision {
-            get {
-                return ResourceManager.GetString("LblRevision", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 容器 的本地化字符串。
-        /// </summary>
-        public static string LblContainer {
-            get {
-                return ResourceManager.GetString("LblContainer", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 就绪 的本地化字符串。
-        /// </summary>
-        public static string LblReady {
-            get {
-                return ResourceManager.GetString("LblReady", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 重启次数 的本地化字符串。
-        /// </summary>
-        public static string LblRestartCount {
-            get {
-                return ResourceManager.GetString("LblRestartCount", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 容器列表 的本地化字符串。
-        /// </summary>
-        public static string LblContainers {
-            get {
-                return ResourceManager.GetString("LblContainers", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 容器ID 的本地化字符串。
-        /// </summary>
-        public static string LblContainerId {
-            get {
-                return ResourceManager.GetString("LblContainerId", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 已启动 的本地化字符串。
-        /// </summary>
-        public static string LblStarted {
-            get {
-                return ResourceManager.GetString("LblStarted", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 运行状态详情 的本地化字符串。
-        /// </summary>
-        public static string LblRunningStateDetails {
-            get {
-                return ResourceManager.GetString("LblRunningStateDetails", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 副本详情 - {0} 的本地化字符串。
-        /// </summary>
-        public static string TitleReplicaDetail {
-            get {
-                return ResourceManager.GetString("TitleReplicaDetail", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 最小副本 的本地化字符串。
-        /// </summary>
-        public static string LblMinReplicas {
-            get {
-                return ResourceManager.GetString("LblMinReplicas", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 最大副本 的本地化字符串。
-        /// </summary>
-        public static string LblMaxReplicas {
-            get {
-                return ResourceManager.GetString("LblMaxReplicas", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 冷却时间 的本地化字符串。
-        /// </summary>
-        public static string LblCooldownPeriod {
-            get {
-                return ResourceManager.GetString("LblCooldownPeriod", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 轮询间隔 的本地化字符串。
-        /// </summary>
-        public static string LblPollingInterval {
-            get {
-                return ResourceManager.GetString("LblPollingInterval", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 缩放规则 的本地化字符串。
-        /// </summary>
-        public static string LblScaleRules {
-            get {
-                return ResourceManager.GetString("LblScaleRules", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 存储类型 的本地化字符串。
-        /// </summary>
-        public static string LblStorageType {
-            get {
-                return ResourceManager.GetString("LblStorageType", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 存储名称 的本地化字符串。
-        /// </summary>
-        public static string LblStorageName {
-            get {
-                return ResourceManager.GetString("LblStorageName", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 挂载选项 的本地化字符串。
-        /// </summary>
-        public static string LblMountOptions {
-            get {
-                return ResourceManager.GetString("LblMountOptions", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 密钥引用 的本地化字符串。
-        /// </summary>
-        public static string LblSecretRef {
-            get {
-                return ResourceManager.GetString("LblSecretRef", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 值 的本地化字符串。
-        /// </summary>
-        public static string LblEnvVarValue {
-            get {
-                return ResourceManager.GetString("LblEnvVarValue", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 活跃 的本地化字符串。
-        /// </summary>
-        public static string LblIsActive {
-            get {
-                return ResourceManager.GetString("LblIsActive", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 流量权重 的本地化字符串。
-        /// </summary>
-        public static string LblTrafficWeight {
-            get {
-                return ResourceManager.GetString("LblTrafficWeight", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 健康状态 的本地化字符串。
-        /// </summary>
-        public static string LblHealthState {
-            get {
-                return ResourceManager.GetString("LblHealthState", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 运行状态 的本地化字符串。
-        /// </summary>
-        public static string LblRunningState {
-            get {
-                return ResourceManager.GetString("LblRunningState", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 最后活跃时间 的本地化字符串。
-        /// </summary>
-        public static string LblLastActiveOn {
-            get {
-                return ResourceManager.GetString("LblLastActiveOn", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 FQDN 的本地化字符串。
-        /// </summary>
-        public static string LblFqdn {
-            get {
-                return ResourceManager.GetString("LblFqdn", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 最新就绪修订 的本地化字符串。
-        /// </summary>
-        public static string LblLatestReadyRevision {
-            get {
-                return ResourceManager.GetString("LblLatestReadyRevision", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   查找类似 最新修订 FQDN 的本地化字符串。
-        /// </summary>
-        public static string LblLatestRevisionFqdn {
-            get {
-                return ResourceManager.GetString("LblLatestRevisionFqdn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 父镜像 的本地化字符串。
         /// </summary>
         public static string LblParent {
@@ -1655,11 +1486,29 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 轮询间隔 的本地化字符串。
+        /// </summary>
+        public static string LblPollingInterval {
+            get {
+                return ResourceManager.GetString("LblPollingInterval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 私钥 的本地化字符串。
         /// </summary>
         public static string LblPrivateKey {
             get {
                 return ResourceManager.GetString("LblPrivateKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 私钥 Base64 的本地化字符串。
+        /// </summary>
+        public static string LblPrivateKeyBase64 {
+            get {
+                return ResourceManager.GetString("LblPrivateKeyBase64", resourceCulture);
             }
         }
         
@@ -1697,7 +1546,8 @@ namespace AzureTools.Properties {
             get {
                 return ResourceManager.GetString("LblPublicKey", resourceCulture);
             }
-        }  
+        }
+        
         /// <summary>
         ///   查找类似 公钥 Base64 的本地化字符串。
         /// </summary>
@@ -1706,12 +1556,13 @@ namespace AzureTools.Properties {
                 return ResourceManager.GetString("LblPublicKeyBase64", resourceCulture);
             }
         }
+        
         /// <summary>
-        ///   查找类似 私钥 Base64 的本地化字符串。
+        ///   查找类似 就绪 的本地化字符串。
         /// </summary>
-        public static string LblPrivateKeyBase64 {
+        public static string LblReady {
             get {
-                return ResourceManager.GetString("LblPrivateKeyBase64", resourceCulture);
+                return ResourceManager.GetString("LblReady", resourceCulture);
             }
         }
         
@@ -1734,6 +1585,24 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 副本 的本地化字符串。
+        /// </summary>
+        public static string LblReplica {
+            get {
+                return ResourceManager.GetString("LblReplica", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 副本数 的本地化字符串。
+        /// </summary>
+        public static string LblReplicas {
+            get {
+                return ResourceManager.GetString("LblReplicas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 仓库列表 的本地化字符串。
         /// </summary>
         public static string LblRepositoryList {
@@ -1752,11 +1621,101 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 资源组 的本地化字符串。
+        /// </summary>
+        public static string LblResourceGroup {
+            get {
+                return ResourceManager.GetString("LblResourceGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 资源类型 的本地化字符串。
+        /// </summary>
+        public static string LblResourceType {
+            get {
+                return ResourceManager.GetString("LblResourceType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 重启次数 的本地化字符串。
+        /// </summary>
+        public static string LblRestartCount {
+            get {
+                return ResourceManager.GetString("LblRestartCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 修订 的本地化字符串。
+        /// </summary>
+        public static string LblRevision {
+            get {
+                return ResourceManager.GetString("LblRevision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 修订创建时间 的本地化字符串。
+        /// </summary>
+        public static string LblRevisionCreatedTime {
+            get {
+                return ResourceManager.GetString("LblRevisionCreatedTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 规则 的本地化字符串。
         /// </summary>
         public static string LblRule {
             get {
                 return ResourceManager.GetString("LblRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 运行状态 的本地化字符串。
+        /// </summary>
+        public static string LblRunningState {
+            get {
+                return ResourceManager.GetString("LblRunningState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 运行状态详情 的本地化字符串。
+        /// </summary>
+        public static string LblRunningStateDetails {
+            get {
+                return ResourceManager.GetString("LblRunningStateDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 运行状态 的本地化字符串。
+        /// </summary>
+        public static string LblRunningStatus {
+            get {
+                return ResourceManager.GetString("LblRunningStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 缩放规则 的本地化字符串。
+        /// </summary>
+        public static string LblScaleRules {
+            get {
+                return ResourceManager.GetString("LblScaleRules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 密钥引用 的本地化字符串。
+        /// </summary>
+        public static string LblSecretRef {
+            get {
+                return ResourceManager.GetString("LblSecretRef", resourceCulture);
             }
         }
         
@@ -1815,11 +1774,38 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 已启动 的本地化字符串。
+        /// </summary>
+        public static string LblStarted {
+            get {
+                return ResourceManager.GetString("LblStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 状态 的本地化字符串。
         /// </summary>
         public static string LblState {
             get {
                 return ResourceManager.GetString("LblState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 存储名称 的本地化字符串。
+        /// </summary>
+        public static string LblStorageName {
+            get {
+                return ResourceManager.GetString("LblStorageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 存储类型 的本地化字符串。
+        /// </summary>
+        public static string LblStorageType {
+            get {
+                return ResourceManager.GetString("LblStorageType", resourceCulture);
             }
         }
         
@@ -1905,6 +1891,15 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 流量权重 的本地化字符串。
+        /// </summary>
+        public static string LblTrafficWeight {
+            get {
+                return ResourceManager.GetString("LblTrafficWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 类型 的本地化字符串。
         /// </summary>
         public static string LblType {
@@ -1973,6 +1968,15 @@ namespace AzureTools.Properties {
         public static string MenuAnalytics {
             get {
                 return ResourceManager.GetString("MenuAnalytics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 App Container 的本地化字符串。
+        /// </summary>
+        public static string MenuAppContainer {
+            get {
+                return ResourceManager.GetString("MenuAppContainer", resourceCulture);
             }
         }
         
@@ -2114,6 +2118,24 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 管理 的本地化字符串。
+        /// </summary>
+        public static string ModuleMain {
+            get {
+                return ResourceManager.GetString("ModuleMain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Azure Tools 的本地化字符串。
+        /// </summary>
+        public static string ModuleAzure {
+            get {
+                return ResourceManager.GetString("ModuleAzure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
         public static byte[] Monitoring {
@@ -2138,6 +2160,15 @@ namespace AzureTools.Properties {
         public static string MsgConfirmDeleteTenant {
             get {
                 return ResourceManager.GetString("MsgConfirmDeleteTenant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 请在终端中运行以上命令以连接到容器控制台。你也可以使用 Azure Portal 连接到容器控制台。 的本地化字符串。
+        /// </summary>
+        public static string MsgContainerConsoleHint {
+            get {
+                return ResourceManager.GetString("MsgContainerConsoleHint", resourceCulture);
             }
         }
         
@@ -2255,6 +2286,60 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 基本信息 的本地化字符串。
+        /// </summary>
+        public static string TabBasicInfo {
+            get {
+                return ResourceManager.GetString("TabBasicInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Environment 的本地化字符串。
+        /// </summary>
+        public static string TabEnvironment {
+            get {
+                return ResourceManager.GetString("TabEnvironment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Replicas 的本地化字符串。
+        /// </summary>
+        public static string TabReplicas {
+            get {
+                return ResourceManager.GetString("TabReplicas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Revisions 的本地化字符串。
+        /// </summary>
+        public static string TabRevisions {
+            get {
+                return ResourceManager.GetString("TabRevisions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Scale 的本地化字符串。
+        /// </summary>
+        public static string TabScale {
+            get {
+                return ResourceManager.GetString("TabScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Volumes 的本地化字符串。
+        /// </summary>
+        public static string TabVolumes {
+            get {
+                return ResourceManager.GetString("TabVolumes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
         public static byte[] TenantManagement {
@@ -2328,11 +2413,11 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
-        ///   查找类似 容器注册表 - {0} 的本地化字符串。
+        ///   查找类似 Container App 详情 - {0} 的本地化字符串。
         /// </summary>
-        public static string TitleContainerRegistryWindow {
+        public static string TitleContainerAppDetail {
             get {
-                return ResourceManager.GetString("TitleContainerRegistryWindow", resourceCulture);
+                return ResourceManager.GetString("TitleContainerAppDetail", resourceCulture);
             }
         }
         
@@ -2342,6 +2427,24 @@ namespace AzureTools.Properties {
         public static string TitleContainerAppWindow {
             get {
                 return ResourceManager.GetString("TitleContainerAppWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 容器控制台 - {0} 的本地化字符串。
+        /// </summary>
+        public static string TitleContainerConsole {
+            get {
+                return ResourceManager.GetString("TitleContainerConsole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 容器注册表 - {0} 的本地化字符串。
+        /// </summary>
+        public static string TitleContainerRegistryWindow {
+            get {
+                return ResourceManager.GetString("TitleContainerRegistryWindow", resourceCulture);
             }
         }
         
@@ -2499,6 +2602,15 @@ namespace AzureTools.Properties {
         }
         
         /// <summary>
+        ///   查找类似 副本详情 - {0} 的本地化字符串。
+        /// </summary>
+        public static string TitleReplicaDetail {
+            get {
+                return ResourceManager.GetString("TitleReplicaDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 RSA密钥生成 的本地化字符串。
         /// </summary>
         public static string TitleRsa {
@@ -2551,76 +2663,118 @@ namespace AzureTools.Properties {
                 return ResourceManager.GetString("TitleTenantManage", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   查找类似 容器控制台 - {0} 的本地化字符串。
+        ///   查找类似 清空 的本地化字符串。
         /// </summary>
-        public static string TitleContainerConsole {
+        public static string BtnClear {
             get {
-                return ResourceManager.GetString("TitleContainerConsole", resourceCulture);
+                return ResourceManager.GetString("BtnClear", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   查找类似 容器应用 的本地化字符串。
+        ///   查找类似 发送 的本地化字符串。
         /// </summary>
-        public static string LblContainerApp {
+        public static string BtnSend {
             get {
-                return ResourceManager.GetString("LblContainerApp", resourceCulture);
+                return ResourceManager.GetString("BtnSend", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   查找类似 副本 的本地化字符串。
+        ///   查找类似 停止 的本地化字符串。
         /// </summary>
-        public static string LblReplica {
+        public static string BtnStop {
             get {
-                return ResourceManager.GetString("LblReplica", resourceCulture);
+                return ResourceManager.GetString("BtnStop", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   查找类似 日志流端点 的本地化字符串。
+        ///   查找类似 输入命令后回车发送 的本地化字符串。
         /// </summary>
-        public static string LblLogStreamEndpoint {
+        public static string LblInputPlaceholder {
             get {
-                return ResourceManager.GetString("LblLogStreamEndpoint", resourceCulture);
+                return ResourceManager.GetString("LblInputPlaceholder", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   查找类似 Azure CLI 命令 的本地化字符串。
+        ///   查找类似 容器终端 - {0}/{1} 的本地化字符串。
         /// </summary>
-        public static string LblAzureCliCommand {
+        public static string TitleContainerExec {
             get {
-                return ResourceManager.GetString("LblAzureCliCommand", resourceCulture);
+                return ResourceManager.GetString("TitleContainerExec", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   查找类似 请在终端中运行以上命令以连接到容器控制台。你也可以使用 Azure Portal 连接到容器控制台。 的本地化字符串。
+        ///   查找类似 容器日志 - {0}/{1} 的本地化字符串。
         /// </summary>
-        public static string MsgContainerConsoleHint {
+        public static string TitleContainerLogs {
             get {
-                return ResourceManager.GetString("MsgContainerConsoleHint", resourceCulture);
+                return ResourceManager.GetString("TitleContainerLogs", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   查找类似 关闭 的本地化字符串。
-        /// </summary>
-        public static string BtnClose {
+
+        public static string TitleFileBrowser {
             get {
-                return ResourceManager.GetString("BtnClose", resourceCulture);
+                return ResourceManager.GetString("TitleFileBrowser", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   查找类似 进入容器 的本地化字符串。
-        /// </summary>
-        public static string BtnEnterContainer {
+
+        public static string TitleNewFolder {
             get {
-                return ResourceManager.GetString("BtnEnterContainer", resourceCulture);
+                return ResourceManager.GetString("TitleNewFolder", resourceCulture);
+            }
+        }
+
+        public static string LblFolderName {
+            get {
+                return ResourceManager.GetString("LblFolderName", resourceCulture);
+            }
+        }
+
+        public static string MsgConfirmDelete {
+            get {
+                return ResourceManager.GetString("MsgConfirmDelete", resourceCulture);
+            }
+        }
+
+        public static string MsgSelectDirectory {
+            get {
+                return ResourceManager.GetString("MsgSelectDirectory", resourceCulture);
+            }
+        }
+
+        public static string MsgSelectFile {
+            get {
+                return ResourceManager.GetString("MsgSelectFile", resourceCulture);
+            }
+        }
+
+        public static string BtnFileBrowser {
+            get {
+                return ResourceManager.GetString("BtnFileBrowser", resourceCulture);
+            }
+        }
+
+        public static string BtnNewFolder {
+            get {
+                return ResourceManager.GetString("BtnNewFolder", resourceCulture);
+            }
+        }
+
+        public static string BtnUpload {
+            get {
+                return ResourceManager.GetString("BtnUpload", resourceCulture);
+            }
+        }
+
+        public static string BtnDownload {
+            get {
+                return ResourceManager.GetString("BtnDownload", resourceCulture);
             }
         }
     }

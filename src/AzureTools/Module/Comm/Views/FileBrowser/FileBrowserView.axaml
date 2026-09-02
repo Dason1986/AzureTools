@@ -1,0 +1,77 @@
+<Window x:Class="AzureTools.Module.Comm.Views.FileBrowser.FileBrowserView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:AzureTools.Module.Comm.ViewModels.FileBrowser;assembly=AzureTools"
+        xmlns:cli="clr-namespace:AzureTools.Cli;assembly=AzureTools.Abstractions"
+        xmlns:res="clr-namespace:AzureTools.Properties;assembly=AzureTools"
+        xmlns:ic="using:FluentIcons.Avalonia"
+        x:DataType="vm:FileBrowserViewModel"
+        Title="{Binding WindowTitle}"
+        Width="1000"
+        Height="650"
+        MinWidth="700"
+        MinHeight="450"
+        WindowStartupLocation="CenterOwner">
+  <DockPanel LastChildFill="True">
+    <Border DockPanel.Dock="Top" Padding="8" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="0,0,0,1">
+      <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Spacing="6">
+          <Button Content="{x:Static res:FormResources.BtnRefresh}" Command="{Binding RefreshCommand}"/>
+          <Button Content="{x:Static res:FormResources.BtnNewFolder}" Command="{Binding NewFolderCommand}"/>
+          <Button Content="{x:Static res:FormResources.BtnUpload}" Command="{Binding UploadCommand}"/>
+          <Button Content="{x:Static res:FormResources.BtnDownload}" Command="{Binding DownloadCommand}"/>
+          <Button Content="{x:Static res:FormResources.BtnDelete}" Command="{Binding DeleteCommand}"/>
+        </StackPanel>
+        <Button Content="{x:Static res:FormResources.BtnClose}" Command="{Binding CloseCommand}" HorizontalAlignment="Right"/>
+      </Grid>
+    </Border>
+
+    <Border DockPanel.Dock="Top" Padding="8,4" Background="{DynamicResource AppCardBackground}">
+      <SelectableTextBlock Text="{Binding CurrentPath}" FontFamily="Cascadia Mono,Consolas,Menlo,monospace" FontSize="13" Foreground="{DynamicResource AppSubHeaderText}"/>
+    </Border>
+
+    <Grid ColumnDefinitions="*,Auto,2*">
+      <ListBox Grid.Column="0"
+              ItemsSource="{Binding CurrentItems}"
+              SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+              DoubleTapped="OnItemDoubleTapped">
+        <ListBox.ItemTemplate>
+          <DataTemplate x:DataType="cli:ContainerItemInfo">
+            <Grid ColumnDefinitions="24,*,Auto,Auto" Margin="0,2">
+              <ic:FluentIcon Grid.Column="0" Icon="Folder" IconVariant="Regular" IconSize="Size16" Foreground="{DynamicResource SystemAccentColor}" IsVisible="{Binding IsDirectory}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+              <ic:FluentIcon Grid.Column="0" Icon="{Binding Name, Converter={StaticResource FileIcon}}" IconVariant="Regular" IconSize="Size16" Foreground="{DynamicResource AppSubHeaderText}" IsVisible="{Binding IsFile}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+              <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="8,0,0,0" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
+              <TextBlock Grid.Column="2" Text="{Binding Length}" Margin="12,0,0,0" FontSize="11" Foreground="{DynamicResource AppSubHeaderText}" IsVisible="{Binding IsFile}" VerticalAlignment="Center"/>
+              <TextBlock Grid.Column="3" Text="{Binding LastModified, StringFormat=yyyy-MM-dd HH:mm}" Margin="12,0,0,0" FontSize="11" Foreground="{DynamicResource AppSubHeaderText}" VerticalAlignment="Center"/>
+            </Grid>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+
+      <GridSplitter Grid.Column="1" Width="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+      <TabControl Grid.Column="2"
+                  ItemsSource="{Binding Tabs}"
+                  SelectedItem="{Binding SelectedTab}">
+        <TabControl.ItemTemplate>
+          <DataTemplate x:DataType="vm:FileTabItem">
+            <StackPanel Orientation="Horizontal" Spacing="4">
+              <TextBlock Text="{Binding Title}" VerticalAlignment="Center"/>
+              <Button Content="×" Padding="6,0" Click="OnCloseTabClicked"/>
+            </StackPanel>
+          </DataTemplate>
+        </TabControl.ItemTemplate>
+        <TabControl.ContentTemplate>
+          <DataTemplate x:DataType="vm:FileTabItem">
+            <TextBox Text="{Binding Content}"
+                     IsReadOnly="True"
+                     AcceptsReturn="True"
+                     TextWrapping="NoWrap"
+                     FontFamily="Cascadia Mono,Consolas,Menlo,monospace"
+                     FontSize="13"/>
+          </DataTemplate>
+        </TabControl.ContentTemplate>
+      </TabControl>
+    </Grid>
+  </DockPanel>
+</Window>

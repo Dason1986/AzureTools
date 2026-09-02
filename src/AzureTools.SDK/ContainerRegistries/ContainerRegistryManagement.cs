@@ -1,11 +1,12 @@
 using Azure.Containers.ContainerRegistry;
 using Azure.Core;
 using Azure.Identity;
+using AzureTools.Cli;
 using AzureTools.Extensions;
+using AzureTools.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -21,11 +22,11 @@ namespace AzureTools.SDK.ContainerRegistries
             return false;
         }
 
-        public Task<string> Get(string cmd )
+        public Task<string> Get(string cmd)
         {
             return Task.Run<string>(() =>
             {
-                var info = new ProcessStartInfo
+                ProcessStartInfo info = new ProcessStartInfo
                 {
                     FileName = "az",
                     Arguments = cmd,
@@ -38,12 +39,12 @@ namespace AzureTools.SDK.ContainerRegistries
                     StandardErrorEncoding = Encoding.UTF8
                 };
 
-                using var process = Process.Start(info);
+                using Process process = Process.Start(info);
                 if (process == null)
-                    return  null;
-                var tcs = new TaskCompletionSource<bool>();
-                var outputBuilder = new StringBuilder();
-                var errorBuilder = new StringBuilder();
+                    return null;
+                TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+                StringBuilder outputBuilder = new StringBuilder();
+                StringBuilder errorBuilder = new StringBuilder();
 
                 process.OutputDataReceived += (_, e) =>
                 {
@@ -61,7 +62,7 @@ namespace AzureTools.SDK.ContainerRegistries
 
                 process.WaitForExit();
 
-            
+
                 return outputBuilder.ToString();
             });
 
@@ -69,40 +70,39 @@ namespace AzureTools.SDK.ContainerRegistries
     }
     public class ContainerRegistryManagement : IContainerRegistryManagement
     {
-        public ContainerRegistryManagement(string registryName, string registryUrl, TokenCredential credential, ContainerRegistryClient client = null)
+
+        public ContainerRegistryManagement(ContainerRegistryAzureEnv azureEnv, TokenCredential credential)
         {
-            ArgumentException.ThrowIfNullOrEmpty(registryName);
-            ArgumentException.ThrowIfNullOrEmpty(registryUrl);
-            if (!Uri.TryCreate(registryUrl, UriKind.RelativeOrAbsolute, out Uri endpoint)) throw new ArgumentException(registryUrl);
+            string registryName = azureEnv.Registry;
+            if (registryName.EndsWith(".azurecr.io")) registryName = registryName.Replace(".azurecr.io", string.Empty);
             RegistryName = registryName;
+            string registryUrl = string.IsNullOrEmpty(azureEnv.RegistryUrl) ? $"https://{registryName}.azurecr.io" : azureEnv.RegistryUrl;
+
+            if (!Uri.TryCreate(registryUrl, UriKind.RelativeOrAbsolute, out Uri endpoint)) throw new ArgumentException(registryUrl);
             this.client = client ?? new ContainerRegistryClient(endpoint, credential);
-            isCli = credential is AzureCliCredential;
-
-        }
-        private readonly bool isCli;
-
-        public ContainerRegistryManagement(string registryName, TokenCredential credential, ContainerRegistryClient client = null) : this(registryName, $"https://{registryName}.azurecr.io", credential, client)
-        {
+            SupportRename = credential is AzureCliCredential;
+            this.azureEnv = azureEnv;
         }
 
         private readonly ContainerRegistryClient client;
+        private readonly ContainerRegistryAzureEnv azureEnv;
 
         public string RegistryName { get; }
+        public string RegistryUrl { get; }
+        public bool SupportManifestDetail { get; }
 
-        public bool SupportManifestDetail => isCli;
-
-        public bool SupportRename => isCli;
+        public bool SupportRename { get; }
 
         public bool SupportFixedManifest => true;
 
-        public async Task FixedManifest(string repositoryName, string digest, bool isFixed)
+        public async Task FixedManifestAsync(string repositoryName, string digest, bool isFixed)
         {
             ContainerRepository repo = client.GetRepository(repositoryName);
             RegistryArtifact artifact = repo.GetArtifact(digest);
             await artifact.UpdateManifestPropertiesAsync(new ArtifactManifestProperties { CanDelete = !isFixed });
         }
 
-        public async Task<RepositoryInfo[]> GetAllRepositories()
+        public async Task<RepositoryInfo[]> GetAllRepositoriesAsync()
         {
             List<RepositoryInfo> repos = new List<RepositoryInfo>();
 
@@ -130,17 +130,17 @@ namespace AzureTools.SDK.ContainerRegistries
             return repos.ToArray();
         }
 
-        public async Task DeleteTag(string repositoryName, string digest, string tagName)
+        public async Task DeleteTagAsync(string repositoryName, string digest, string tagName)
         {
             RegistryArtifact artifact = client.GetArtifact(repositoryName, digest);
-            if (artifact == null) return;
+            if (artifact == null) throw new AzureToolsException($"{repositoryName}:{digest} not exist");
             await artifact.DeleteTagAsync(tagName);
         }
 
-        public async Task DeleteManifest(string repositoryName, string digest)
+        public async Task DeleteManifestAsync(string repositoryName, string digest)
         {
             RegistryArtifact artifact = client.GetArtifact(repositoryName, digest);
-            if (artifact == null) return;
+            if (artifact == null) throw new AzureToolsException($"{repositoryName}:{digest} not exist");
             await artifact.DeleteAsync();
         }
 
@@ -149,9 +149,39 @@ namespace AzureTools.SDK.ContainerRegistries
             throw new NotSupportedException();
         }
 
-        Task IContainerRegistryManagement.RenameTag(string repositoryName, string digest, string oldTagName, string newName)
+        public async Task AddTagAsync(string repositoryName, string digest, string tagName)
         {
-            throw new NotSupportedException();
+            if (!SupportRename) throw new NotSupportedException();
+
+            await AddOrDeleteTag(repositoryName, digest, null, tagName);
+        }
+        public async Task RenameTagAsync(string repositoryName, string digest, string oldTagName, string newTagName)
+        {
+            if (!SupportRename) throw new NotSupportedException();
+            await AddOrDeleteTag(repositoryName, digest, oldTagName, newTagName);
+        }
+
+        async Task AddOrDeleteTag(string repositoryName, string digest, string oldTagName, string newTagName, CancellationToken ct = default)
+        {
+            await AzureCliBuilder.ChangeSubscription(this.azureEnv.SubscriptionId);
+            RegistryArtifact artifact = client.GetArtifact(repositoryName, digest);
+            if (artifact == null) throw new AzureToolsException($"{repositoryName}:{digest} not exist");
+            IAzureCliClientBuilder builder = await AzureCliBuilder.CreateAzureAsync();
+            IContainerRegistrieClient clinet = builder.GetContainerRegistrieClient(RegistryName, this.azureEnv.ResourceGroupName);
+            if (!string.IsNullOrEmpty(newTagName))
+            {
+                CliResult result = await clinet.AddTagAsync(repositoryName, digest, newTagName, ct);
+                if (!result.Success && !string.IsNullOrEmpty(result.Error))
+                {
+                    string oper = string.IsNullOrEmpty(oldTagName) ? "AddTag" : "RenameTag";
+                    throw new AzureToolsException($"{repositoryName}:{digest} {oper} failed {result.Error}");
+                }
+            }
+            if (!string.IsNullOrEmpty(oldTagName))
+            {
+                CliResult result = await clinet.DeleteTagAsync(repositoryName, oldTagName, ct);
+                if (!result.Success && !string.IsNullOrEmpty(result.Error)) throw new AzureToolsException($"{repositoryName}:{digest} RenameTag failed {result.Error}");
+            }
         }
     }
 }

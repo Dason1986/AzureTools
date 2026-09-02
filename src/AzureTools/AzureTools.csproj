@@ -10,6 +10,7 @@
     <NuGetAuditMode>direct</NuGetAuditMode>
     <IsAotCompatible>true</IsAotCompatible>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <ToolPackageRuntimeIdentifiers>osx-arm64;linux-arm64;linux-x64;any</ToolPackageRuntimeIdentifiers>
     <BuiltInComInteropSupport>false</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
@@ -29,6 +30,7 @@
     <PackageReference Include="Avalonia.Controls.WebView" />
     <PackageReference Include="Avalonia.Markup.Xaml.Loader" />
     <PackageReference Include="AvaloniaUI.DiagnosticsSupport" />
+    <PackageReference Include="FluentIcons.Avalonia" />
     <PackageReference Include="Azure.Identity" />
     <PackageReference Include="Azure.Monitor.Query.Logs" />
     <PackageReference Include="Azure.ResourceManager" />
@@ -53,6 +55,7 @@
     <PackageReference Include="Serilog.Sinks.File" />
     <PackageReference Include="NPOI" />
     <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="SSH.NET" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" />
     <PackageReference Include="System.Linq.Async" />
     <PackageReference Include="SkiaSharp" />
@@ -74,31 +77,31 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>FormResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Views\AppContainers\AppContainerEnvManageView.axaml.cs">
+    <Compile Update="Module\Azure\Views\AppContainers\AppContainerEnvManageView.axaml.cs">
       <DependentUpon>AppContainerEnvManageView.axaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\AppContainers\AppContainerEnvEditorView.axaml.cs">
+    <Compile Update="Module\Azure\Views\AppContainers\AppContainerEnvEditorView.axaml.cs">
       <DependentUpon>AppContainerEnvEditorView.axaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\ContainerRegistries\ContainerRegistryEnvManageView.axaml.cs">
+    <Compile Update="Module\Azure\Views\ContainerRegistries\ContainerRegistryEnvManageView.axaml.cs">
       <DependentUpon>ContainerRegistryEnvManageView.axaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\ContainerRegistries\ContainerRegistryEnvEditorView.axaml.cs">
+    <Compile Update="Module\Azure\Views\ContainerRegistries\ContainerRegistryEnvEditorView.axaml.cs">
       <DependentUpon>ContainerRegistryEnvEditorView.axaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\KeyVaults\KeyVaultEnvManageView.axaml.cs">
+    <Compile Update="Module\Azure\Views\KeyVaults\KeyVaultEnvManageView.axaml.cs">
       <DependentUpon>KeyVaultEnvManageView.axaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\KeyVaults\KeyVaultEnvEditorView.axaml.cs">
+    <Compile Update="Module\Azure\Views\KeyVaults\KeyVaultEnvEditorView.axaml.cs">
       <DependentUpon>KeyVaultEnvEditorView.axaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\KeyVaults\SecretKeyEditorView.axaml.cs">
+    <Compile Update="Module\Azure\Views\KeyVaults\SecretKeyEditorView.axaml.cs">
       <DependentUpon>SecretKeyEditorView.axaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Projects\ProjectEditorView.axaml.cs">
+    <Compile Update="Module\Main\Views\Projects\ProjectEditorView.axaml.cs">
       <DependentUpon>ProjectEditorView.axaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Tenants\TenantEditorView.axaml.cs">
+    <Compile Update="Module\Main\Views\Tenants\TenantEditorView.axaml.cs">
       <DependentUpon>TenantEditorView.axaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -139,6 +142,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Cli\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 

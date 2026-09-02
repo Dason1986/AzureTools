@@ -10,11 +10,12 @@ namespace AzureTools.SDK.ContainerRegistries
         bool SupportRename { get; }
         bool SupportFixedManifest { get; }
 
-        Task DeleteManifest(string repositoryName, string digest);
-        Task FixedManifest(string repositoryName, string digest, bool isFixed);
-        Task DeleteTag(string repositoryName, string digest, string tagName);
-        Task RenameTag(string repositoryName, string digest, string oldTagName, string newName);
-        Task<RepositoryInfo[]> GetAllRepositories();
+        Task DeleteManifestAsync(string repositoryName, string digest);
+        Task FixedManifestAsync(string repositoryName, string digest, bool isFixed);
+        Task DeleteTagAsync(string repositoryName, string digest, string tagName);
+        Task AddTagAsync(string repositoryName, string digest, string newName);
+        Task RenameTagAsync(string repositoryName, string digest, string oldTagName, string newName);
+        Task<RepositoryInfo[]> GetAllRepositoriesAsync();
         Task<ManifestDetail> GetManifestDetailAsync(string repositoryName, string digest);
     }
 }

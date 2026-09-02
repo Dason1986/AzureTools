@@ -6,7 +6,9 @@ namespace AzureTools.Services
 
         public bool IsPassword { get; set; }
 
-        public char PasswordChar { get; set; }
+        public string[] Options { get; set; }
+
+        public char PasswordChar { get; set; } = '*';
 
         public static implicit operator PromptDialogOption(string str)
         {

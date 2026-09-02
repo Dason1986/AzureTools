@@ -1,0 +1,218 @@
+<Window x:Class="AzureTools.Module.Main.Views.AppWizardView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:AzureTools.Module.Main.ViewModels;assembly=AzureTools"
+        xmlns:res="clr-namespace:AzureTools.Properties;assembly=AzureTools"
+        xmlns:models="clr-namespace:AzureTools.Models;assembly=AzureTools.Domain"
+        x:DataType="vm:AppWizardViewModel"
+        Title="{x:Static res:FormResources.TitleAppWizard}"
+        Width="600"
+        Height="620"
+        MinWidth="500"
+        MinHeight="520"
+        WindowStartupLocation="CenterScreen">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="15">
+            <GroupBox Header="{x:Static res:FormResources.GrpMode}"
+                      Padding="10">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Static res:FormResources.LblAppName}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"/>
+                        <TextBox Grid.Column="1"
+                                 Text="{Binding AppName}"
+                                 PlaceholderText="请输入程序名称"/>
+                    </Grid>
+
+                    <Grid Margin="0,8,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Static res:FormResources.GrpTenant}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"/>
+                        <ComboBox Grid.Column="1"
+                                  ItemsSource="{Binding TenantModeOptions}"
+                                  SelectedItem="{Binding SelectedTenantMode}"
+                                  ItemContainerTheme="{StaticResource OptionComboBoxItemTheme}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:IOption">
+                                    <TextBlock Text="{Binding DisplayName}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="{x:Static res:FormResources.GrpTenant}"
+                      Padding="10"
+                      Margin="0,10,0,0">
+                <StackPanel>
+                    <Grid Margin="0,0,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Static res:FormResources.LblTenantName}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"/>
+                        <TextBox Grid.Column="1"
+                                 Text="{Binding TenantName}"
+                                 PlaceholderText="请输入租户名称"/>
+                    </Grid>
+
+                    <Grid Margin="0,0,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Static res:FormResources.LblTenantCode}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"/>
+                        <TextBox Grid.Column="1"
+                                 Text="{Binding TenantCode}"
+                                 PlaceholderText="请输入租户代码"/>
+                    </Grid>
+
+                    <Grid Margin="0,0,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Static res:FormResources.LblTenantId}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"/>
+                        <TextBox Grid.Column="1"
+                                 Text="{Binding TenantId}"
+                                 PlaceholderText="请输入租户ID (GUID)"/>
+                    </Grid>
+
+                    <Grid Margin="0,0,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Static res:FormResources.LblClientId}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"/>
+                        <TextBox Grid.Column="1"
+                                 Text="{Binding ClientId}"
+                                 PlaceholderText="请输入程序ID (GUID)"/>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="{x:Static res:FormResources.LblCredential}"
+                      Padding="10"
+                      Margin="0,10,0,0">
+                <StackPanel>
+                    <Grid Margin="0,0,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Static res:FormResources.LblCredential}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"/>
+                        <ComboBox Grid.Column="1"
+                                  ItemsSource="{Binding CredentialOptions}"
+                                  SelectedItem="{Binding SelectedCredential}"
+                                  ItemContainerTheme="{StaticResource OptionComboBoxItemTheme}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:IOption">
+                                    <TextBlock Text="{Binding DisplayName}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+
+                    <Grid IsVisible="{Binding IsCertificateEnabled}"
+                          Margin="0,5,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0"
+                                 Text="{Binding CertificateRawData}"
+                                 IsReadOnly="True"
+                                 PlaceholderText="请选择证书文件"
+                                 Margin="0,0,5,0"/>
+                        <Button Grid.Column="1"
+                                Content="{x:Static res:FormResources.BtnOk}"
+                                Command="{Binding SelectCertificateCommand}"
+                                Padding="15,5"/>
+                    </Grid>
+
+                    <Grid IsVisible="{Binding IsPasswordEnabled}"
+                          Margin="0,5,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Static res:FormResources.LblPassword}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"/>
+                        <TextBox Grid.Column="1"
+                                 Text="{Binding CertificatePassword}"
+                                 PasswordChar="*"/>
+                    </Grid>
+
+                    <Button Content="{x:Static res:FormResources.BtnTest}"
+                            Command="{Binding TestCertificateCommand}"
+                            HorizontalAlignment="Right"
+                            Padding="20,8"
+                            Margin="0,10,0,0"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="{x:Static res:FormResources.GrpLogin}"
+                      Padding="10"
+                      Margin="0,10,0,0">
+                <StackPanel>
+                    <CheckBox Content="{x:Static res:FormResources.LblUsePassword}"
+                              IsChecked="{Binding LoginUsePassword}"
+                              Margin="0,0,0,5"/>
+
+                    <Grid IsVisible="{Binding LoginUsePassword}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Static res:FormResources.LblLoginPassword}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"/>
+                        <TextBox Grid.Column="1"
+                                 Text="{Binding LoginPassword}"
+                                 PasswordChar="*"/>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="{x:Static res:FormResources.GrpSecurity}"
+                      Padding="10"
+                      Margin="0,10,0,0">
+                <CheckBox Content="{x:Static res:FormResources.LblDataEncryption}"
+                          IsChecked="{Binding UseDataEncryption}"/>
+            </GroupBox>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,15,0,0">
+                <Button Content="{x:Static res:FormResources.BtnCancel}"
+                        Click="OnCancelClick"
+                        Padding="25,10"
+                        Margin="0,0,10,0"/>
+                <Button Content="{x:Static res:FormResources.BtnConfirm}"
+                        Command="{Binding ConfirmCommand}"
+                        Padding="25,10"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

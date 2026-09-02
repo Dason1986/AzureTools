@@ -15,7 +15,7 @@ namespace AzureTools.Extensions
                 TenantId = source.TenantId,
                 Name = source.Name,
                 Code = source.Code,
-                Credential = Enum.TryParse<AzureCredential>(source.Credential, true, out var credential) ? credential : AzureCredential.Browser,
+                Credential = Enum.TryParse<AzureCredential>(source.Credential, true, out AzureCredential credential) ? credential : AzureCredential.Browser,
                 ClientId = source.ClientId,
                 CertificateRawData = source.CertificateRawData,
                 Password = source.Password

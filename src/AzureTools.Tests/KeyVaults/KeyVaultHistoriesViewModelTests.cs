@@ -1,6 +1,6 @@
+using AzureTools.Module.Azure.ViewModels.KeyVaults;
 using AzureTools.SDK.KeyVaults;
 using AzureTools.Tests.Stubs;
-using AzureTools.ViewModels;
 using NUnit.Framework;
 using System.Collections.Generic;
 

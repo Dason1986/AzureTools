@@ -18,7 +18,7 @@ namespace AzureTools.SDK
         Task<AppContainerAzureEnv[]> GetAllAppContainersAsync(AzureTenant profile);
 
         TokenCredential CreateCredential(AzureTenant profile);
-        Task<IDictionary<string,string>> TestCertificateAsync(AzureTenant profile);
+        Task<IDictionary<string, string>> TestCertificateAsync(AzureTenant profile);
         void ClearCredentialCache();
     }
 }

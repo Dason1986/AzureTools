@@ -11,7 +11,7 @@ namespace AzureTools.ViewModels
         public ManageViewModel(IDialogService dialogService)
         {
             this.DialogService = dialogService;
-     
+
         }
         #region Fields & Properties
 

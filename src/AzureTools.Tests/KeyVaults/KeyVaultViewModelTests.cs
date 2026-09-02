@@ -1,10 +1,10 @@
 using AzureTools.Models;
 using AzureTools.Models.KeyVaults;
+using AzureTools.Module.Azure.ViewModels.KeyVaults;
 using AzureTools.SDK.KeyVaults;
 using AzureTools.Services.KeyVaults;
 using AzureTools.Stores;
 using AzureTools.Tests.Stubs;
-using AzureTools.ViewModels;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 using NUnit.Framework;
@@ -63,6 +63,7 @@ namespace AzureTools.Tests.KeyVaults
         [Test]
         public async Task UpdateAsync_NoSelection_ShowsMessage()
         {
+            _viewModel.SelectedSecretItem = null;
             await _viewModel.UpdateCommand.ExecuteAsync(null);
 
             Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureTools.Properties.MessageResources.NoRecordSelected));
@@ -109,6 +110,7 @@ namespace AzureTools.Tests.KeyVaults
         [Test]
         public async Task HistoryAsync_NoSelection_ShowsMessage()
         {
+            _viewModel.SelectedSecretItem = null;
             await _viewModel.HistoryCommand.ExecuteAsync(null);
 
             Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureTools.Properties.MessageResources.NoRecordSelected));
@@ -154,6 +156,7 @@ namespace AzureTools.Tests.KeyVaults
         [Test]
         public async Task SetOneExpirationAsync_NoSelection_ShowsMessage()
         {
+            _viewModel.SelectedSecretItem = null;
             await _viewModel.SetOneExpirationCommand.ExecuteAsync(null);
 
             Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureTools.Properties.MessageResources.NoRecordSelected));

@@ -1,10 +1,10 @@
 using AzureTools.Models;
+using AzureTools.Module.Azure.ViewModels.KeyVaults;
 using AzureTools.SDK;
 using AzureTools.SDK.Models;
 using AzureTools.Services.KeyVaults;
 using AzureTools.Stores;
 using AzureTools.Tests.Stubs;
-using AzureTools.ViewModels;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 using NUnit.Framework;

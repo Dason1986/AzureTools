@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace AzureTools.Extensions
@@ -25,9 +24,9 @@ namespace AzureTools.Extensions
                 return false;
             }
 
-            foreach (var item in keys)
+            foreach (string item in keys)
             {
-                var flag=dic.TryGetValue(item, out t);
+                bool flag = dic.TryGetValue(item, out t);
                 if (flag) return flag;
             }
             t = default;

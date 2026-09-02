@@ -610,6 +610,12 @@ Application Insights</value>
   <data name="MenuTenantManagement" xml:space="preserve">
     <value>租户管理</value>
   </data>
+  <data name="ModuleMain" xml:space="preserve">
+    <value>管理</value>
+  </data>
+  <data name="ModuleAzure" xml:space="preserve">
+    <value>Azure Tools</value>
+  </data>
   <data name="TitleTenantManage" xml:space="preserve">
     <value>租户管理</value>
   </data>
@@ -969,5 +975,59 @@ Application Insights</value>
   </data>
   <data name="BtnEnterContainer" xml:space="preserve">
     <value>进入容器</value>
+  </data>
+  <data name="BtnContainerLogs" xml:space="preserve">
+    <value>容器日志</value>
+  </data>
+  <data name="BtnFileBrowser" xml:space="preserve">
+    <value>文件浏览</value>
+  </data>
+  <data name="BtnNewFolder" xml:space="preserve">
+    <value>新建文件夹</value>
+  </data>
+  <data name="BtnUpload" xml:space="preserve">
+    <value>上传</value>
+  </data>
+  <data name="BtnDownload" xml:space="preserve">
+    <value>下载</value>
+  </data>
+  <data name="TitleFileBrowser" xml:space="preserve">
+    <value>容器文件 - {0}/{1}</value>
+  </data>
+  <data name="TitleNewFolder" xml:space="preserve">
+    <value>新建文件夹</value>
+  </data>
+  <data name="LblFolderName" xml:space="preserve">
+    <value>文件夹名称</value>
+  </data>
+  <data name="MsgConfirmDelete" xml:space="preserve">
+    <value>确认删除 &quot;{0}&quot;？</value>
+  </data>
+  <data name="MsgSelectDirectory" xml:space="preserve">
+    <value>请选择一个目录</value>
+  </data>
+  <data name="MsgSelectFile" xml:space="preserve">
+    <value>请选择一个文件</value>
+  </data>
+  <data name="BtnRestart" xml:space="preserve">
+    <value>重启</value>
+  </data>
+  <data name="BtnClear" xml:space="preserve">
+    <value>清空</value>
+  </data>
+  <data name="BtnSend" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="BtnStop" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="LblInputPlaceholder" xml:space="preserve">
+    <value>输入命令后回车发送</value>
+  </data>
+  <data name="TitleContainerExec" xml:space="preserve">
+    <value>容器终端 - {0}/{1}</value>
+  </data>
+  <data name="TitleContainerLogs" xml:space="preserve">
+    <value>容器日志 - {0}/{1}</value>
   </data>
 </root>

@@ -67,6 +67,18 @@
     <Style Selector="DataGridRow:selected /template/ Border">
         <Setter Property="Background" Value="{DynamicResource SystemAccentColorLight3}"/>
     </Style>
+    <Style Selector="ListBoxItem">
+        <Setter Property="CornerRadius" Value="4"/>
+    </Style>
+    <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource AppRowHover}"/>
+    </Style>
+    <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource SystemAccentColorLight3}"/>
+    </Style>
+    <Style Selector="ListBoxItem:selected:unfocused /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource AppRowHover}"/>
+    </Style>
     <Style Selector="Border.card">
         <Setter Property="Background" Value="{DynamicResource AppCardBackground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource AppCardBorder}"/>
