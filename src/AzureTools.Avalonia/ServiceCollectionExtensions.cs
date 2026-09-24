@@ -26,6 +26,7 @@ namespace AzureTools
             AvaloniaComponentsOptions options = new(services);
             configure?.Invoke(options);
             services.AddSingleton<IViewContainerManagement>(options.BuildManagement());
+            services.AddSingleton<IMenuManagement>(options.BuildMenus());
         }
 
 

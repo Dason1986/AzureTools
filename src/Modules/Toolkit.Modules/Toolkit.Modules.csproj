@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" />
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="Avalonia.Themes.Fluent" /> 
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AzureTools.Abstractions\AzureTools.Abstractions.csproj" />
+    <ProjectReference Include="..\..\AzureTools.Avalonia\AzureTools.Avalonia.csproj" />
+    <ProjectReference Include="..\Toolkit.Modules.Resources\Toolkit.Modules.Resources.csproj" />
+  </ItemGroup>
+</Project>

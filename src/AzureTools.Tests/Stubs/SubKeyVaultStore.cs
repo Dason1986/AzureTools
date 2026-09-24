@@ -1,7 +1,7 @@
 using AzureTools.SDK.KeyVaults;
-using AzureTools.Stores;
 using Moq;
 using System.Collections.Generic;
+using Toolkit.Modules.Azure.Stores;
 
 namespace AzureTools.Tests.Stubs
 {

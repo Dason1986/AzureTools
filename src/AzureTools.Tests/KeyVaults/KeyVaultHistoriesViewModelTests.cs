@@ -1,8 +1,8 @@
-using AzureTools.Module.Azure.ViewModels.KeyVaults;
 using AzureTools.SDK.KeyVaults;
 using AzureTools.Tests.Stubs;
 using NUnit.Framework;
 using System.Collections.Generic;
+using Toolkit.Modules.Azure.ViewModels.KeyVaults;
 
 namespace AzureTools.Tests.KeyVaults
 {

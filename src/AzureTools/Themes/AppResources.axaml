@@ -1,6 +1,6 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:models="clr-namespace:AzureTools.Models;assembly=AzureTools.Domain">
+                    xmlns:models="clr-namespace:Toolkit.Modules.Models;assembly=Toolkit.Modules">
     <Color x:Key="SystemAccentColor">#0A6EBD</Color>
     <Color x:Key="SystemAccentColorDark1">#085A9E</Color>
     <Color x:Key="SystemAccentColorDark2">#06487E</Color>

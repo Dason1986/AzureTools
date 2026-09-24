@@ -1,10 +1,11 @@
-using AzureTools.Models;
 using AzureTools.SDK;
 using AzureTools.Stores;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using Toolkit.Modules.Azure.Models;
+using Toolkit.Modules.Models;
 
 namespace AzureTools.Tests.Stubs
 {

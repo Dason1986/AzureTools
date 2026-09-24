@@ -1,0 +1,142 @@
+<Window x:Class="Toolkit.Modules.Azure.Views.ContainerRegistries.ContainerRegistryRepositoryListView"
+        x:Name="Root"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Toolkit.Modules.Azure.ViewModels.ContainerRegistries;assembly=Toolkit.Modules.Azure"
+        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:svc="clr-namespace:Toolkit.Modules.Azure.KeyVaults.ContainerRegistries;assembly=Toolkit.Modules.Azure"
+        x:DataType="vm:ContainerRegistryRepositoryListViewModel"
+        Title="{Binding WindowTitle}"
+        Width="1100"
+        Height="680"
+        MinWidth="800"
+        MinHeight="500"
+        WindowStartupLocation="CenterScreen">
+
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="{x:Static res:FormResources.BtnRefresh}"
+                    Command="{Binding RefreshCommand}"
+                    Padding="15,4"
+                    Margin="0,0,10,0"/>
+            <ProgressBar IsVisible="{Binding IsLoading}"
+                         IsIndeterminate="True"
+                         Width="200"
+                         VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <GroupBox Grid.Row="1"
+                  Header="{x:Static res:FormResources.LblRepositoryList}"
+                  Padding="6">
+            <DataGrid ItemsSource="{Binding Repositories}"
+                      SelectedItem="{Binding SelectedRepository}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserResizeColumns="True"
+                      CanUserSortColumns="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static res:FormResources.LblName}"
+                                        Binding="{Binding Name}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="{x:Static res:FormResources.LblRegistryUrl}"
+                                        Binding="{Binding RegistryEndpoint}"
+                                        Width="2*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
+        <GridSplitter Grid.Row="2"
+                      HorizontalAlignment="Stretch"
+                      Background="Transparent"/>
+
+        <GroupBox Grid.Row="3"
+                  Header="{x:Static res:FormResources.LblManifestList}"
+                  Padding="6">
+            <DockPanel>
+                <Button DockPanel.Dock="Top"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,0,6"
+                        Padding="15,4"
+                        Content="{x:Static res:FormResources.BtnDelete}"
+                        IsEnabled="{Binding !IsDeleting}"
+                        Command="{Binding DeleteManifestsCommand}"/>
+                <DataGrid ItemsSource="{Binding Manifests}"
+                          SelectionMode="Extended"
+                          SelectionChanged="OnManifestSelectionChanged"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          CanUserResizeColumns="True"
+                          CanUserSortColumns="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{x:Static res:FormResources.LblTags}"
+                                            Binding="{Binding Tags, Converter={StaticResource TagsToString}}"
+                                            Width="150"/>
+                        <DataGridTextColumn Header="{x:Static res:FormResources.LblDigest}"
+                                            Binding="{Binding Digest}"
+                                            Width="2*"/>
+                        <DataGridTextColumn Header="{x:Static res:FormResources.LblArchitecture}"
+                                            Binding="{Binding Architecture}"
+                                            Width="100"/>
+                        <DataGridTextColumn Header="{x:Static res:FormResources.LblSize}"
+                                            Binding="{Binding SizeInBytes,Mode=OneWay, Converter={StaticResource SizeToString}}"
+                                            IsReadOnly="True"
+                                            Width="120"/>
+                        <DataGridTextColumn Header="{x:Static res:FormResources.LblCreated}"
+                                            Binding="{Binding CreatedOn, StringFormat=yyyy-MM-dd HH:mm}"
+                                            Width="160"/>
+                        <DataGridTextColumn Header="{x:Static res:FormResources.LblLastUpdated}"
+                                            Binding="{Binding LastUpdatedOn, StringFormat=yyyy-MM-dd HH:mm}"
+                                            Width="160"/>
+                        <DataGridTemplateColumn Header="{x:Static res:FormResources.LblFixed}"
+                                                  Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{x:Static res:FormResources.LblFixed}"
+                                               IsVisible="{Binding CanDelete, Converter={StaticResource InvertedBoolean}}"
+                                               Foreground="Red"
+                                               FontSize="11"
+                                               VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="{x:Static res:FormResources.LblOperation}"
+                                                  Width="200">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Spacing="4">
+                                        <Button Content="{x:Static res:FormResources.BtnDetail}"
+                                                IsVisible="{Binding #Root.DataContext.SupportManifestDetail}"
+                                                Command="{Binding #Root.DataContext.ViewManifestDetailCommand}"
+                                                CommandParameter="{Binding}"/>
+                                        <Button Content="{x:Static res:FormResources.BtnRename}"
+                                                IsVisible="{Binding #Root.DataContext.SupportRename}"
+                                                Command="{Binding #Root.DataContext.RenameTagCommand}"
+                                                CommandParameter="{Binding}"/>
+                                        <StackPanel Orientation="Horizontal" Spacing="4" IsVisible="{Binding #Root.DataContext.SupportFixedManifest}">
+                                            <Button Content="{x:Static res:FormResources.BtnFixManifest}"
+                                                    IsVisible="{Binding CanDelete}"
+                                                    Command="{Binding #Root.DataContext.FixedManifestCommand}"
+                                                    CommandParameter="{Binding}"/>
+                                            <Button Content="{x:Static res:FormResources.BtnUnfixManifest}"
+                                                    IsVisible="{Binding CanDelete, Converter={StaticResource InvertedBoolean}}"
+                                                    Command="{Binding #Root.DataContext.FixedManifestCommand}"
+                                                    CommandParameter="{Binding}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </GroupBox>
+    </Grid>
+</Window>

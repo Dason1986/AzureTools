@@ -1,4 +1,3 @@
-using AzureTools.Models;
 using AzureTools.Stores;
 using AzureTools.Tests.IO;
 using Microsoft.Extensions.FileProviders;
@@ -11,6 +10,8 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Toolkit.Modules.Azure.Models;
+using Toolkit.Modules.Models;
 
 namespace AzureTools.Tests.Stores
 {

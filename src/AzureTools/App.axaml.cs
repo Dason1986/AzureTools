@@ -3,17 +3,17 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
-using AzureTools.Models;
-using AzureTools.Module.Main.ViewModels;
-using AzureTools.Module.Main.Views;
 using AzureTools.Services;
-using AzureTools.Stores;
 using AzureTools.ViewModels;
 using AzureTools.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using Toolkit.Modules.Main.ViewModels;
+using Toolkit.Modules.Main.Views;
+using Toolkit.Modules.Models;
+using Toolkit.Modules.Stores;
 
 namespace AzureTools
 {
@@ -99,7 +99,7 @@ namespace AzureTools
 
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                IAzureToolsStore store = Services.GetRequiredService<IAzureToolsStore>();
+                IToolkitStore store = Services.GetRequiredService<IToolkitStore>();
                 AppProfile profile = store.GetProfile();
                 IThemeService themeService = Services.GetRequiredService<IThemeService>();
                 themeService.ApplyTheme(profile?.ThemeMode ?? ThemeMode.System);

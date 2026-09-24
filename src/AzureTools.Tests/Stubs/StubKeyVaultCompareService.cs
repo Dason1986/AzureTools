@@ -1,6 +1,6 @@
-using AzureTools.Services.KeyVaults;
 using Moq;
 using System.Collections.Generic;
+using Toolkit.Modules.Azure.KeyVaults;
 
 namespace AzureTools.Tests.Stubs
 {

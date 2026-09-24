@@ -79,6 +79,36 @@ namespace AzureTools.ViewModels
             return viewModel;
         }
 
+        protected ViewModel ShowKeyed(string key, ViewParameters parameters = null)
+        {
+            CreateInstanceByKey(key, parameters, out ViewModel viewModel, out View view);
+            view.Show(GetWindow());
+            return viewModel;
+        }
+
+        protected async Task<ViewModel> ShowDialogKeyed(string key, ViewParameters parameters = null)
+        {
+            CreateInstanceByKey(key, parameters, out ViewModel viewModel, out View view);
+            await view.ShowDialog(GetWindow());
+            return viewModel;
+        }
+
+        private void CreateInstanceByKey(string key, ViewParameters parameters, out ViewModel viewModel, out View view)
+        {
+            IViewContainerManagement containerManagement = Context.ServiceProvider.GetRequiredService<IViewContainerManagement>();
+            KeyedViewModelFactory viewModelFactory = containerManagement.GetViewModelFactoryByKey(key);
+            KeyedViewFactory viewFactory = containerManagement.GetViewFactoryByKey(key);
+            if (viewModelFactory == null || viewFactory == null) throw new Exception($"未注入对应的界面：{key}");
+
+            ViewModelContext childContext = CreateChildContext();
+            ViewModel createdViewModel = viewModelFactory(parameters ?? new ViewParameters(), childContext.ServiceProvider);
+            View createdView = viewFactory(createdViewModel, childContext);
+            ConfigureView(childContext, createdViewModel, createdView);
+
+            viewModel = createdViewModel;
+            view = createdView;
+        }
+
         private void CreateInstance(object[] viewModelParameters, Type viewModelType, Type viewType, out ViewModel viewModel, out View view)
         {
             ViewModelContext childContext = CreateChildContext();
@@ -88,23 +118,27 @@ namespace AzureTools.ViewModels
             if (viewType == null) throw new Exception("未注入对应的界面");
             ViewModel _viewModel = factory.CreateViewModel(viewModelType, childContext, viewModelParameters);
             View _view = factory.CreateView(viewType, childContext, _viewModel, childContext);
-            if (_viewModel.CanClose != null)
-            {
+            ConfigureView(childContext, _viewModel, _view);
+            viewModel = _viewModel;
+            view = _view;
+        }
 
-                _view.Closing += async (sender, e) =>
+        private void ConfigureView(ViewModelContext childContext, ViewModel viewModel, View view)
+        {
+            if (viewModel.CanClose != null)
+            {
+                view.Closing += async (sender, e) =>
                 {
-                    bool result = await _viewModel.CanClose();
+                    bool result = await viewModel.CanClose();
                     if (!result) e.Cancel = true;
                 };
             }
-            _view.Closed += (s, e) =>
+            view.Closed += (s, e) =>
             {
-                if (_viewModel is IDisposable disposable) disposable.Dispose();
+                if (viewModel is IDisposable disposable) disposable.Dispose();
                 childContext.Dispose();
             };
-            if (_view.CanMaximize) _view.WindowState = WindowState.Maximized;
-            view = _view;
-            viewModel = _viewModel;
+            if (view.CanMaximize) view.WindowState = WindowState.Maximized;
         }
         private void CreateInstance<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>(object[] viewModelParameters, out TViewModel viewModel, out View view)
     where TViewModel : ViewModel

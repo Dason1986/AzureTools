@@ -1,10 +1,10 @@
-using AzureTools.Models.KeyVaults;
 using AzureTools.SDK.KeyVaults;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Toolkit.Modules.Azure.Models.KeyVaults;
 
 namespace AzureTools.Tests.Stubs
 {

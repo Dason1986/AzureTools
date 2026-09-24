@@ -1,6 +1,3 @@
-using AzureTools.Module.Azure;
-using AzureTools.Module.Comm;
-using AzureTools.Module.Main;
 using AzureTools.SDK;
 using AzureTools.Stores;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +5,9 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Unicode;
+using Toolkit.Modules.Azure;
+using Toolkit.Modules.Comm;
+using Toolkit.Modules.Main;
 
 namespace AzureTools.Extensions
 {
@@ -28,19 +28,15 @@ namespace AzureTools.Extensions
         public static void AddStore(this IServiceCollection services)
         {
             services.AddSingleton<IStoreContext, FileStoreContext>();
-            services.AddSingleton<IKeyVaultStore, DefaultKeyVaultsStore>();
-            services.AddSingleton<IContainerRegistryStore, DefaultContainerRegistryStore>();
-            services.AddSingleton<IAppContainerStore, DefaultAppContainerStore>();
-            services.AddSingleton<IAzureToolsStore, DefaultAzureToolsStore>();
         }
         public static void AddComponents(this IServiceCollection services)
         {
             services.AddAzure();
             services.AddAvaloniaComponents(opt =>
             {
-                new MainModule().Register(opt);
-                new AzureModule().Register(opt);
-                new CommModule().Register(opt);
+                new MainModule(opt).Register();
+                new AzureModule(opt).Register();
+                new CommModule(opt).Register();
             });
         }
     }

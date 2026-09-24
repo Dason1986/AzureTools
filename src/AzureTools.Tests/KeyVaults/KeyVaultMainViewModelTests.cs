@@ -1,9 +1,5 @@
-using AzureTools.Models;
-using AzureTools.Module.Azure.ViewModels.KeyVaults;
 using AzureTools.SDK;
 using AzureTools.SDK.Models;
-using AzureTools.Services.KeyVaults;
-using AzureTools.Stores;
 using AzureTools.Tests.Stubs;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
@@ -12,13 +8,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Toolkit.Modules.Azure.KeyVaults;
+using Toolkit.Modules.Azure.Models;
+using Toolkit.Modules.Azure.Stores;
+using Toolkit.Modules.Azure.ViewModels.KeyVaults;
+using Toolkit.Modules.Models;
+using Toolkit.Modules.Properties;
+using Toolkit.Modules.Stores;
 
 namespace AzureTools.Tests.KeyVaults
 {
     public class KeyVaultMainViewModelTests
     {
         private Mock<IKeyVaultCompareService> _mockCompareService = null!;
-        private Mock<IAzureToolsStore> _mockAzureToolsStore = null!;
+        private Mock<IToolkitStore> _mockAzureToolsStore = null!;
         private Mock<IAzureResourceFactory> _mockResourceFactory = null!;
         private StubMessageCenter _messageCenter = null!;
         private List<KeyVaultEnv> _keyVaultOptions = null!;
@@ -28,7 +31,7 @@ namespace AzureTools.Tests.KeyVaults
         public void SetUp()
         {
             _mockCompareService = StubKeyVaultCompareService.Create();
-            _mockAzureToolsStore = new Mock<IAzureToolsStore>();
+            _mockAzureToolsStore = new Mock<IToolkitStore>();
             _mockResourceFactory = new Mock<IAzureResourceFactory>();
             _messageCenter = new StubMessageCenter();
             _keyVaultOptions = new List<KeyVaultEnv>
@@ -71,7 +74,7 @@ namespace AzureTools.Tests.KeyVaults
             {
                 new() { Name = "Env1", KeyVault = "env1-vault" }
             };
-            Mock<IAzureToolsStore> mockStore = new Mock<IAzureToolsStore>();
+            Mock<IToolkitStore> mockStore = new Mock<IToolkitStore>();
             mockStore.Setup(s => s.GetTenant(It.IsAny<string>())).Returns(new TenantProfile());
             mockStore.Setup(s => s.GetProjects()).Returns(new ProjectInfo[] { new() { Id = Guid.NewGuid(), Name = "TestProject" } });
             KeyVaultSecretMainViewModel vm = new KeyVaultSecretMainViewModel(
@@ -93,7 +96,7 @@ namespace AzureTools.Tests.KeyVaults
 
             _viewModel.EnterKeyVaultCommand.Execute(null);
 
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureTools.Properties.MessageResources.SelectValidEnv));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.SelectValidEnv));
         }
 
         [Test]
@@ -104,7 +107,7 @@ namespace AzureTools.Tests.KeyVaults
 
             _viewModel.EnterKeyVaultCommand.Execute(null);
 
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureTools.Properties.MessageResources.InvalidEnvConfig));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.InvalidEnvConfig));
         }
 
         [Test]
@@ -114,7 +117,7 @@ namespace AzureTools.Tests.KeyVaults
 
             await _viewModel.CompareCommand.ExecuteAsync(null);
 
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureTools.Properties.MessageResources.SelectTwoEnvs));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.SelectTwoEnvs));
         }
 
         [Test]

@@ -1,0 +1,98 @@
+<Window x:Class="Toolkit.Modules.Comm.Views.Tools.CerFileView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Toolkit.Modules.Comm.ViewModels.Tools;assembly=Toolkit.Modules.Comm"
+        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        x:DataType="vm:CerFileViewModel"
+        Title="{x:Static res:FormResources.TitleCerFile}"
+        Width="600"
+        Height="580"
+        CanMaximize="False"
+        WindowStartupLocation="CenterScreen">
+  <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <StackPanel Margin="15">
+      <GroupBox Header="{x:Static res:FormResources.GrpSetExpiration}"
+                Padding="10">
+        <StackPanel>
+          <Grid Margin="0,0,0,8">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Static res:FormResources.LblName}"
+                       VerticalAlignment="Center"
+                       Margin="0,0,10,0"/>
+            <TextBox Grid.Column="1"
+                     Text="{Binding Name}"
+                     PlaceholderText="请输入证书名称"/>
+          </Grid>
+
+          <Grid Margin="0,0,0,8">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Static res:FormResources.LblPassword}"
+                       VerticalAlignment="Center"
+                       Margin="0,0,10,0"/>
+            <TextBox Grid.Column="1"
+                     Text="{Binding Password}"
+                     PasswordChar="*"
+                     PlaceholderText="请输入证书密码"/>
+          </Grid>
+
+          <Grid Margin="0,0,0,8">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Static res:FormResources.LblValidityYears}"
+                       VerticalAlignment="Center"
+                       Margin="0,0,10,0"/>
+            <NumericUpDown Grid.Column="1"
+                           Value="{Binding Year}"
+                           Minimum="1"
+                           Maximum="10"/>
+          </Grid>
+          <DockPanel>
+            <Button Content="{x:Static res:FormResources.BtnOk}"
+                 Command="{Binding GenerateCommand}"
+                 Padding="25,10"
+                 Margin="0,10,0,0"/>
+            <Button Content="{x:Static res:FormResources.BtnExport}"
+                   Command="{Binding ExportCommand}"
+                   Padding="25,10"
+                   Margin="10,10,0,0"/>
+          </DockPanel>
+
+        </StackPanel>
+      </GroupBox>
+
+      <TextBlock Text="{Binding ErrorMessage}"
+                 Foreground="Red"
+                 TextWrapping="Wrap"
+                 IsVisible="{Binding HasErrors}"
+                 Margin="0,10,0,0"/>
+
+      <GroupBox Header="CER Base64"
+                Padding="10"
+                Margin="0,10,0,0">
+        <TextBox Text="{Binding CerBase64}"
+                 IsReadOnly="True"
+                 AcceptsReturn="True"
+                 Height="100"
+                 TextWrapping="Wrap"/>
+      </GroupBox>
+
+      <GroupBox Header="PFX Base64"
+                Padding="10"
+                Margin="0,10,0,0">
+        <TextBox Text="{Binding PfxBase64}"
+                 IsReadOnly="True"
+                 AcceptsReturn="True"
+                 Height="100"
+                 TextWrapping="Wrap"/>
+      </GroupBox>
+    </StackPanel>
+  </ScrollViewer>
+</Window>
