@@ -3,8 +3,8 @@ using AzureTools.ViewModels;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Toolkit.Modules.Main.Properties;
 using Toolkit.Modules.Models;
-using Toolkit.Modules.Properties;
 using Toolkit.Modules.Stores;
 
 namespace Toolkit.Modules.Main.ViewModels.Projects
@@ -16,7 +16,7 @@ namespace Toolkit.Modules.Main.ViewModels.Projects
         public ProjectManagementViewModel(IToolkitStore store, IDialogService dialogService) : base(dialogService)
         {
             _store = store;
-
+            _dialogService = dialogService;
             LoadProjects();
         }
 
@@ -46,7 +46,7 @@ namespace Toolkit.Modules.Main.ViewModels.Projects
         {
             if (SelectedItem == null)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.SelectItemToEdit);
+                await _dialogService.ShowInfoAsync(MainResource.SelectItemToEdit);
                 return;
             }
             ProjectInfo project = await EditOptionAsync(SelectedItem);
@@ -65,10 +65,10 @@ namespace Toolkit.Modules.Main.ViewModels.Projects
         {
             if (SelectedItem == null)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.SelectItemToDelete);
+                await _dialogService.ShowInfoAsync(MainResource.SelectItemToDelete);
                 return;
             }
-            bool confirm = await _dialogService.ShowConfirmAsync(string.Format(FormResources.MsgConfirmDeleteProject, SelectedItem.Name));
+            bool confirm = await _dialogService.ShowConfirmAsync(string.Format(MainResource.MsgConfirmDeleteProject, SelectedItem.Name));
             if (!confirm) return;
             _store.DeleteProject(SelectedItem);
             _store.Save();

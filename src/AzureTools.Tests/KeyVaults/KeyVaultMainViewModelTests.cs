@@ -10,10 +10,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Toolkit.Modules.Azure.KeyVaults;
 using Toolkit.Modules.Azure.Models;
+using Toolkit.Modules.Azure.Properties;
 using Toolkit.Modules.Azure.Stores;
 using Toolkit.Modules.Azure.ViewModels.KeyVaults;
 using Toolkit.Modules.Models;
-using Toolkit.Modules.Properties;
 using Toolkit.Modules.Stores;
 
 namespace AzureTools.Tests.KeyVaults
@@ -96,7 +96,7 @@ namespace AzureTools.Tests.KeyVaults
 
             _viewModel.EnterKeyVaultCommand.Execute(null);
 
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.SelectValidEnv));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureResource.SelectValidEnv));
         }
 
         [Test]
@@ -107,7 +107,7 @@ namespace AzureTools.Tests.KeyVaults
 
             _viewModel.EnterKeyVaultCommand.Execute(null);
 
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.InvalidEnvConfig));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureResource.InvalidEnvConfig));
         }
 
         [Test]
@@ -117,7 +117,7 @@ namespace AzureTools.Tests.KeyVaults
 
             await _viewModel.CompareCommand.ExecuteAsync(null);
 
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.SelectTwoEnvs));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureResource.SelectTwoEnvs));
         }
 
         [Test]

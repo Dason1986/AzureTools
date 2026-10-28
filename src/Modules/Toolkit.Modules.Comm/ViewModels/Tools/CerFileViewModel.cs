@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Toolkit.Modules.Properties;
+using Toolkit.Modules.Comm.Properties;
 
 namespace Toolkit.Modules.Comm.ViewModels.Tools
 {
@@ -64,7 +64,7 @@ namespace Toolkit.Modules.Comm.ViewModels.Tools
             if (string.IsNullOrWhiteSpace(Name))
             {
                 HasErrors = true;
-                ErrorMessage = MessageResources.CertNameEmpty;
+                ErrorMessage = CommResource.CertNameEmpty;
                 return;
             }
 

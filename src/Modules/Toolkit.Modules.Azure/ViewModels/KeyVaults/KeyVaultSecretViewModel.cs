@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 using Toolkit.Modules.Azure.KeyVaults;
 using Toolkit.Modules.Azure.Models;
 using Toolkit.Modules.Azure.Models.KeyVaults;
+using Toolkit.Modules.Azure.Properties;
 using Toolkit.Modules.Azure.Stores;
 using Toolkit.Modules.Models;
-using Toolkit.Modules.Properties;
 
 namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
 {
@@ -32,7 +32,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
             _dialogService = dialogService;
             _exportFiles = exportFiles;
             _logger = logger;
-            WindowTitle = string.Format(FormResources.TitleKeyVaultWindow, envOption.Name);
+            WindowTitle = string.Format(AzureResource.TitleKeyVaultWindow, envOption.Name);
             SelectedSecretItem = new SecretItemModel();
         }
 
@@ -143,12 +143,12 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             if (SelectedSecretItem == null)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.NoRecordSelected);
+                await _dialogService.ShowInfoAsync(AzureResource.NoRecordSelected);
                 return;
             }
             if (SelectedSecretItem.Value == CurrentValue)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.NoModification);
+                await _dialogService.ShowInfoAsync(AzureResource.NoModification);
                 return;
             }
             if (!ValidateForUpdate()) return;
@@ -160,7 +160,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
             {
                 await KeyVault.Set(key, CurrentValue);
                 SelectedSecretItem.Value = CurrentValue;
-                await _dialogService.ShowInfoAsync(MessageResources.UpdateSuccess);
+                await _dialogService.ShowInfoAsync(AzureResource.UpdateSuccess);
             }
             catch (Exception ex)
             {
@@ -210,13 +210,13 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
                 if (errorKeys.Count > 0)
                     throw new KeyVaultMissException(errorKeys);
 
-                await _dialogService.ShowInfoAsync(MessageResources.NoMissingConfig, MessageResources.TitleValidationResult);
+                await _dialogService.ShowInfoAsync(AzureResource.NoMissingConfig, AzureResource.TitleValidationResult);
             }
             catch (KeyVaultMissException ex)
             {
                 string miss = string.Join("\r\n", ex.MissKeys);
                 _logger.LogWarning("校验发现缺失项，环境：{Environment}，缺失：{MissKeys}", _envOption.Name, miss);
-                await _dialogService.ShowInfoAsync(miss, MessageResources.TitleMissingItems);
+                await _dialogService.ShowInfoAsync(miss, AzureResource.TitleMissingItems);
             }
             catch (Exception ex)
             {
@@ -230,7 +230,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             if (SelectedSecretItem == null)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.NoRecordSelected);
+                await _dialogService.ShowInfoAsync(AzureResource.NoRecordSelected);
                 return;
             }
 
@@ -244,7 +244,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
                 }
                 else
                 {
-                    await _dialogService.ShowInfoAsync(MessageResources.NoMultipleVersions);
+                    await _dialogService.ShowInfoAsync(AzureResource.NoMultipleVersions);
                 }
             }
             catch (Exception ex)
@@ -266,7 +266,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
                     if (item.Created == null) continue;
                     await KeyVault.SetExpiration(item.Name, ExpirationDate.Value);
                 }
-                await _dialogService.ShowInfoAsync(MessageResources.BatchSetExpirationSuccess);
+                await _dialogService.ShowInfoAsync(AzureResource.BatchSetExpirationSuccess);
             }
             catch (Exception ex)
             {
@@ -280,25 +280,25 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             if (SelectedSecretItem == null)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.NoRecordSelected);
+                await _dialogService.ShowInfoAsync(AzureResource.NoRecordSelected);
                 return;
             }
 
             if (SelectedSecretItem.Created == null)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.RecordNotInKeyVault);
+                await _dialogService.ShowInfoAsync(AzureResource.RecordNotInKeyVault);
                 return;
             }
             if (!ExpirationDate.HasValue)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.RecordNotInKeyVault);
+                await _dialogService.ShowInfoAsync(AzureResource.RecordNotInKeyVault);
                 return;
             }
 
             try
             {
                 await KeyVault.SetExpiration(SelectedSecretItem.Name, ExpirationDate.Value);
-                await _dialogService.ShowInfoAsync(MessageResources.UpdateSuccess);
+                await _dialogService.ShowInfoAsync(AzureResource.UpdateSuccess);
             }
             catch (Exception ex)
             {
@@ -312,12 +312,12 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             if (KeyVaults == null || KeyVaults.Count == 0)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.GetConfigDataFirst);
+                await _dialogService.ShowInfoAsync(AzureResource.GetConfigDataFirst);
                 return;
             }
 
             string defaultFileName = $"KeyVault_{_envOption.Name}_{DateTime.Now:yyyyMMddHHmmss}.xlsx";
-            IFileEntry fileEntry = await _dialogService.SaveFileAsync(ModelResources.ExcelFileFilter, defaultFileName);
+            IFileEntry fileEntry = await _dialogService.SaveFileAsync(AzureResource.ExcelFileFilter, defaultFileName);
             if (fileEntry == null) return;
 
             using System.IO.Stream stream = fileEntry.GetWrite();
@@ -343,9 +343,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
                     KeyVaults.ToList());
 
                 if (valid) return true;
-                _ = _dialogService.ShowErrorAsync(
-                       KeyValidatorProvider.Default.GetErrorMessage(SelectedSecretItem.Validation),
-                    MessageResources.TitleValidationFailed);
+                _ = _dialogService.ShowErrorAsync(KeyValidatorProvider.Default.GetErrorMessage(SelectedSecretItem.Validation), AzureResource.TitleValidationFailed);
                 return false;
             }
             catch (NotSupportedException ex)

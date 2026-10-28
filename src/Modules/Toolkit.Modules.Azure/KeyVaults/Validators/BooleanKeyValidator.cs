@@ -1,5 +1,5 @@
 using AzureTools.Extensions;
-using Toolkit.Modules.Properties;
+using Toolkit.Modules.Azure.Properties;
 
 namespace Toolkit.Modules.Azure.KeyVaults.Validators
 {
@@ -7,7 +7,7 @@ namespace Toolkit.Modules.Azure.KeyVaults.Validators
     {
         public string Type => "Boolean";
 
-        public string ErrorMessage => MessageResources.ValidatorBooleanInvalid;
+        public string ErrorMessage => AzureResource.ValidatorBooleanInvalid;
         public bool Validate(string value, ValidatorContext context)
         {
             if (string.IsNullOrEmpty(value)) return false;

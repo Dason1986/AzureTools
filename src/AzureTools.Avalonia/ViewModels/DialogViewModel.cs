@@ -7,7 +7,7 @@ namespace AzureTools.ViewModels
     {
         #region Fields & Properties
 
-        public bool? DialogResult { get; private set; }
+        public bool? DialogResult { get; protected set; }
         #endregion
         [RelayCommand]
         protected virtual Task ConfirmAsync()

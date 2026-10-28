@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Toolkit.Modules.Azure.Models;
-using Toolkit.Modules.Properties;
+using Toolkit.Modules.Azure.Properties;
 
 namespace Toolkit.Modules.Azure.ViewModels.AppContainers
 {
@@ -26,7 +26,7 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
             _dialogService = dialogService;
             _logger = logger;
             ResourceGroupName = option.EnvOption.ResourceGroupName;
-            WindowTitle = string.Format(FormResources.TitleContainerAppDetail, _containerApp?.Name);
+            WindowTitle = string.Format(AzureResource.TitleContainerAppDetail, _containerApp?.Name);
             _ = LoadDetailAsync();
         }
 

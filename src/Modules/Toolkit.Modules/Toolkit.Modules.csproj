@@ -15,6 +15,5 @@
   <ItemGroup>
     <ProjectReference Include="..\..\AzureTools.Abstractions\AzureTools.Abstractions.csproj" />
     <ProjectReference Include="..\..\AzureTools.Avalonia\AzureTools.Avalonia.csproj" />
-    <ProjectReference Include="..\Toolkit.Modules.Resources\Toolkit.Modules.Resources.csproj" />
   </ItemGroup>
 </Project>

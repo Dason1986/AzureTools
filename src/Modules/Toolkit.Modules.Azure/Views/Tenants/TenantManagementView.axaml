@@ -2,9 +2,9 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Toolkit.Modules.Azure.ViewModels.Tenants;assembly=Toolkit.Modules.Azure"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Azure.Properties;assembly=Toolkit.Modules.Azure"
         x:DataType="vm:TenantManagementViewModel"
-        Title="{x:Static res:FormResources.TitleTenantManage}"
+        Title="{x:Static res:AzureResource.TitleTenantManage}"
         Width="900"
         Height="500"
         MinWidth="600"
@@ -19,23 +19,23 @@
         <StackPanel Grid.Row="0" Margin="10">
             <DockPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Button Content="{x:Static res:FormResources.BtnAdd}"
+                    <Button Content="{x:Static res:AzureResource.BtnAdd}"
                             Command="{Binding AddCommand}"
                             IsEnabled="{Binding AddEnabled}"
                             Padding="20,8"
                             Margin="0,0,10,0"/>
-                    <Button Content="{x:Static res:FormResources.BtnEdit}"
+                    <Button Content="{x:Static res:AzureResource.BtnEdit}"
                             Command="{Binding EditCommand}"
                             Padding="20,8"
                             Margin="0,0,10,0"/>
-                    <Button Content="{x:Static res:FormResources.BtnDelete}"
+                    <Button Content="{x:Static res:AzureResource.BtnDelete}"
                             Command="{Binding DeleteCommand}"
                             Padding="20,8"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right">
-                    <Button Content="{x:Static res:FormResources.BtnRefresh}"
+                    <Button Content="{x:Static res:AzureResource.BtnRefresh}"
                             Command="{Binding RefreshCommand}"
                             Padding="20,8"/>
                 </StackPanel>
@@ -51,19 +51,19 @@
                   CanUserSortColumns="True"
                   Margin="10,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static res:FormResources.ColTenantName}"
+                <DataGridTextColumn Header="{x:Static res:AzureResource.ColTenantName}"
                                     Binding="{Binding Name}"
                                     Width="*"/>
-                <DataGridTextColumn Header="{x:Static res:FormResources.ColTenantCode}"
+                <DataGridTextColumn Header="{x:Static res:AzureResource.ColTenantCode}"
                                     Binding="{Binding Code}"
                                     Width="120"/>
-                <DataGridTextColumn Header="{x:Static res:FormResources.ColTenantId}"
+                <DataGridTextColumn Header="{x:Static res:AzureResource.ColTenantId}"
                                     Binding="{Binding TenantId}"
                                     Width="200"/>
-                <DataGridTextColumn Header="{x:Static res:FormResources.ColClientId}"
+                <DataGridTextColumn Header="{x:Static res:AzureResource.ColClientId}"
                                     Binding="{Binding ClientId}"
                                     Width="200"/>
-                <DataGridTextColumn Header="{x:Static res:FormResources.ColCredential}"
+                <DataGridTextColumn Header="{x:Static res:AzureResource.ColCredential}"
                                     Binding="{Binding Credential}"
                                     Width="120"/>
             </DataGrid.Columns>

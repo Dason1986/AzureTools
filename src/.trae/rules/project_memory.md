@@ -30,8 +30,8 @@
 - 平台特定服务使用 RuntimeInformation.IsOSPlatform 判断后注册（如 WindowsMessageFallback 仅在 Windows 注册）
 
 ## 硬性约束
-- FileStoreContext 使用 System.Text.Json 配合 AppJsonSerializerContext（源生成的 TypeInfoResolver）；多态派生类型通过基类上的 [JsonPolymorphic] + [JsonDerivedType] 配置（如 ValidationOptions），而非 Newtonsoft JsonSerializerSettings
-- 在 DI 中注册 JsonSerializerOptions 时必须设置 options.TypeInfoResolver = AppJsonSerializerContext.Default；仅调用 new AppJsonSerializerContext(options) 不会关联 resolver，导致 AOT 反序列化回退到被裁剪的反射而失败
+- FileStoreContext 使用 System.Text.Json 配合源生成的 TypeInfoResolver；JSON 序列化上下文按模块拆分：ToolkitJsonSerializerContext（Toolkit.Modules）、AzureJsonSerializerContext（Toolkit.Modules.Azure）、SshJsonSerializerContext（Toolkit.Modules.SSH）；新增模块序列化类型时在对应模块的 SerializerContext 中登记，不要在主项目集中登记；多态派生类型通过基类上的 [JsonPolymorphic] + [JsonDerivedType] 配置（如 ValidationOptions），而非 Newtonsoft JsonSerializerSettings
+- 在 DI 中注册 JsonSerializerOptions 时必须设置 options.TypeInfoResolver = JsonTypeInfoResolver.Combine(ToolkitJsonSerializerContext.Default, AzureJsonSerializerContext.Default, SshJsonSerializerContext.Default)；仅调用 new XxxJsonSerializerContext(options) 不会关联 resolver，导致 AOT 反序列化回退到被裁剪的反射而失败；每个模块的 SerializerContext 必须重复 [JsonSourceGenerationOptions]（DefaultIgnoreCondition/PropertyNameCaseInsensitive 是编译期烘焙进元数据的）
 - FileStoreContext 构造函数不接受 'encrypted' 参数；构造函数签名为 (IHostEnvironment environment, IOptions<JsonSerializerOptions> jsonOptions)；加密状态通过 AesEncryptionService.LoadPackage() 检测 EncryptedPackage 是否存在
 - FileStoreContext 序列化/反序列化必须使用 _jsonOptions.GetTypeInfo(typeof(List<TEntity>)) 获取 JsonTypeInfo，再传给 JsonSerializer.Deserialize/Serialize，避免 AOT 反射回退
 - 对话框结果通过 ViewModel 的 bool? DialogResult 属性传递，窗体关闭由 ViewModel 的 Completed 事件控制；不要使用 Avalonia Window 的 Close 配合按钮 DialogResult 模式

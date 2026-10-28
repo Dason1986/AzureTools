@@ -16,6 +16,21 @@ namespace AzureTools.Extensions
         {
             return FalseValues.Contains(str);
         }
+        public static T GetValue<T>(this IDictionary<string, T> dic, params string[] keys)
+        {
+            if (dic == null || dic.Count == 0)
+            {
+                return default;
+
+            }
+
+            foreach (string item in keys)
+            {
+
+                if (dic.TryGetValue(item, out T t)) return t;
+            }
+            return default;
+        }
         public static bool TryGetValue<T>(this IDictionary<string, T> dic, string[] keys, out T t)
         {
             if (dic == null || dic.Count == 0)

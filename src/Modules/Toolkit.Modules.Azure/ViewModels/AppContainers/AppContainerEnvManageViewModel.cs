@@ -9,9 +9,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Toolkit.Modules.Azure.Models;
+using Toolkit.Modules.Azure.Properties;
 using Toolkit.Modules.Azure.Stores;
 using Toolkit.Modules.Models;
-using Toolkit.Modules.Properties;
 using Toolkit.Modules.Stores;
 
 
@@ -54,7 +54,7 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
         {
             if (HasChanges)
             {
-                bool result = await DialogService.ShowConfirmAsync(MessageResources.ConfirmSaveUnsavedChanges, MessageResources.TitleUnsavedChanges);
+                bool result = await DialogService.ShowConfirmAsync(AzureResource.ConfirmSaveUnsavedChanges, AzureResource.TitleUnsavedChanges);
                 if (result)
                 {
                     await SaveAsync();
@@ -74,13 +74,13 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
 
             if (string.IsNullOrWhiteSpace(item.EnvironmentName))
             {
-                await DialogService.ShowInfoAsync(MessageResources.EnvNameCannotBeEmpty);
+                await DialogService.ShowInfoAsync(AzureResource.EnvNameCannotBeEmpty);
                 return;
             }
 
             if (Items.Any(x => x.EnvironmentName.Equals(item.EnvironmentName, StringComparison.OrdinalIgnoreCase)))
             {
-                await DialogService.ShowInfoAsync(string.Format(MessageResources.EnvAlreadyExists, item.EnvironmentName));
+                await DialogService.ShowInfoAsync(string.Format(AzureResource.EnvAlreadyExists, item.EnvironmentName));
                 return;
             }
 
@@ -93,7 +93,7 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
         {
             if (SelectedItem == null)
             {
-                await DialogService.ShowInfoAsync(MessageResources.SelectItemToEdit);
+                await DialogService.ShowInfoAsync(AzureResource.SelectItemToEdit);
                 return;
             }
 
@@ -109,11 +109,11 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
         {
             if (SelectedItem == null)
             {
-                await DialogService.ShowInfoAsync(MessageResources.SelectItemToDelete);
+                await DialogService.ShowInfoAsync(AzureResource.SelectItemToDelete);
                 return;
             }
 
-            bool confirm = await DialogService.ShowConfirmAsync(string.Format(MessageResources.ConfirmDeleteEnv, SelectedItem.Name));
+            bool confirm = await DialogService.ShowConfirmAsync(string.Format(AzureResource.ConfirmDeleteEnv, SelectedItem.Name));
             if (!confirm) return;
 
             _appContainerStore.RemoveOption(SelectedItem);
@@ -124,7 +124,7 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
         protected override async Task SaveAsync()
         {
             _appContainerStore.Save();
-            await DialogService.ShowInfoAsync(MessageResources.SaveSuccess);
+            await DialogService.ShowInfoAsync(AzureResource.SaveSuccess);
             HasChanges = false;
         }
 
@@ -146,7 +146,7 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
                 TenantProfile tenant = await SelectTenantAsync(tenants);
                 if (tenant == null)
                 {
-                    await DialogService.ShowInfoAsync(MessageResources.NoTenantSelected);
+                    await DialogService.ShowInfoAsync(AzureResource.NoTenantSelected);
                     return;
                 }
 
@@ -154,7 +154,7 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
                 AppContainerEnv[] environments = sdkEnvs.Select(e => e.ToDomain()).ToArray();
                 if (environments.Length == 0)
                 {
-                    await DialogService.ShowInfoAsync(MessageResources.NoContainerRegistryFound);
+                    await DialogService.ShowInfoAsync(AzureResource.NoContainerRegistryFound);
                     return;
                 }
 
@@ -185,11 +185,11 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
 
                 LoadItems();
                 HasChanges = true;
-                await DialogService.ShowInfoAsync(string.Format(MessageResources.ImportSuccess, importedCount, updatedCount));
+                await DialogService.ShowInfoAsync(string.Format(AzureResource.ImportSuccess, importedCount, updatedCount));
             }
             catch (Exception ex)
             {
-                await DialogService.ShowErrorAsync(string.Format(MessageResources.ImportFailed, ex.Message));
+                await DialogService.ShowErrorAsync(string.Format(AzureResource.ImportFailed, ex.Message));
             }
         }
 
@@ -202,7 +202,7 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
         protected override async Task<bool> HandleCloseAsync()
         {
             if (!HasChanges) return true;
-            bool save = await DialogService.ShowConfirmAsync(MessageResources.ConfirmSaveUnsavedChanges, MessageResources.TitleUnsavedChanges);
+            bool save = await DialogService.ShowConfirmAsync(AzureResource.ConfirmSaveUnsavedChanges, AzureResource.TitleUnsavedChanges);
             if (save)
             {
                 _appContainerStore.Save();
@@ -219,8 +219,8 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
             if (tenants.Length == 1) return tenants[0];
 
             IList<TenantProfile> selected = await DialogService.SelectItemsAsync<TenantProfile>(
-                tenants, false, MessageResources.SelectTenantToImportEnv,
-                new Dictionary<string, string> { { "Name", ModelResources.TenantColumnName }, { "Code", ModelResources.TenantCodeName } });
+                tenants, false, AzureResource.SelectTenantToImportEnv,
+                new Dictionary<string, string> { { "Name", AzureResource.TenantColumnName }, { "Code", AzureResource.TenantCodeName } });
             return selected?.FirstOrDefault();
         }
 
@@ -230,13 +230,13 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
 
             Dictionary<string, string> propertyMappings = new Dictionary<string, string>
             {
-                ["Name"] = FormResources.LblName,
-                ["SubscriptionId"] = FormResources.LblSubscriptionId
+                ["Name"] = AzureResource.LblName,
+                ["SubscriptionId"] = AzureResource.LblSubscriptionId
             };
 
             return await DialogService.SelectItemsAsync(
                 environments.ToList(), true,
-                MessageResources.SelectContainerRegistryToImport,
+                AzureResource.SelectContainerRegistryToImport,
                 propertyMappings);
         }
     }

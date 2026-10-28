@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Toolkit.Modules.Properties;
+using Toolkit.Modules.Comm.Properties;
 
 namespace Toolkit.Modules.Comm.ViewModels.FileBrowser
 {
@@ -78,7 +78,7 @@ namespace Toolkit.Modules.Comm.ViewModels.FileBrowser
         [RelayCommand]
         private async Task NewFolderAsync()
         {
-            string name = await _dialogService.ShowPromptDialogAsync(FormResources.TitleNewFolder, FormResources.LblFolderName);
+            string name = await _dialogService.ShowPromptDialogAsync(CommResource.TitleNewFolder, CommResource.LblFolderName);
             if (string.IsNullOrWhiteSpace(name)) return;
             string path = CurrentPath + "/" + name;
             IsBusy = true;
@@ -95,7 +95,7 @@ namespace Toolkit.Modules.Comm.ViewModels.FileBrowser
         private async Task DeleteAsync()
         {
             if (SelectedItem == null || IsSpecialEntry(SelectedItem.Name)) return;
-            if (!await _dialogService.ShowConfirmAsync(string.Format(FormResources.MsgConfirmDelete, SelectedItem.Name))) return;
+            if (!await _dialogService.ShowConfirmAsync(string.Format(CommResource.MsgConfirmDelete, SelectedItem.Name))) return;
             IsBusy = true;
             try
             {
@@ -109,7 +109,7 @@ namespace Toolkit.Modules.Comm.ViewModels.FileBrowser
         [RelayCommand]
         private async Task UploadAsync()
         {
-            IFileEntry entry = await _dialogService.OpenFileAsync("�����ļ�|*.*", null);
+            IFileEntry entry = await _dialogService.OpenFileAsync("所有文件|*.*", null);
             if (entry == null) return;
             string remote = CurrentPath + "/" + entry.Name;
             IsBusy = true;

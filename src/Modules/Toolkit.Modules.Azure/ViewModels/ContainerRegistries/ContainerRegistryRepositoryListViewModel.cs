@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Toolkit.Modules.Azure.Models;
-using Toolkit.Modules.Properties;
+using Toolkit.Modules.Azure.Properties;
 
 namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
 {
@@ -28,6 +28,7 @@ namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
                 ? new ObservableCollection<RepositoryInfo>()
                 : new ObservableCollection<RepositoryInfo>(repositories.OrderBy(r => r.Name, StringComparer.OrdinalIgnoreCase));
             SelectedRepository = Repositories.FirstOrDefault();
+            WindowTitle = string.Format(AzureResource.TitleContainerRegistryWindow, _option?.Name);
         }
 
         #endregion
@@ -63,7 +64,7 @@ namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
 
         public bool SupportFixedManifest => _management.SupportFixedManifest;
 
-        public string WindowTitle => string.Format(FormResources.TitleContainerRegistryWindow, _option?.Name);
+
 
         #endregion
 
@@ -80,7 +81,7 @@ namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
         {
             if (SelectedManifests == null || SelectedManifests.Count == 0)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.SelectItemToDelete);
+                await _dialogService.ShowInfoAsync(AzureResource.SelectItemToDelete);
                 return;
             }
 
@@ -90,13 +91,13 @@ namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
 
             if (deletableItems.Length == 0)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.NoManifestsToDelete);
+                await _dialogService.ShowInfoAsync(AzureResource.NoManifestsToDelete);
                 return;
             }
 
             string confirmMessage = fixedCount > 0
-                ? string.Format(MessageResources.ConfirmDeleteManifestsWithFixed, deletableItems.Length, fixedCount)
-                : string.Format(MessageResources.ConfirmDeleteManifests, deletableItems.Length);
+                ? string.Format(AzureResource.ConfirmDeleteManifestsWithFixed, deletableItems.Length, fixedCount)
+                : string.Format(AzureResource.ConfirmDeleteManifests, deletableItems.Length);
 
             bool confirmed = await _dialogService.ShowConfirmAsync(confirmMessage);
             if (!confirmed) return;
@@ -128,7 +129,7 @@ namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
 
                 if (failures > 0)
                 {
-                    await _dialogService.ShowErrorAsync(string.Format(MessageResources.DeleteManifestFailed, failures, deletableItems.Length));
+                    await _dialogService.ShowErrorAsync(string.Format(AzureResource.DeleteManifestFailed, failures, deletableItems.Length));
                 }
             }
             finally
@@ -151,7 +152,7 @@ namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
 
             if (manifest.Tags == null || manifest.Tags.Length == 0)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.NoTagsToRename);
+                await _dialogService.ShowInfoAsync(AzureResource.NoTagsToRename);
                 return;
             }
 
@@ -159,14 +160,14 @@ namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
             if (oldTagName == null) return;
 
             string newTagName = await _dialogService.ShowPromptDialogAsync(
-                FormResources.TitleRenameTag,
-                FormResources.PromptNewTagName,
+                AzureResource.TitleRenameTag,
+                AzureResource.PromptNewTagName,
                 oldTagName);
 
             if (newTagName == null) return;
             if (string.IsNullOrWhiteSpace(newTagName))
             {
-                await _dialogService.ShowWarningAsync(MessageResources.TagCannotBeEmpty);
+                await _dialogService.ShowWarningAsync(AzureResource.TagCannotBeEmpty);
                 return;
             }
             newTagName = newTagName.Trim();
@@ -179,7 +180,7 @@ namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
             {
                 await _management.RenameTagAsync(manifest.RepositoryName, manifest.Digest, oldTagName, newTagName);
                 UpdateManifestTags(manifest, oldTagName, newTagName);
-                await _dialogService.ShowInfoAsync(MessageResources.RenameTagSuccess);
+                await _dialogService.ShowInfoAsync(AzureResource.RenameTagSuccess);
             }
             catch (Exception ex)
             {
@@ -194,8 +195,8 @@ namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
             if (tags.Length == 1) return tags[0];
 
             string tagsList = string.Join(", ", tags);
-            string prompt = $"{MessageResources.SelectTagToRename}（{tagsList}）";
-            string input = await _dialogService.ShowPromptDialogAsync(FormResources.TitleRenameTag, prompt, new PromptDialogOption { Options = tags });
+            string prompt = $"{AzureResource.SelectTagToRename}（{tagsList}）";
+            string input = await _dialogService.ShowPromptDialogAsync(AzureResource.TitleRenameTag, prompt, new PromptDialogOption { Options = tags });
             if (input == null) return null;
             input = input.Trim();
             return Array.Exists(tags, t => string.Equals(t, input, StringComparison.Ordinal)) ? input : null;
@@ -226,7 +227,7 @@ namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
 
             bool isFixed = !manifest.CanDelete;
             bool confirmed = await _dialogService.ShowConfirmAsync(
-                isFixed ? MessageResources.ConfirmUnfixedManifest : MessageResources.ConfirmFixedManifest);
+                isFixed ? AzureResource.ConfirmUnfixedManifest : AzureResource.ConfirmFixedManifest);
             if (!confirmed) return;
 
             try
@@ -247,7 +248,7 @@ namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
                 }
 
                 await _dialogService.ShowInfoAsync(
-                    shouldFix ? MessageResources.FixedManifestSuccess : MessageResources.UnfixedManifestSuccess);
+                    shouldFix ? AzureResource.FixedManifestSuccess : AzureResource.UnfixedManifestSuccess);
             }
             catch (Exception ex)
             {

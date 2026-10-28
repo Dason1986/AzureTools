@@ -2,16 +2,16 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Toolkit.Modules.Comm.ViewModels.Tools;assembly=Toolkit.Modules.Comm"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Comm.Properties;assembly=Toolkit.Modules.Comm"
         x:DataType="vm:CerFileViewModel"
-        Title="{x:Static res:FormResources.TitleCerFile}"
+        Title="{x:Static res:CommResource.TitleCerFile}"
         Width="600"
         Height="580"
         CanMaximize="False"
         WindowStartupLocation="CenterScreen">
   <ScrollViewer VerticalScrollBarVisibility="Auto">
     <StackPanel Margin="15">
-      <GroupBox Header="{x:Static res:FormResources.GrpSetExpiration}"
+      <GroupBox Header="{x:Static res:CommResource.GrpSetExpiration}"
                 Padding="10">
         <StackPanel>
           <Grid Margin="0,0,0,8">
@@ -19,7 +19,7 @@
               <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{x:Static res:FormResources.LblName}"
+            <TextBlock Text="{x:Static res:CommResource.LblName}"
                        VerticalAlignment="Center"
                        Margin="0,0,10,0"/>
             <TextBox Grid.Column="1"
@@ -32,7 +32,7 @@
               <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{x:Static res:FormResources.LblPassword}"
+            <TextBlock Text="{x:Static res:CommResource.LblPassword}"
                        VerticalAlignment="Center"
                        Margin="0,0,10,0"/>
             <TextBox Grid.Column="1"
@@ -46,7 +46,7 @@
               <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{x:Static res:FormResources.LblValidityYears}"
+            <TextBlock Text="{x:Static res:CommResource.LblValidityYears}"
                        VerticalAlignment="Center"
                        Margin="0,0,10,0"/>
             <NumericUpDown Grid.Column="1"
@@ -55,11 +55,11 @@
                            Maximum="10"/>
           </Grid>
           <DockPanel>
-            <Button Content="{x:Static res:FormResources.BtnOk}"
+            <Button Content="{x:Static res:CommResource.BtnOk}"
                  Command="{Binding GenerateCommand}"
                  Padding="25,10"
                  Margin="0,10,0,0"/>
-            <Button Content="{x:Static res:FormResources.BtnExport}"
+            <Button Content="{x:Static res:CommResource.BtnExport}"
                    Command="{Binding ExportCommand}"
                    Padding="25,10"
                    Margin="10,10,0,0"/>

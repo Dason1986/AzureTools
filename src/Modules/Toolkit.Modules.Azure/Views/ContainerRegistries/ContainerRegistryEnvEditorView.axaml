@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         
         xmlns:vm="clr-namespace:Toolkit.Modules.Azure.ViewModels.ContainerRegistries;assembly=Toolkit.Modules.Azure"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Azure.Properties;assembly=Toolkit.Modules.Azure"
         x:DataType="vm:ContainerRegistryEnvEditorViewModel"
-        Title="{x:Static res:FormResources.TitleEditEnv}"
+        Title="{x:Static res:AzureResource.TitleEditEnv}"
         Width="450"
         Height="450"
         MinWidth="400"
@@ -14,20 +14,20 @@
         CanResize="False">
     <StackPanel Margin="15" Spacing="8">
         <DockPanel>
-            <TextBlock Text="{x:Static res:FormResources.LblName}" Classes="field-label" MinWidth="100"/>
+            <TextBlock Text="{x:Static res:AzureResource.LblName}" Classes="field-label" MinWidth="100"/>
             <TextBox Text="{Binding Name}"                  
                      PlaceholderText="请输入环境名称"/>
         </DockPanel>
 
         <DockPanel>
-            <TextBlock Text="{x:Static res:FormResources.LblRegistry}" Classes="field-label" MinWidth="100"/>
+            <TextBlock Text="{x:Static res:AzureResource.LblRegistry}" Classes="field-label" MinWidth="100"/>
             <TextBox Text="{Binding Registry}"
                      IsEnabled="{Binding IsEditMode, Converter={StaticResource InvertedBoolean}}"
                      PlaceholderText="例如 myregistry.azurecr.io"/>
         </DockPanel>
 
         <DockPanel>
-            <TextBlock Text="{x:Static res:FormResources.LblRegistryUrl}" Classes="field-label" MinWidth="100"/>
+            <TextBlock Text="{x:Static res:AzureResource.LblRegistryUrl}" Classes="field-label" MinWidth="100"/>
             <TextBox Text="{Binding RegistryUrl}"
                      IsEnabled="{Binding IsEditMode, Converter={StaticResource InvertedBoolean}}"
                      PlaceholderText="例如 myregistry.azurecr.io"/>
@@ -36,39 +36,39 @@
       
 
         <DockPanel>
-            <TextBlock Text="{x:Static res:FormResources.LblSubscriptionName}" Classes="field-label" MinWidth="100"/>
+            <TextBlock Text="{x:Static res:AzureResource.LblSubscriptionName}" Classes="field-label" MinWidth="100"/>
             <TextBox Text="{Binding SubscriptionName}"
                      IsEnabled="{Binding IsEditMode, Converter={StaticResource InvertedBoolean}}"
                      IsReadOnly="True"/>
         </DockPanel>
 
         <DockPanel>
-            <TextBlock Text="{x:Static res:FormResources.LblSubscriptionId}" Classes="field-label" MinWidth="100"/>
+            <TextBlock Text="{x:Static res:AzureResource.LblSubscriptionId}" Classes="field-label" MinWidth="100"/>
             <TextBox Text="{Binding SubscriptionId}"
                      IsEnabled="{Binding IsEditMode, Converter={StaticResource InvertedBoolean}}"
                      IsReadOnly="True"/>
         </DockPanel>
 
         <DockPanel>
-            <TextBlock Text="{x:Static res:FormResources.LblAdminUserEnabled}" Classes="field-label" MinWidth="100"/>
+            <TextBlock Text="{x:Static res:AzureResource.LblAdminUserEnabled}" Classes="field-label" MinWidth="100"/>
             <CheckBox IsChecked="{Binding IsAdminUserEnabled}"
                      IsEnabled="{Binding IsEditMode, Converter={StaticResource InvertedBoolean}}" Margin="0,5,0,5"/>
         </DockPanel>
 
         <DockPanel>
-            <TextBlock Text="{x:Static res:FormResources.LblAnonymousPullEnabled}" Classes="field-label" MinWidth="100"/>
+            <TextBlock Text="{x:Static res:AzureResource.LblAnonymousPullEnabled}" Classes="field-label" MinWidth="100"/>
             <CheckBox IsChecked="{Binding IsAnonymousPullEnabled}"
                      IsEnabled="{Binding IsEditMode, Converter={StaticResource InvertedBoolean}}" Margin="0,5,0,5"/>
         </DockPanel>
 
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <Button Content="{x:Static res:FormResources.BtnCancel}"
+            <Button Content="{x:Static res:AzureResource.BtnCancel}"
                     Command="{Binding CancelCommand}"
                     IsCancel="True"
                     Classes="form-action"
                     Margin="0,0,10,0"/>
-            <Button Content="{x:Static res:FormResources.BtnConfirm}"
+            <Button Content="{x:Static res:AzureResource.BtnConfirm}"
                     Command="{Binding ConfirmCommand}"
                     IsDefault="True"
                     Classes="form-action"/>

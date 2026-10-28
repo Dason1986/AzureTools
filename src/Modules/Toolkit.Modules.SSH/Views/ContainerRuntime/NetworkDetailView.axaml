@@ -1,0 +1,41 @@
+<Window x:Class="Toolkit.Modules.SSH.Views.ContainerRuntime.NetworkDetailView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Toolkit.Modules.SSH.ViewModels.ContainerRuntime;assembly=Toolkit.Modules.SSH"
+        xmlns:resSSH="clr-namespace:Toolkit.Modules.SSH.Properties;assembly=Toolkit.Modules.SSH"
+        x:DataType="vm:NetworkDetailViewModel"
+        Title="{Binding WindowTitle}"
+        Width="720"
+        Height="460"
+        MinWidth="560"
+        MinHeight="360"
+        WindowStartupLocation="CenterOwner">
+  <DockPanel Margin="8">
+    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,4,0,8">
+      <Button Content="{x:Static resSSH:SSHResource.BtnRefresh}"
+              Command="{Binding RefreshCommand}"
+              Padding="15,6"/>
+    </StackPanel>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+      <DataGrid Grid.Column="0"
+                ItemsSource="{Binding Containers}"
+                SelectedItem="{Binding SelectedContainer}"
+                AutoGenerateColumns="False"
+                IsReadOnly="True">
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColContainerName}" Binding="{Binding Name}" Width="200"/>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColNetworkId}" Binding="{Binding Id}" Width="260"/>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColIpAddress}" Binding="{Binding IpAddress}" Width="*"/>
+        </DataGrid.Columns>
+      </DataGrid>
+      <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="8,0,0,0" Spacing="6">
+        <Button Content="{x:Static resSSH:SSHResource.BtnJoin}" Command="{Binding JoinCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+        <Button Content="{x:Static resSSH:SSHResource.BtnLeave}" Command="{Binding LeaveCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+      </StackPanel>
+    </Grid>
+  </DockPanel>
+</Window>

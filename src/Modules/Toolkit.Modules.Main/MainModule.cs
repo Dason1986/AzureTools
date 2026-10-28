@@ -1,13 +1,13 @@
 
 using AzureTools;
 using Microsoft.Extensions.DependencyInjection;
+using Toolkit.Modules.Main.Properties;
 using Toolkit.Modules.Main.ViewModels;
 using Toolkit.Modules.Main.ViewModels.Options;
 using Toolkit.Modules.Main.ViewModels.Projects;
 using Toolkit.Modules.Main.Views;
 using Toolkit.Modules.Main.Views.Options;
 using Toolkit.Modules.Main.Views.Projects;
-using Toolkit.Modules.Properties;
 using Toolkit.Modules.Stores;
 
 namespace Toolkit.Modules.Main
@@ -34,9 +34,9 @@ namespace Toolkit.Modules.Main
         }
         protected override void RegisterMenus()
         {
-            IModuleMenuBuild moduleMenu = AddModuleMenu("Main", FormResources.ModuleMain, -1);
-            moduleMenu.AddMenu(code: "Projects", name: FormResources.MenuProjects, icon: FormResources.Projects, viewModelType: typeof(ProjectManagementViewModel));
-            moduleMenu.AddMenu(code: "Options", name: FormResources.MenuOptions, icon: FormResources.Options, viewModelType: typeof(OptionsViewModel));
+            IModuleMenuBuild moduleMenu = AddModuleMenu("Main", MainResource.ModuleMain, -1);
+            moduleMenu.AddMenu(code: "Projects", name: MainResource.MenuProjects, icon: ImageResource.Projects, viewModelType: typeof(ProjectManagementViewModel));
+            moduleMenu.AddMenu(code: "Options", name: MainResource.MenuOptions, icon: ImageResource.Options, viewModelType: typeof(OptionsViewModel));
 
         }
         protected override void RegisterServices(IServiceCollection services)

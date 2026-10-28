@@ -2,10 +2,10 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Toolkit.Modules.Main.ViewModels;assembly=Toolkit.Modules.Main"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Main.Properties;assembly=Toolkit.Modules.Main"
         xmlns:models="clr-namespace:Toolkit.Modules.Models;assembly=Toolkit.Modules"
         x:DataType="vm:AppWizardViewModel"
-        Title="{x:Static res:FormResources.TitleAppWizard}"
+        Title="{x:Static res:MainResource.TitleAppWizard}"
         Width="600"
         Height="620"
         MinWidth="500"
@@ -13,7 +13,7 @@
         WindowStartupLocation="CenterScreen">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="15">
-            <GroupBox Header="{x:Static res:FormResources.GrpMode}"
+            <GroupBox Header="{x:Static res:MainResource.GrpMode}"
                       Padding="10">
                 <StackPanel>
                     <Grid>
@@ -21,7 +21,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{x:Static res:FormResources.LblAppName}"
+                        <TextBlock Text="{x:Static res:MainResource.LblAppName}"
                                    VerticalAlignment="Center"
                                    Margin="0,0,10,0"/>
                         <TextBox Grid.Column="1"
@@ -34,7 +34,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{x:Static res:FormResources.GrpTenant}"
+                        <TextBlock Text="{x:Static res:MainResource.GrpTenant}"
                                    VerticalAlignment="Center"
                                    Margin="0,0,10,0"/>
                         <ComboBox Grid.Column="1"
@@ -55,11 +55,11 @@
 
          
 
-            <GroupBox Header="{x:Static res:FormResources.GrpLogin}"
+            <GroupBox Header="{x:Static res:MainResource.GrpLogin}"
                       Padding="10"
                       Margin="0,10,0,0">
                 <StackPanel>
-                    <CheckBox Content="{x:Static res:FormResources.LblUsePassword}"
+                    <CheckBox Content="{x:Static res:MainResource.LblUsePassword}"
                               IsChecked="{Binding LoginUsePassword}"
                               Margin="0,0,0,5"/>
 
@@ -68,7 +68,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{x:Static res:FormResources.LblLoginPassword}"
+                        <TextBlock Text="{x:Static res:MainResource.LblLoginPassword}"
                                    VerticalAlignment="Center"
                                    Margin="0,0,10,0"/>
                         <TextBox Grid.Column="1"
@@ -78,21 +78,21 @@
                 </StackPanel>
             </GroupBox>
 
-            <GroupBox Header="{x:Static res:FormResources.GrpSecurity}"
+            <GroupBox Header="{x:Static res:MainResource.GrpSecurity}"
                       Padding="10"
                       Margin="0,10,0,0">
-                <CheckBox Content="{x:Static res:FormResources.LblDataEncryption}"
+                <CheckBox Content="{x:Static res:MainResource.LblDataEncryption}"
                           IsChecked="{Binding UseDataEncryption}"/>
             </GroupBox>
 
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         Margin="0,15,0,0">
-                <Button Content="{x:Static res:FormResources.BtnCancel}"
+                <Button Content="{x:Static res:MainResource.BtnCancel}"
                         Click="OnCancelClick"
                         Padding="25,10"
                         Margin="0,0,10,0"/>
-                <Button Content="{x:Static res:FormResources.BtnConfirm}"
+                <Button Content="{x:Static res:MainResource.BtnConfirm}"
                         Command="{Binding ConfirmCommand}"
                         Padding="25,10"/>
             </StackPanel>

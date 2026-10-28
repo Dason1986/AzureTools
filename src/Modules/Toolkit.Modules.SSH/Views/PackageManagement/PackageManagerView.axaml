@@ -1,0 +1,120 @@
+<Window x:Class="Toolkit.Modules.SSH.Views.PackageManagement.PackageManagerView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Toolkit.Modules.SSH.ViewModels.PackageManagement;assembly=Toolkit.Modules.SSH"
+        xmlns:resSSH="clr-namespace:Toolkit.Modules.SSH.Properties;assembly=Toolkit.Modules.SSH"
+        x:DataType="vm:PackageManagerViewModel"
+        Title="{Binding WindowTitle}"
+        Width="900"
+        Height="620"
+        MinWidth="640"
+        MinHeight="420"
+        WindowStartupLocation="CenterOwner">
+  <DockPanel Margin="8">
+    <StackPanel DockPanel.Dock="Top" Margin="0,0,0,8">
+      <StackPanel Orientation="Horizontal" Spacing="12">
+        <TextBlock Text="{x:Static resSSH:SSHResource.LblPackageOs}" Classes="field-label"/>
+        <TextBlock Text="{Binding OsSummary}"/>
+        <TextBlock Text="{x:Static resSSH:SSHResource.LblPackageManager}" Classes="field-label"/>
+        <TextBlock Text="{Binding ManagerSummary}"/>
+      </StackPanel>
+    </StackPanel>
+    <StackPanel DockPanel.Dock="Bottom" Margin="0,8,0,0">
+      <ProgressBar IsIndeterminate="True"
+                   IsVisible="{Binding IsBusy}"
+                   Height="4"/>
+      <TextBlock Text="{Binding StatusText}"
+                 Margin="0,4,0,0"
+                 TextWrapping="Wrap"
+                 Opacity="0.75"/>
+    </StackPanel>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <TabControl Grid.Row="0">
+        <TabItem Header="{x:Static resSSH:SSHResource.TabPackageSearch}">
+          <DockPanel>
+            <StackPanel DockPanel.Dock="Top" Margin="0,8,0,8" Orientation="Horizontal">
+              <TextBox Text="{Binding Keyword}"
+                       PlaceholderText="{x:Static resSSH:SSHResource.PromptPackageSearchKeyword}"
+                       Width="320"
+                       VerticalAlignment="Center"/>
+              <Button Content="{x:Static resSSH:SSHResource.BtnSearch}"
+                      Command="{Binding SearchCommand}"
+                      Padding="15,6"
+                      Margin="8,0,0,0"/>
+              <Button Content="{x:Static resSSH:SSHResource.BtnRefresh}"
+                      Command="{Binding RefreshCommand}"
+                      Padding="15,6"
+                      Margin="8,0,0,0"/>
+              <Button Content="{x:Static resSSH:SSHResource.BtnPackageInstall}"
+                      Command="{Binding InstallCommand}"
+                      Padding="15,6"
+                      Margin="24,0,0,0"/>
+            </StackPanel>
+            <DataGrid ItemsSource="{Binding SearchResults}"
+                      SelectedItem="{Binding SelectedSearchPackage}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True">
+              <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColPackageName}" Binding="{Binding Name}" Width="240"/>
+                <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColPackageVersion}" Binding="{Binding Version}" Width="160"/>
+                <DataGridCheckBoxColumn Header="{x:Static resSSH:SSHResource.ColPackageInstalled}" Binding="{Binding IsInstalled}" Width="90" IsReadOnly="True"/>
+                <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColPackageDescription}" Binding="{Binding Description}" Width="*"/>
+              </DataGrid.Columns>
+            </DataGrid>
+          </DockPanel>
+        </TabItem>
+        <TabItem Header="{x:Static resSSH:SSHResource.TabPackageInstalled}">
+          <DockPanel>
+            <StackPanel DockPanel.Dock="Top" Margin="0,8,0,8" Orientation="Horizontal">
+              <TextBox Text="{Binding InstalledFilter, UpdateSourceTrigger=PropertyChanged}"
+                       PlaceholderText="{x:Static resSSH:SSHResource.PromptPackageFilterInstalled}"
+                       Width="320"
+                       VerticalAlignment="Center"/>
+              <Button Content="{x:Static resSSH:SSHResource.BtnPackageUpgrade}"
+                      Command="{Binding UpgradeCommand}"
+                      Padding="15,6"
+                      Margin="24,0,0,0"/>
+              <Button Content="{x:Static resSSH:SSHResource.BtnPackageDowngrade}"
+                      Command="{Binding DowngradeCommand}"
+                      Padding="15,6"
+                      Margin="8,0,0,0"/>
+              <Button Content="{x:Static resSSH:SSHResource.BtnPackageRemove}"
+                      Command="{Binding RemoveCommand}"
+                      Padding="15,6"
+                      Margin="24,0,0,0"/>
+            </StackPanel>
+            <DataGrid ItemsSource="{Binding InstalledPackages}"
+                      SelectedItem="{Binding SelectedInstalledPackage}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True">
+              <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColPackageName}" Binding="{Binding Name}" Width="240"/>
+                <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColPackageVersion}" Binding="{Binding Version}" Width="160"/>
+                <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColPackageDescription}" Binding="{Binding Description}" Width="*"/>
+              </DataGrid.Columns>
+            </DataGrid>
+          </DockPanel>
+        </TabItem>
+      </TabControl>
+      <DockPanel Grid.Row="1" Margin="0,8,0,0">
+        <TextBlock DockPanel.Dock="Top"
+                   Text="{x:Static resSSH:SSHResource.LblPackageTerminal}"
+                   Classes="field-label"
+                   Margin="0,0,0,4"/>
+        <TextBox Text="{Binding TerminalText}"
+                 IsReadOnly="True"
+                 FontFamily="Consolas, monospace"
+                 TextWrapping="NoWrap"
+                 AcceptsReturn="True"
+                 Height="140"
+                 TextChanged="OnTerminalTextChanged"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+      </DockPanel>
+    </Grid>
+  </DockPanel>
+</Window>

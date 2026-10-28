@@ -2,10 +2,10 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Toolkit.Modules.Azure.ViewModels.Tenants;assembly=Toolkit.Modules.Azure"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Azure.Properties;assembly=Toolkit.Modules.Azure"
         xmlns:models="clr-namespace:Toolkit.Modules.Models;assembly=Toolkit.Modules"
         x:DataType="vm:TenantEditorViewModel"
-        Title="{x:Static res:FormResources.TitleEditTenant}"
+        Title="{x:Static res:AzureResource.TitleEditTenant}"
         Width="500"
         Height="520"
         MinWidth="450"
@@ -15,31 +15,31 @@
   <ScrollViewer VerticalScrollBarVisibility="Auto">
     <StackPanel Margin="15" Spacing="8">
       <DockPanel>
-        <TextBlock Text="{x:Static res:FormResources.LblTenantCode}" Classes="field-label"/>
+        <TextBlock Text="{x:Static res:AzureResource.LblTenantCode}" Classes="field-label"/>
         <TextBox Text="{Binding TenantCode}"
                  PlaceholderText="请输入租户代码"/>
       </DockPanel>
 
       <DockPanel>
-        <TextBlock Text="{x:Static res:FormResources.LblTenantName}" Classes="field-label"/>
+        <TextBlock Text="{x:Static res:AzureResource.LblTenantName}" Classes="field-label"/>
         <TextBox Text="{Binding TenantName}"
                  PlaceholderText="请输入租户名称"/>
       </DockPanel>
 
       <DockPanel>
-        <TextBlock Text="{x:Static res:FormResources.LblTenantId}" Classes="field-label"/>
+        <TextBlock Text="{x:Static res:AzureResource.LblTenantId}" Classes="field-label"/>
         <TextBox Text="{Binding TenantId}"
                  PlaceholderText="请输入租户ID (GUID)"/>
       </DockPanel>
 
       <DockPanel>
-        <TextBlock Text="{x:Static res:FormResources.LblClientId}" Classes="field-label"/>
+        <TextBlock Text="{x:Static res:AzureResource.LblClientId}" Classes="field-label"/>
         <TextBox Text="{Binding ClientId}"
                  PlaceholderText="请输入程序ID (GUID)"/>
       </DockPanel>
 
       <DockPanel>
-        <TextBlock Text="{x:Static res:FormResources.LblCredential}" Classes="field-label"/>
+        <TextBlock Text="{x:Static res:AzureResource.LblCredential}" Classes="field-label"/>
         <ComboBox ItemsSource="{Binding CredentialOptions}"
                   SelectedItem="{Binding SelectedCredential}"
                   ItemContainerTheme="{StaticResource OptionComboBoxItemTheme}">
@@ -51,7 +51,7 @@
         </ComboBox>
       </DockPanel>
 
-      <GroupBox Header="{x:Static res:FormResources.GrpCertificate}"
+      <GroupBox Header="{x:Static res:AzureResource.GrpCertificate}"
                 IsVisible="{Binding IsCertificateEnabled}"
                 Padding="10">
         <StackPanel Spacing="8">
@@ -62,7 +62,7 @@
                     Padding="20,8"
                     DockPanel.Dock="Right"
                     Margin="5,0,0,0"/>
-            <Button Content="{x:Static res:FormResources.BtnOk}"
+            <Button Content="{x:Static res:AzureResource.BtnOk}"
                     Command="{Binding SelectCertificateCommand}"
                     Padding="15,5"
                     Margin="5,0,0,0"
@@ -72,7 +72,7 @@
                      PlaceholderText="请选择证书文件"/>
           </DockPanel>
           <DockPanel IsVisible="{Binding IsPasswordEnabled}">
-            <TextBlock Text="{x:Static res:FormResources.LblPassword}" Classes="field-label"/>
+            <TextBlock Text="{x:Static res:AzureResource.LblPassword}" Classes="field-label"/>
             <TextBox Text="{Binding Password}"
                      PasswordChar="*"/>
           </DockPanel>
@@ -82,16 +82,16 @@
       <StackPanel Orientation="Horizontal"
                   HorizontalAlignment="Right"
                   Margin="0,10,0,0">
-        <Button Content="{x:Static res:FormResources.BtnTest}"
+        <Button Content="{x:Static res:AzureResource.BtnTest}"
                 Command="{Binding TestConnectionCommand}"
                 Classes="form-action"
                 Margin="0,0,10,0"/>
-        <Button Content="{x:Static res:FormResources.BtnCancel}"
+        <Button Content="{x:Static res:AzureResource.BtnCancel}"
                 Command="{Binding CancelCommand}"
                 IsCancel="True"
                 Classes="form-action"
                 Margin="0,0,10,0"/>
-        <Button Content="{x:Static res:FormResources.BtnConfirm}"
+        <Button Content="{x:Static res:AzureResource.BtnConfirm}"
                 Command="{Binding ConfirmCommand}"
                 IsDefault="True"
                 Classes="form-action"/>

@@ -1,0 +1,47 @@
+<UserControl x:Class="Toolkit.Modules.SSH.Views.ContainerRuntime.Tabs.PodsTabView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Toolkit.Modules.SSH.ViewModels.ContainerRuntime;assembly=Toolkit.Modules.SSH"
+             xmlns:resSSH="clr-namespace:Toolkit.Modules.SSH.Properties;assembly=Toolkit.Modules.SSH"
+             x:DataType="vm:PodsTabViewModel">
+  <DockPanel Margin="4">
+    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,4,0,8">
+      <Button Content="{x:Static resSSH:SSHResource.BtnRefresh}"
+              Command="{Binding RefreshCommand}"
+              Padding="15,6"
+              Margin="0,0,8,0"/>
+      <Button Content="{x:Static resSSH:SSHResource.BtnCreatePod}"
+              Command="{Binding ShowCreatePodCommand}"
+              Padding="15,6"
+              Margin="0,0,8,0"/>
+      <Button Content="{x:Static resSSH:SSHResource.BtnPrune}"
+              Command="{Binding PrunePodsCommand}"
+              Padding="15,6"/>
+    </StackPanel>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="160"/>
+      </Grid.ColumnDefinitions>
+      <TreeView Grid.Column="0" ItemsSource="{Binding PodNodes}" SelectedItem="{Binding SelectedNode}">
+        <TreeView.ItemTemplate>
+          <TreeDataTemplate ItemsSource="{Binding Children}" x:DataType="vm:PodTreeNode">
+            <Grid ColumnDefinitions="*,130,*" Margin="0,2">
+              <TextBlock Grid.Column="0" Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+              <TextBlock Grid.Column="1" Text="{Binding Status}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Foreground="Gray" Margin="8,0,0,0"/>
+              <TextBlock Grid.Column="2" Text="{Binding Detail}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Foreground="Gray" Margin="8,0,0,0"/>
+            </Grid>
+          </TreeDataTemplate>
+        </TreeView.ItemTemplate>
+      </TreeView>
+      <DockPanel Grid.Column="1" Margin="8,0,0,0">
+        <StackPanel DockPanel.Dock="Top" Spacing="6">
+          <Button Content="{x:Static resSSH:SSHResource.BtnEdit}" Command="{Binding EditPodCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+          <Button Content="{x:Static resSSH:SSHResource.BtnStart}" Command="{Binding StartPodCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+          <Button Content="{x:Static resSSH:SSHResource.BtnStop}" Command="{Binding StopPodCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+          <Button Content="{x:Static resSSH:SSHResource.BtnRemove}" Command="{Binding RemovePodCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+        </StackPanel>
+      </DockPanel>
+    </Grid>
+  </DockPanel>
+</UserControl>

@@ -12,9 +12,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Toolkit.Modules.Azure.KeyVaults;
 using Toolkit.Modules.Azure.Models;
+using Toolkit.Modules.Azure.Properties;
 using Toolkit.Modules.Azure.Stores;
 using Toolkit.Modules.Models;
-using Toolkit.Modules.Properties;
 using Toolkit.Modules.Stores;
 
 
@@ -74,7 +74,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
             KeyVaultOptionsList = keyVaultOptionStore.GetOptions();
             if (KeyVaultOptionsList == null || KeyVaultOptionsList.Count == 0)
             {
-                _ = _dialogService.ShowWarningAsync(MessageResources.NoEnvConfigured);
+                _ = _dialogService.ShowWarningAsync(AzureResource.NoEnvConfigured);
                 return;
             }
 
@@ -88,19 +88,19 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             if (SelectedProject == null)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.SelectValidProject);
+                await _dialogService.ShowInfoAsync(AzureResource.SelectValidProject);
                 return;
             }
 
             if (SelectedKeyVaultOption == null)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.SelectValidEnv);
+                await _dialogService.ShowInfoAsync(AzureResource.SelectValidEnv);
                 return;
             }
 
             if (string.IsNullOrEmpty(SelectedKeyVaultOption.KeyVault))
             {
-                await _dialogService.ShowInfoAsync(MessageResources.InvalidEnvConfig);
+                await _dialogService.ShowInfoAsync(AzureResource.InvalidEnvConfig);
                 return;
             }
 
@@ -114,7 +114,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             if (SelectedCompareOptions == null || SelectedCompareOptions.Count < 2)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.SelectTwoEnvs);
+                await _dialogService.ShowInfoAsync(AzureResource.SelectTwoEnvs);
                 return;
             }
 
@@ -130,7 +130,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
             catch (Exception ex)
             {
                 _logger.LogError(ex, "对比失败，环境：{Envs}", string.Join(", ", SelectedCompareOptions.Select(o => o.Name)));
-                await _dialogService.ShowErrorAsync(string.Format(MessageResources.CompareFailed, ex.Message));
+                await _dialogService.ShowErrorAsync(string.Format(AzureResource.CompareFailed, ex.Message));
             }
         }
 

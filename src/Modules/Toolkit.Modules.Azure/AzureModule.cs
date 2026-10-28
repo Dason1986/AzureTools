@@ -2,6 +2,7 @@
 using AzureTools;
 using Microsoft.Extensions.DependencyInjection;
 using Toolkit.Modules.Azure.KeyVaults;
+using Toolkit.Modules.Azure.Properties;
 using Toolkit.Modules.Azure.Stores;
 using Toolkit.Modules.Azure.ViewModels.AppContainers;
 using Toolkit.Modules.Azure.ViewModels.ContainerRegistries;
@@ -11,7 +12,6 @@ using Toolkit.Modules.Azure.Views.AppContainers;
 using Toolkit.Modules.Azure.Views.ContainerRegistries;
 using Toolkit.Modules.Azure.Views.KeyVaults;
 using Toolkit.Modules.Azure.Views.Tenants;
-using Toolkit.Modules.Properties;
 
 namespace Toolkit.Modules.Azure
 {
@@ -55,13 +55,13 @@ namespace Toolkit.Modules.Azure
         protected override void RegisterMenus()
         {
             IModuleMenuBuild moduleMenu = AddModuleMenu("Azure", "Azure");
-            moduleMenu.AddMenu(code: "KeyVault", name: FormResources.MenuKeyVault, icon: FormResources.KeyVault, viewModelType: typeof(KeyVaultSecretMainViewModel));
-            moduleMenu.AddMenu(code: "ContainerRegistry", name: FormResources.MenuContainerRegistry, icon: FormResources.ContainerRegistry, viewModelType: typeof(ContainerRegistryMainViewModel));
-            moduleMenu.AddMenu(code: "AppContainer", name: FormResources.MenuAppContainer, icon: FormResources.ContainerService, viewModelType: typeof(AppContainerMainViewModel));
-            moduleMenu.AddMenu(code: "ApplicationInsights", name: FormResources.MenuAppInsights, icon: FormResources.ApplicationInsights, viewModelType: null);
-            moduleMenu.AddMenu(code: "Database", name: FormResources.MenuDatabase, icon: FormResources.Database, viewModelType: null);
-            moduleMenu.AddMenu(code: "Security", name: FormResources.MenuSecurity, icon: FormResources.Security, viewModelType: null);
-            moduleMenu.AddMenu(code: "TenantManagement", name: FormResources.MenuTenantManagement, icon: FormResources.TenantManagement, viewModelType: typeof(TenantManagementViewModel));
+            moduleMenu.AddMenu(code: "KeyVault", name: AzureResource.MenuKeyVault, icon: ImageResource.KeyVault, viewModelType: typeof(KeyVaultSecretMainViewModel));
+            moduleMenu.AddMenu(code: "ContainerRegistry", name: AzureResource.MenuContainerRegistry, icon: ImageResource.ContainerRegistry, viewModelType: typeof(ContainerRegistryMainViewModel));
+            moduleMenu.AddMenu(code: "AppContainer", name: AzureResource.MenuAppContainer, icon: ImageResource.ContainerService, viewModelType: typeof(AppContainerMainViewModel));
+            moduleMenu.AddMenu(code: "ApplicationInsights", name: AzureResource.MenuAppInsights, icon: ImageResource.ApplicationInsights, viewModelType: null);
+            moduleMenu.AddMenu(code: "Database", name: AzureResource.MenuDatabase, icon: ImageResource.Database, viewModelType: null);
+            moduleMenu.AddMenu(code: "Security", name: AzureResource.MenuSecurity, icon: ImageResource.Security, viewModelType: null);
+            moduleMenu.AddMenu(code: "TenantManagement", name: AzureResource.MenuTenantManagement, icon: ImageResource.TenantManagement, viewModelType: typeof(TenantManagementViewModel));
         }
 
         protected override void RegisterServices(IServiceCollection services)

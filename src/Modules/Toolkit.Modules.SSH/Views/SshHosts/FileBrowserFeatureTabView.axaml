@@ -1,0 +1,11 @@
+<UserControl x:Class="Toolkit.Modules.SSH.Views.SshHosts.FileBrowserFeatureTabView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Toolkit.Modules.SSH.ViewModels.SshHosts;assembly=Toolkit.Modules.SSH"
+             xmlns:resSSH="clr-namespace:Toolkit.Modules.SSH.Properties;assembly=Toolkit.Modules.SSH"
+             x:DataType="vm:FileBrowserFeatureTabViewModel">
+  <StackPanel Margin="10" Spacing="8">
+    <CheckBox Content="{x:Static resSSH:SSHResource.LblSshFeatureEnable}"
+              IsChecked="{Binding IsEnabled}"/>
+  </StackPanel>
+</UserControl>

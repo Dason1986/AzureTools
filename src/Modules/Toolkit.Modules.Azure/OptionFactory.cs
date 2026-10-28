@@ -3,7 +3,7 @@ using Toolkit.Modules.Models;
 
 namespace Toolkit.Modules.Azure
 {
-    public class OptionFactory
+    class OptionFactory
     {
         public static readonly OptionFactory Instance = new OptionFactory();
         public Option<AzureCredential>[] GetCredentials()
@@ -20,7 +20,7 @@ namespace Toolkit.Modules.Azure
 
         public string[] GetSecretKeyTypes()
         {
-            return ["", "Boolean", "Guid", "Number", "Pfx", "Pfx_Password", "Rsa", "Url", "Urls"];
+            return ["", "Boolean", "Guid", "Number", "Pfx", "Pfx_Password", "Rsa", "Url", "Urls", "Email", "Emails"];
         }
 
     }

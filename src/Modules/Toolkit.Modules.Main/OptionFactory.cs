@@ -1,10 +1,10 @@
 using AzureTools;
+using Toolkit.Modules.Main.Properties;
 using Toolkit.Modules.Models;
-using Toolkit.Modules.Properties;
 
 namespace Toolkit.Modules.Main
 {
-    public class OptionFactory
+    class OptionFactory
     {
         public static readonly OptionFactory Instance = new OptionFactory();
 
@@ -20,9 +20,9 @@ namespace Toolkit.Modules.Main
         {
             return
             [
-                new Option<ThemeMode>(ThemeMode.System, FormResources.ThemeSystem),
-                new Option<ThemeMode>(ThemeMode.Light, FormResources.ThemeLight),
-                new Option<ThemeMode>(ThemeMode.Dark, FormResources.ThemeDark)
+                new Option<ThemeMode>(ThemeMode.System, MainResource.ThemeSystem),
+                new Option<ThemeMode>(ThemeMode.Light, MainResource.ThemeLight),
+                new Option<ThemeMode>(ThemeMode.Dark, MainResource.ThemeDark)
             ];
         }
 

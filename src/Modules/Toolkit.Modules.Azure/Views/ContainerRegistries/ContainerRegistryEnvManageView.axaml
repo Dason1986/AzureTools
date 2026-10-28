@@ -2,10 +2,10 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Toolkit.Modules.Azure.ViewModels.ContainerRegistries;assembly=Toolkit.Modules.Azure"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Azure.Properties;assembly=Toolkit.Modules.Azure"
         
         x:DataType="vm:ContainerRegistryEnvManageViewModel"
-        Title="{x:Static res:FormResources.TitleEnvManage}"
+        Title="{x:Static res:AzureResource.TitleEnvManage}"
         Width="980"
         Height="560"
         MinWidth="700"
@@ -21,30 +21,30 @@
         <StackPanel Grid.Row="0" Margin="10">
             <DockPanel>
                 <StackPanel Orientation="Horizontal">
-                    <!-- <Button Content="{x:Static res:FormResources.BtnAdd}"
+                    <!-- <Button Content="{x:Static res:AzureResource.BtnAdd}"
                             Command="{Binding AddCommand}"
                             Padding="20,8"
                             Margin="0,0,10,0"/> -->
-                    <Button Content="{x:Static res:FormResources.BtnEdit}"
+                    <Button Content="{x:Static res:AzureResource.BtnEdit}"
                             Command="{Binding EditCommand}"
                             Padding="20,8"
                             Margin="0,0,10,0"/>
-                    <Button Content="{x:Static res:FormResources.BtnDelete}"
+                    <Button Content="{x:Static res:AzureResource.BtnDelete}"
                             Command="{Binding DeleteCommand}"
                             Padding="20,8"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right">
-                    <Button Content="{x:Static res:FormResources.BtnImport}"
+                    <Button Content="{x:Static res:AzureResource.BtnImport}"
                             Command="{Binding ImportCommand}"
                             Padding="20,8"
                             Margin="0,0,10,0"/>
-                    <Button Content="{x:Static res:FormResources.BtnRefresh}"
+                    <Button Content="{x:Static res:AzureResource.BtnRefresh}"
                             Command="{Binding RefreshCommand}"
                             Padding="20,8"
                             Margin="0,0,10,0"/>
-                    <Button Content="{x:Static res:FormResources.BtnSave}"
+                    <Button Content="{x:Static res:AzureResource.BtnSave}"
                             Command="{Binding SaveCommand}"
                             Padding="20,8"/>
                 </StackPanel>
@@ -60,22 +60,22 @@
                   CanUserSortColumns="True"
                   Margin="10,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static res:FormResources.LblName}"
+                <DataGridTextColumn Header="{x:Static res:AzureResource.LblName}"
                                     Binding="{Binding Name}"
                                     Width="*"/>
-                <DataGridTextColumn Header="{x:Static res:FormResources.LblRegistry}"
+                <DataGridTextColumn Header="{x:Static res:AzureResource.LblRegistry}"
                                     Binding="{Binding Registry}"
                                     Width="*"/>
-                <DataGridTextColumn Header="{x:Static res:FormResources.LblCreated}"
+                <DataGridTextColumn Header="{x:Static res:AzureResource.LblCreated}"
                                     Binding="{Binding CreatedOn, Converter={StaticResource DateTimeFormat}, ConverterParameter=yyyy-MM-dd}"
                                     Width="120"/>
-                <DataGridCheckBoxColumn Header="{x:Static res:FormResources.LblAdminUserEnabled}"
+                <DataGridCheckBoxColumn Header="{x:Static res:AzureResource.LblAdminUserEnabled}"
                                         Binding="{Binding IsAdminUserEnabled}"
                                         Width="130"/>
-                <DataGridCheckBoxColumn Header="{x:Static res:FormResources.LblAnonymousPullEnabled}"
+                <DataGridCheckBoxColumn Header="{x:Static res:AzureResource.LblAnonymousPullEnabled}"
                                         Binding="{Binding IsAnonymousPullEnabled}"
                                         Width="130"/>
-                <DataGridTextColumn Header="{x:Static res:FormResources.LblSubscriptionName}"
+                <DataGridTextColumn Header="{x:Static res:AzureResource.LblSubscriptionName}"
                                     Binding="{Binding SubscriptionName}"
                                     Width="*"/>
             </DataGrid.Columns>

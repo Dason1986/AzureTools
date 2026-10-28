@@ -3,7 +3,7 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Toolkit.Modules.Azure.ViewModels.AppContainers;assembly=Toolkit.Modules.Azure"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Azure.Properties;assembly=Toolkit.Modules.Azure"
         
         xmlns:bh="clr-namespace:Toolkit.Modules.Azure.Behaviors;assembly=Toolkit.Modules.Azure"
         x:DataType="vm:AppContainerListViewModel"
@@ -20,11 +20,11 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
-            <Button Content="{x:Static res:FormResources.BtnRefresh}"
+            <Button Content="{x:Static res:AzureResource.BtnRefresh}"
                     Command="{Binding RefreshCommand}"
                     Padding="15,4"
                     Margin="0,0,10,0"/>
-            <Button Content="{x:Static res:FormResources.BtnDetail}"
+            <Button Content="{x:Static res:AzureResource.BtnDetail}"
                     Command="{Binding ViewDetailCommand}"
                     Padding="15,4"/>
         </StackPanel>
@@ -39,22 +39,22 @@
                   bh:DataGridAssist.EnableStoppedRowHighlight="True"
                   bh:DataGridAssist.HighlightStatusValue="Stopped">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static res:FormResources.LblName}"
+                <DataGridTextColumn Header="{x:Static res:AzureResource.LblName}"
                                     Binding="{Binding Name}"
                                     Width="*"/>
-                <DataGridTextColumn Header="{x:Static res:FormResources.LblImage}"
+                <DataGridTextColumn Header="{x:Static res:AzureResource.LblImage}"
                                     Binding="{Binding Image}"
                                     Width="2*"/>
-                <DataGridTextColumn Header="{x:Static res:FormResources.LblRunningStatus}"
+                <DataGridTextColumn Header="{x:Static res:AzureResource.LblRunningStatus}"
                                     Binding="{Binding RunningStatus}"
                                     Width="120"/>
-                <DataGridTextColumn Header="{x:Static res:FormResources.LblReplicas}"
+                <DataGridTextColumn Header="{x:Static res:AzureResource.LblReplicas}"
                                     Binding="{Binding Replicas}"
                                     Width="100"/>
-                <DataGridTextColumn Header="{x:Static res:FormResources.LblLatestRevision}"
+                <DataGridTextColumn Header="{x:Static res:AzureResource.LblLatestRevision}"
                                     Binding="{Binding LatestRevisionName}"
                                     Width="150"/>
-                <DataGridTextColumn Header="{x:Static res:FormResources.LblRevisionCreatedTime}"
+                <DataGridTextColumn Header="{x:Static res:AzureResource.LblRevisionCreatedTime}"
                                     Binding="{Binding RevisionCreatedTime, Converter={StaticResource DateTimeFormat}, ConverterParameter=yyyy-MM-dd HH:mm}"
                                     Width="160"/>
             </DataGrid.Columns>

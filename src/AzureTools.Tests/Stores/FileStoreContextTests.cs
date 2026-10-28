@@ -10,8 +10,12 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
+using Toolkit.Modules;
+using Toolkit.Modules.Azure;
 using Toolkit.Modules.Azure.Models;
 using Toolkit.Modules.Models;
+using Toolkit.Modules.SSH;
 
 namespace AzureTools.Tests.Stores
 {
@@ -34,7 +38,10 @@ namespace AzureTools.Tests.Stores
                 PropertyNameCaseInsensitive = true,
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-                TypeInfoResolver = AppJsonSerializerContext.Default
+                TypeInfoResolver = JsonTypeInfoResolver.Combine(
+                    ToolkitJsonSerializerContext.Default,
+                    AzureJsonSerializerContext.Default,
+                    SshJsonSerializerContext.Default)
             });
             _context = new FileStoreContext(_environment, jsonOptions);
         }
@@ -70,7 +77,10 @@ namespace AzureTools.Tests.Stores
                 PropertyNameCaseInsensitive = true,
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-                TypeInfoResolver = AppJsonSerializerContext.Default
+                TypeInfoResolver = JsonTypeInfoResolver.Combine(
+                    ToolkitJsonSerializerContext.Default,
+                    AzureJsonSerializerContext.Default,
+                    SshJsonSerializerContext.Default)
             });
             return new FileStoreContext(_environment, jsonOptions);
         }

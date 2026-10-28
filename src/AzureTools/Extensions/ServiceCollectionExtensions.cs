@@ -4,10 +4,13 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using System.Text.Unicode;
+using Toolkit.Modules;
 using Toolkit.Modules.Azure;
 using Toolkit.Modules.Comm;
 using Toolkit.Modules.Main;
+using Toolkit.Modules.SSH;
 
 namespace AzureTools.Extensions
 {
@@ -21,7 +24,10 @@ namespace AzureTools.Extensions
                 options.PropertyNameCaseInsensitive = true;
                 options.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
                 options.Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.CjkUnifiedIdeographs);
-                options.TypeInfoResolver = AppJsonSerializerContext.Default;
+                options.TypeInfoResolver = JsonTypeInfoResolver.Combine(
+                    ToolkitJsonSerializerContext.Default,
+                    AzureJsonSerializerContext.Default,
+                    SshJsonSerializerContext.Default);
             });
             return services;
         }
@@ -36,6 +42,7 @@ namespace AzureTools.Extensions
             {
                 new MainModule(opt).Register();
                 new AzureModule(opt).Register();
+                new SSHModule(opt).Register();
                 new CommModule(opt).Register();
             });
         }

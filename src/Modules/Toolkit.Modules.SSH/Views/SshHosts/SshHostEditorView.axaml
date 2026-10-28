@@ -1,0 +1,97 @@
+<Window x:Class="Toolkit.Modules.SSH.Views.SshHosts.SshHostEditorView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Toolkit.Modules.SSH.ViewModels.SshHosts;assembly=Toolkit.Modules.SSH"
+        xmlns:resSSH="clr-namespace:Toolkit.Modules.SSH.Properties;assembly=Toolkit.Modules.SSH"
+        xmlns:models="clr-namespace:Toolkit.Modules.Models;assembly=Toolkit.Modules"
+        xmlns:local="clr-namespace:Toolkit.Modules.SSH.Views.SshHosts;assembly=Toolkit.Modules.SSH"
+        x:DataType="vm:SshHostEditorViewModel"
+        Title="{x:Static resSSH:SSHResource.TitleEditSshHost}"
+        Width="540"
+        Height="640"
+        MinWidth="480"
+        MinHeight="560"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False">
+  <Grid RowDefinitions="*,Auto">
+    <TabControl Grid.Row="0" Padding="0">
+      <TabItem Header="{x:Static resSSH:SSHResource.TabSshHostBasic}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+          <StackPanel Margin="15" Spacing="8">
+            <DockPanel>
+              <TextBlock Text="{x:Static resSSH:SSHResource.LblSshHostName}" Classes="field-label"/>
+              <TextBox Text="{Binding HostName}" PlaceholderText="请输入名称"/>
+            </DockPanel>
+            <DockPanel>
+              <TextBlock Text="{x:Static resSSH:SSHResource.LblSshHost}" Classes="field-label"/>
+              <TextBox Text="{Binding Host}" PlaceholderText="请输入主机地址"/>
+            </DockPanel>
+            <DockPanel>
+              <TextBlock Text="{x:Static resSSH:SSHResource.LblSshPort}" Classes="field-label"/>
+              <TextBox Text="{Binding Port}" PlaceholderText="22"/>
+            </DockPanel>
+            <DockPanel>
+              <TextBlock Text="{x:Static resSSH:SSHResource.LblSshUserName}" Classes="field-label"/>
+              <TextBox Text="{Binding UserName}" PlaceholderText="请输入用户名"/>
+            </DockPanel>
+            <DockPanel>
+              <TextBlock Text="{x:Static resSSH:SSHResource.LblSshAuthMode}" Classes="field-label"/>
+              <ComboBox ItemsSource="{Binding AuthModeOptions}"
+                        SelectedItem="{Binding SelectedAuthMode}"
+                        ItemContainerTheme="{StaticResource OptionComboBoxItemTheme}">
+                <ComboBox.ItemTemplate>
+                  <DataTemplate x:DataType="models:IOption">
+                    <TextBlock Text="{Binding DisplayName}"/>
+                  </DataTemplate>
+                </ComboBox.ItemTemplate>
+              </ComboBox>
+            </DockPanel>
+            <GroupBox Header="{x:Static resSSH:SSHResource.GrpSshAuth}" Padding="10">
+              <StackPanel Spacing="8">
+                <StackPanel IsVisible="{Binding IsPasswordEnabled}">
+                  <DockPanel>
+                    <TextBlock Text="{x:Static resSSH:SSHResource.LblSshPassword}" Classes="field-label"/>
+                    <TextBox Text="{Binding Password}" PasswordChar="*"/>
+                  </DockPanel>
+                </StackPanel>
+                <StackPanel IsVisible="{Binding IsPrivateKeyEnabled}">
+                  <DockPanel>
+                    <TextBlock Text="{x:Static resSSH:SSHResource.LblSshPrivateKey}" Classes="field-label"/>
+                    <Button Content="选择私钥"
+                            Command="{Binding SelectPrivateKeyCommand}"
+                            Padding="15,5"
+                            DockPanel.Dock="Right"
+                            Margin="5,0,0,0"/>
+                    <TextBox Text="{Binding PrivateKeyRawData}" IsReadOnly="True" PlaceholderText="请选择私钥文件"/>
+                  </DockPanel>
+                  <DockPanel>
+                    <TextBlock Text="{x:Static resSSH:SSHResource.LblSshPassphrase}" Classes="field-label"/>
+                    <TextBox Text="{Binding Passphrase}" PasswordChar="*"/>
+                  </DockPanel>
+                </StackPanel>
+              </StackPanel>
+            </GroupBox>
+            <DockPanel>
+              <TextBlock Text="{x:Static resSSH:SSHResource.LblSshDescription}" Classes="field-label"/>
+              <TextBox Text="{Binding Description}" AcceptsReturn="True" Height="60"/>
+            </DockPanel>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+      <TabItem Header="{x:Static resSSH:SSHResource.TabFeatureModule}">
+        <TabControl TabStripPlacement="Left" ItemsSource="{Binding FeatureTabItems}"/>
+      </TabItem>
+    </TabControl>
+    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+      <Button Content="{x:Static resSSH:SSHResource.BtnCancel}"
+              Command="{Binding CancelCommand}"
+              IsCancel="True"
+              Classes="form-action"
+              Margin="0,0,10,0"/>
+      <Button Content="{x:Static resSSH:SSHResource.BtnConfirm}"
+              Command="{Binding ConfirmCommand}"
+              IsDefault="True"
+              Classes="form-action"/>
+    </StackPanel>
+  </Grid>
+</Window>

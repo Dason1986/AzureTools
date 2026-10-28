@@ -10,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Toolkit.Modules.Azure.KeyVaults;
-using Toolkit.Modules.Properties;
+using Toolkit.Modules.Azure.Properties;
 
 namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
 {
@@ -48,7 +48,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         private async Task ExportAsync()
         {
             string defaultFileName = GetExportFileName();
-            IFileEntry fileEntry = await _dialogService.SaveFileAsync(ModelResources.ExcelFileFilter, defaultFileName);
+            IFileEntry fileEntry = await _dialogService.SaveFileAsync(AzureResource.ExcelFileFilter, defaultFileName);
             if (fileEntry == null) return;
 
             using Stream stream = fileEntry.GetWrite();

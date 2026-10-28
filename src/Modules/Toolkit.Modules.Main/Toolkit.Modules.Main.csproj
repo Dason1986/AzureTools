@@ -14,9 +14,30 @@
     <ProjectReference Include="..\..\AzureTools.Abstractions\AzureTools.Abstractions.csproj" />
     <ProjectReference Include="..\..\AzureTools.Avalonia\AzureTools.Avalonia.csproj" />
     <ProjectReference Include="..\Toolkit.Modules\Toolkit.Modules.csproj" />
-    <ProjectReference Include="..\Toolkit.Modules.Resources\Toolkit.Modules.Resources.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\ImageResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ImageResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\MainResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MainResource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\ImageResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImageResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\MainResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

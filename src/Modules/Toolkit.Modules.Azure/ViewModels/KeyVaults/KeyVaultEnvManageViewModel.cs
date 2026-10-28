@@ -9,9 +9,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Toolkit.Modules.Azure.Models;
+using Toolkit.Modules.Azure.Properties;
 using Toolkit.Modules.Azure.Stores;
 using Toolkit.Modules.Models;
-using Toolkit.Modules.Properties;
 using Toolkit.Modules.Stores;
 
 
@@ -53,7 +53,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             if (HasChanges)
             {
-                bool result = await DialogService.ShowConfirmAsync(MessageResources.ConfirmSaveUnsavedChanges, MessageResources.TitleUnsavedChanges);
+                bool result = await DialogService.ShowConfirmAsync(AzureResource.ConfirmSaveUnsavedChanges, AzureResource.TitleUnsavedChanges);
                 if (result)
                 {
                     await SaveAsync();
@@ -74,13 +74,13 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
 
             if (string.IsNullOrWhiteSpace(item.Name))
             {
-                await DialogService.ShowInfoAsync(MessageResources.EnvNameCannotBeEmpty);
+                await DialogService.ShowInfoAsync(AzureResource.EnvNameCannotBeEmpty);
                 return;
             }
 
             if (Items.Any(x => x.Name.Equals(item.Name, StringComparison.OrdinalIgnoreCase)))
             {
-                await DialogService.ShowInfoAsync(string.Format(MessageResources.EnvAlreadyExists, item.Name));
+                await DialogService.ShowInfoAsync(string.Format(AzureResource.EnvAlreadyExists, item.Name));
                 return;
             }
 
@@ -94,7 +94,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             if (SelectedItem == null)
             {
-                await DialogService.ShowInfoAsync(MessageResources.SelectItemToEdit);
+                await DialogService.ShowInfoAsync(AzureResource.SelectItemToEdit);
                 return;
             }
 
@@ -111,11 +111,11 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             if (SelectedItem == null)
             {
-                await DialogService.ShowInfoAsync(MessageResources.SelectItemToDelete);
+                await DialogService.ShowInfoAsync(AzureResource.SelectItemToDelete);
                 return;
             }
 
-            bool confirm = await DialogService.ShowConfirmAsync(string.Format(MessageResources.ConfirmDeleteEnv, SelectedItem.Name));
+            bool confirm = await DialogService.ShowConfirmAsync(string.Format(AzureResource.ConfirmDeleteEnv, SelectedItem.Name));
             if (!confirm) return;
 
             _keyVaultStore.RemoveOption(SelectedItem);
@@ -127,7 +127,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         protected override async Task SaveAsync()
         {
             _keyVaultStore.Save();
-            await DialogService.ShowInfoAsync(MessageResources.SaveSuccess);
+            await DialogService.ShowInfoAsync(AzureResource.SaveSuccess);
             HasChanges = false;
         }
 
@@ -148,7 +148,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
                 TenantProfile tenant = null;
                 if (tenants.Length > 1)
                 {
-                    IList<TenantProfile> selected = await DialogService.SelectItemsAsync<TenantProfile>(tenants, false, MessageResources.SelectTenantToImportEnv, new Dictionary<string, string>() { { "Name", ModelResources.TenantColumnName }, { "Code", ModelResources.TenantCodeName } });
+                    IList<TenantProfile> selected = await DialogService.SelectItemsAsync<TenantProfile>(tenants, false, AzureResource.SelectTenantToImportEnv, new Dictionary<string, string>() { { "Name", AzureResource.TenantColumnName }, { "Code", AzureResource.TenantCodeName } });
                     tenant = selected?.FirstOrDefault();
                 }
                 else
@@ -157,14 +157,14 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
                 }
                 if (tenant == null)
                 {
-                    await DialogService.ShowInfoAsync(MessageResources.NoTenantSelected);
+                    await DialogService.ShowInfoAsync(AzureResource.NoTenantSelected);
                     return;
                 }
                 KeyVaultAzureEnv[] sdkVaults = await _azureResourceFactory.GetAllKeyVaultAsync(tenant.ToSdk());
                 KeyVaultEnv[] vaults = sdkVaults.Select(v => v.ToDomain()).ToArray();
                 if (vaults.Length == 0)
                 {
-                    await DialogService.ShowInfoAsync(MessageResources.NoKeyVaultFound);
+                    await DialogService.ShowInfoAsync(AzureResource.NoKeyVaultFound);
                     return;
                 }
 
@@ -199,11 +199,11 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
 
                 LoadItems();
                 HasChanges = true;
-                await DialogService.ShowInfoAsync(string.Format(MessageResources.ImportSuccess, importedCount, updatedCount));
+                await DialogService.ShowInfoAsync(string.Format(AzureResource.ImportSuccess, importedCount, updatedCount));
             }
             catch (Exception ex)
             {
-                await DialogService.ShowErrorAsync(string.Format(MessageResources.ImportFailed, ex.Message));
+                await DialogService.ShowErrorAsync(string.Format(AzureResource.ImportFailed, ex.Message));
             }
         }
 
@@ -217,7 +217,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         protected override async Task<bool> HandleCloseAsync()
         {
             if (!HasChanges) return true;
-            bool save = await DialogService.ShowConfirmAsync(MessageResources.ConfirmSaveUnsavedChanges, MessageResources.TitleUnsavedChanges);
+            bool save = await DialogService.ShowConfirmAsync(AzureResource.ConfirmSaveUnsavedChanges, AzureResource.TitleUnsavedChanges);
             if (save)
             {
                 _keyVaultStore.Save();
@@ -235,14 +235,14 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
 
             Dictionary<string, string> propertyMappings = new Dictionary<string, string>
             {
-                ["KeyVault"] = ModelResources.KeyVaultColumnName,
-                ["KeyVaultUrl"] = ModelResources.KeyVaultUrlName,
-                ["SubscriptionId"] = ModelResources.SubscriptionIdName
+                ["KeyVault"] = AzureResource.KeyVaultColumnName,
+                ["KeyVaultUrl"] = AzureResource.KeyVaultUrlName,
+                ["SubscriptionId"] = AzureResource.SubscriptionIdName
             };
             return await DialogService.SelectItemsAsync(
                    vaults,
                    true,
-                   MessageResources.SelectKeyVaultToImport,
+                   AzureResource.SelectKeyVaultToImport,
                    propertyMappings);
         }
     }

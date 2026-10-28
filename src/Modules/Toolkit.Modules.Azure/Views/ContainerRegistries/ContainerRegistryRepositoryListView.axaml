@@ -3,7 +3,7 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Toolkit.Modules.Azure.ViewModels.ContainerRegistries;assembly=Toolkit.Modules.Azure"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Azure.Properties;assembly=Toolkit.Modules.Azure"
         xmlns:svc="clr-namespace:Toolkit.Modules.Azure.KeyVaults.ContainerRegistries;assembly=Toolkit.Modules.Azure"
         x:DataType="vm:ContainerRegistryRepositoryListViewModel"
         Title="{Binding WindowTitle}"
@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
-            <Button Content="{x:Static res:FormResources.BtnRefresh}"
+            <Button Content="{x:Static res:AzureResource.BtnRefresh}"
                     Command="{Binding RefreshCommand}"
                     Padding="15,4"
                     Margin="0,0,10,0"/>
@@ -34,7 +34,7 @@
         </StackPanel>
 
         <GroupBox Grid.Row="1"
-                  Header="{x:Static res:FormResources.LblRepositoryList}"
+                  Header="{x:Static res:AzureResource.LblRepositoryList}"
                   Padding="6">
             <DataGrid ItemsSource="{Binding Repositories}"
                       SelectedItem="{Binding SelectedRepository}"
@@ -43,10 +43,10 @@
                       CanUserResizeColumns="True"
                       CanUserSortColumns="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="{x:Static res:FormResources.LblName}"
+                    <DataGridTextColumn Header="{x:Static res:AzureResource.LblName}"
                                         Binding="{Binding Name}"
                                         Width="*"/>
-                    <DataGridTextColumn Header="{x:Static res:FormResources.LblRegistryUrl}"
+                    <DataGridTextColumn Header="{x:Static res:AzureResource.LblRegistryUrl}"
                                         Binding="{Binding RegistryEndpoint}"
                                         Width="2*"/>
                 </DataGrid.Columns>
@@ -58,14 +58,14 @@
                       Background="Transparent"/>
 
         <GroupBox Grid.Row="3"
-                  Header="{x:Static res:FormResources.LblManifestList}"
+                  Header="{x:Static res:AzureResource.LblManifestList}"
                   Padding="6">
             <DockPanel>
                 <Button DockPanel.Dock="Top"
                         HorizontalAlignment="Right"
                         Margin="0,0,0,6"
                         Padding="15,4"
-                        Content="{x:Static res:FormResources.BtnDelete}"
+                        Content="{x:Static res:AzureResource.BtnDelete}"
                         IsEnabled="{Binding !IsDeleting}"
                         Command="{Binding DeleteManifestsCommand}"/>
                 <DataGrid ItemsSource="{Binding Manifests}"
@@ -76,30 +76,30 @@
                           CanUserResizeColumns="True"
                           CanUserSortColumns="True">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="{x:Static res:FormResources.LblTags}"
+                        <DataGridTextColumn Header="{x:Static res:AzureResource.LblTags}"
                                             Binding="{Binding Tags, Converter={StaticResource TagsToString}}"
                                             Width="150"/>
-                        <DataGridTextColumn Header="{x:Static res:FormResources.LblDigest}"
+                        <DataGridTextColumn Header="{x:Static res:AzureResource.LblDigest}"
                                             Binding="{Binding Digest}"
                                             Width="2*"/>
-                        <DataGridTextColumn Header="{x:Static res:FormResources.LblArchitecture}"
+                        <DataGridTextColumn Header="{x:Static res:AzureResource.LblArchitecture}"
                                             Binding="{Binding Architecture}"
                                             Width="100"/>
-                        <DataGridTextColumn Header="{x:Static res:FormResources.LblSize}"
+                        <DataGridTextColumn Header="{x:Static res:AzureResource.LblSize}"
                                             Binding="{Binding SizeInBytes,Mode=OneWay, Converter={StaticResource SizeToString}}"
                                             IsReadOnly="True"
                                             Width="120"/>
-                        <DataGridTextColumn Header="{x:Static res:FormResources.LblCreated}"
+                        <DataGridTextColumn Header="{x:Static res:AzureResource.LblCreated}"
                                             Binding="{Binding CreatedOn, StringFormat=yyyy-MM-dd HH:mm}"
                                             Width="160"/>
-                        <DataGridTextColumn Header="{x:Static res:FormResources.LblLastUpdated}"
+                        <DataGridTextColumn Header="{x:Static res:AzureResource.LblLastUpdated}"
                                             Binding="{Binding LastUpdatedOn, StringFormat=yyyy-MM-dd HH:mm}"
                                             Width="160"/>
-                        <DataGridTemplateColumn Header="{x:Static res:FormResources.LblFixed}"
+                        <DataGridTemplateColumn Header="{x:Static res:AzureResource.LblFixed}"
                                                   Width="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{x:Static res:FormResources.LblFixed}"
+                                    <TextBlock Text="{x:Static res:AzureResource.LblFixed}"
                                                IsVisible="{Binding CanDelete, Converter={StaticResource InvertedBoolean}}"
                                                Foreground="Red"
                                                FontSize="11"
@@ -107,25 +107,25 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="{x:Static res:FormResources.LblOperation}"
+                        <DataGridTemplateColumn Header="{x:Static res:AzureResource.LblOperation}"
                                                   Width="200">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" Spacing="4">
-                                        <Button Content="{x:Static res:FormResources.BtnDetail}"
+                                        <Button Content="{x:Static res:AzureResource.BtnDetail}"
                                                 IsVisible="{Binding #Root.DataContext.SupportManifestDetail}"
                                                 Command="{Binding #Root.DataContext.ViewManifestDetailCommand}"
                                                 CommandParameter="{Binding}"/>
-                                        <Button Content="{x:Static res:FormResources.BtnRename}"
+                                        <Button Content="{x:Static res:AzureResource.BtnRename}"
                                                 IsVisible="{Binding #Root.DataContext.SupportRename}"
                                                 Command="{Binding #Root.DataContext.RenameTagCommand}"
                                                 CommandParameter="{Binding}"/>
                                         <StackPanel Orientation="Horizontal" Spacing="4" IsVisible="{Binding #Root.DataContext.SupportFixedManifest}">
-                                            <Button Content="{x:Static res:FormResources.BtnFixManifest}"
+                                            <Button Content="{x:Static res:AzureResource.BtnFixManifest}"
                                                     IsVisible="{Binding CanDelete}"
                                                     Command="{Binding #Root.DataContext.FixedManifestCommand}"
                                                     CommandParameter="{Binding}"/>
-                                            <Button Content="{x:Static res:FormResources.BtnUnfixManifest}"
+                                            <Button Content="{x:Static res:AzureResource.BtnUnfixManifest}"
                                                     IsVisible="{Binding CanDelete, Converter={StaticResource InvertedBoolean}}"
                                                     Command="{Binding #Root.DataContext.FixedManifestCommand}"
                                                     CommandParameter="{Binding}"/>

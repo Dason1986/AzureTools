@@ -4,8 +4,8 @@ using AzureTools.ViewModels;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Toolkit.Modules.Azure.Properties;
 using Toolkit.Modules.Models;
-using Toolkit.Modules.Properties;
 using Toolkit.Modules.Stores;
 
 
@@ -55,7 +55,7 @@ namespace Toolkit.Modules.Azure.ViewModels.Tenants
         {
             if (SelectedItem == null)
             {
-                await DialogService.ShowInfoAsync(MessageResources.SelectItemToEdit);
+                await DialogService.ShowInfoAsync(AzureResource.SelectItemToEdit);
                 return;
             }
             TenantProfile tenant = await EditOptionAsync(SelectedItem);
@@ -73,15 +73,15 @@ namespace Toolkit.Modules.Azure.ViewModels.Tenants
         {
             if (SelectedItem == null)
             {
-                await DialogService.ShowInfoAsync(MessageResources.SelectItemToDelete);
+                await DialogService.ShowInfoAsync(AzureResource.SelectItemToDelete);
                 return;
             }
             if (Items.Count == 1)
             {
-                await DialogService.ShowErrorAsync(MessageResources.MsgCannotDeleteLastTenant);
+                await DialogService.ShowErrorAsync(AzureResource.MsgCannotDeleteLastTenant);
                 return;
             }
-            bool confirm = await DialogService.ShowConfirmAsync(string.Format(FormResources.MsgConfirmDeleteTenant, SelectedItem.Name));
+            bool confirm = await DialogService.ShowConfirmAsync(string.Format(AzureResource.MsgConfirmDeleteTenant, SelectedItem.Name));
             if (!confirm) return;
             _store.DeleteTenant(SelectedItem);
             _store.Save();

@@ -2,9 +2,9 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Toolkit.Modules.Main.ViewModels.Projects;assembly=Toolkit.Modules.Main"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Main.Properties;assembly=Toolkit.Modules.Main"
         x:DataType="vm:ProjectManagementViewModel"
-        Title="{x:Static res:FormResources.TitleProjectManage}"
+        Title="{x:Static res:MainResource.TitleProjectManage}"
         Width="800"
         Height="450"
         MinWidth="500"
@@ -19,22 +19,22 @@
         <StackPanel Grid.Row="0" Margin="10">
             <DockPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Button Content="{x:Static res:FormResources.BtnAdd}"
+                    <Button Content="{x:Static res:MainResource.BtnAdd}"
                             Command="{Binding AddCommand}"
                             Padding="20,8"
                             Margin="0,0,10,0"/>
-                    <Button Content="{x:Static res:FormResources.BtnEdit}"
+                    <Button Content="{x:Static res:MainResource.BtnEdit}"
                             Command="{Binding EditCommand}"
                             Padding="20,8"
                             Margin="0,0,10,0"/>
-                    <Button Content="{x:Static res:FormResources.BtnDelete}"
+                    <Button Content="{x:Static res:MainResource.BtnDelete}"
                             Command="{Binding DeleteCommand}"
                             Padding="20,8"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right">
-                    <Button Content="{x:Static res:FormResources.BtnRefresh}"
+                    <Button Content="{x:Static res:MainResource.BtnRefresh}"
                             Command="{Binding RefreshCommand}"
                             Padding="20,8"/>
                 </StackPanel>
@@ -50,13 +50,13 @@
                   CanUserSortColumns="True"
                   Margin="10,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static res:FormResources.ColCode}"
+                <DataGridTextColumn Header="{x:Static res:MainResource.ColCode}"
                                     Binding="{Binding Code}"
                                     Width="150"/>
-                <DataGridTextColumn Header="{x:Static res:FormResources.ColName}"
+                <DataGridTextColumn Header="{x:Static res:MainResource.ColName}"
                                     Binding="{Binding Name}"
                                     Width="*"/>
-                <DataGridTextColumn Header="{x:Static res:FormResources.ColDescription}"
+                <DataGridTextColumn Header="{x:Static res:MainResource.ColDescription}"
                                     Binding="{Binding Description}"
                                     Width="*"/>
             </DataGrid.Columns>

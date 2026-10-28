@@ -7,7 +7,6 @@ using System.IO.Pipes;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,10 +15,6 @@ namespace AzureTools.Cli
     [SupportedOSPlatform("windows")]
     internal sealed class PtyCliStreamSession : ICliStreamSession, IDisposable
     {
-        private static readonly Regex AnsiEscapeRegex = new(
-            @"\u001B(\][^\u0007]*(\u0007|\u001B\\)|[()][AB012]|\[[0-?]*[ -/]*[@-~]|[=>Nc])",
-            RegexOptions.Compiled);
-
         private readonly StreamReader _stdoutReader;
         private readonly StreamWriter _stdinWriter;
         private readonly SafePseudoConsoleHandle _pty;
@@ -174,7 +169,7 @@ namespace AzureTools.Cli
         private void RaiseCleanLine(StringBuilder raw)
         {
             string text = raw.ToString();
-            string clean = AnsiEscapeRegex.Replace(text, string.Empty);
+            string clean = AnsiEscapeCleaner.Strip(text);
             if (clean.Length == 0 && text.Length > 0) return;
             RaiseOutput(clean);
         }

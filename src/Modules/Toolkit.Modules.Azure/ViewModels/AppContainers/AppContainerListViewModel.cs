@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Toolkit.Modules.Azure.Models;
-using Toolkit.Modules.Properties;
+using Toolkit.Modules.Azure.Properties;
 
 namespace Toolkit.Modules.Azure.ViewModels.AppContainers
 {
@@ -27,6 +27,7 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
                 ? new ObservableCollection<ContainerAppInfo>()
                 : new ObservableCollection<ContainerAppInfo>(containerApps.OrderBy(c => c.Name, StringComparer.OrdinalIgnoreCase));
             SelectedContainerApp = ContainerApps.FirstOrDefault();
+            WindowTitle = string.Format(AzureResource.TitleContainerAppWindow, _option?.Name);
         }
 
         #endregion
@@ -44,7 +45,8 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
         [ObservableProperty]
         private ContainerAppInfo _selectedContainerApp;
 
-        public string WindowTitle => string.Format(FormResources.TitleContainerAppWindow, _option?.Name);
+
+
 
         #endregion
 

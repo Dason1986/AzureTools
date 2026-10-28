@@ -28,7 +28,7 @@
     <ProjectReference Include="..\Modules\Toolkit.Modules.Azure\Toolkit.Modules.Azure.csproj" />
     <ProjectReference Include="..\Modules\Toolkit.Modules.Comm\Toolkit.Modules.Comm.csproj" />
     <ProjectReference Include="..\Modules\Toolkit.Modules.Main\Toolkit.Modules.Main.csproj" />
-    <ProjectReference Include="..\Modules\Toolkit.Modules.Resources\Toolkit.Modules.Resources.csproj" />
+    <ProjectReference Include="..\Modules\Toolkit.Modules.SSH\Toolkit.Modules.SSH.csproj" />
     <ProjectReference Include="..\Modules\Toolkit.Modules\Toolkit.Modules.csproj" />
   </ItemGroup>
 

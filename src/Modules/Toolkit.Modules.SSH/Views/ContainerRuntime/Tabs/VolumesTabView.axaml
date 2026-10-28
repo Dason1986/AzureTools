@@ -1,0 +1,43 @@
+<UserControl x:Class="Toolkit.Modules.SSH.Views.ContainerRuntime.Tabs.VolumesTabView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Toolkit.Modules.SSH.ViewModels.ContainerRuntime;assembly=Toolkit.Modules.SSH"
+             xmlns:resSSH="clr-namespace:Toolkit.Modules.SSH.Properties;assembly=Toolkit.Modules.SSH"
+             x:DataType="vm:VolumesTabViewModel">
+  <DockPanel Margin="4">
+    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,4,0,8">
+      <Button Content="{x:Static resSSH:SSHResource.BtnRefresh}"
+              Command="{Binding RefreshCommand}"
+              Padding="15,6"
+              Margin="0,0,8,0"/>
+      <Button Content="{x:Static resSSH:SSHResource.BtnCreate}"
+              Command="{Binding CreateVolumeCommand}"
+              Padding="15,6"
+              Margin="0,0,8,0"/>
+      <Button Content="{x:Static resSSH:SSHResource.BtnPrune}"
+              Command="{Binding PruneVolumesCommand}"
+              Padding="15,6"/>
+    </StackPanel>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+      <DataGrid Grid.Column="0"
+                ItemsSource="{Binding Volumes}"
+                SelectedItem="{Binding SelectedVolume}"
+                AutoGenerateColumns="False"
+                IsReadOnly="True">
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColContainerName}" Binding="{Binding Name}" Width="200"/>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColDriver}" Binding="{Binding Driver}" Width="120"/>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColVolumeMountpoint}" Binding="{Binding Mountpoint}" Width="*"/>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColScope}" Binding="{Binding Scope}" Width="100"/>
+        </DataGrid.Columns>
+      </DataGrid>
+      <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="8,0,0,0" Spacing="6">
+        <Button Content="{x:Static resSSH:SSHResource.BtnRemove}" Command="{Binding RemoveVolumeCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+      </StackPanel>
+    </Grid>
+  </DockPanel>
+</UserControl>

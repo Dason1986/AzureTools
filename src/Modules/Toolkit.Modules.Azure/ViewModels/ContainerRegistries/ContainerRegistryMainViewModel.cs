@@ -9,9 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Toolkit.Modules.Azure.Models;
+using Toolkit.Modules.Azure.Properties;
 using Toolkit.Modules.Azure.Stores;
 using Toolkit.Modules.Models;
-using Toolkit.Modules.Properties;
 using Toolkit.Modules.Stores;
 
 
@@ -54,7 +54,7 @@ namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
             ContainerRegistryOptionsList = _containerRegistryStore.GetOptions();
             if (ContainerRegistryOptionsList == null || ContainerRegistryOptionsList.Count == 0)
             {
-                _ = _dialogService.ShowWarningAsync(MessageResources.NoEnvConfigured);
+                _ = _dialogService.ShowWarningAsync(AzureResource.NoEnvConfigured);
                 return;
             }
 
@@ -66,13 +66,13 @@ namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
         {
             if (SelectedContainerRegistryOption == null)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.SelectValidEnv);
+                await _dialogService.ShowInfoAsync(AzureResource.SelectValidEnv);
                 return;
             }
 
             if (string.IsNullOrEmpty(SelectedContainerRegistryOption.Registry))
             {
-                await _dialogService.ShowInfoAsync(MessageResources.InvalidEnvConfig);
+                await _dialogService.ShowInfoAsync(AzureResource.InvalidEnvConfig);
                 return;
             }
 
@@ -80,7 +80,7 @@ namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
             TenantProfile profile = _azureToolsStore.GetTenant(option.TenantId);
             if (profile == null)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.NoTenantSelected);
+                await _dialogService.ShowInfoAsync(AzureResource.NoTenantSelected);
                 return;
             }
 

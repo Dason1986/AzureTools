@@ -7,7 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Toolkit.Modules.Properties;
+using Toolkit.Modules.Azure.Properties;
 
 namespace Toolkit.Modules.Azure.ViewModels.AppContainers
 {
@@ -27,7 +27,7 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
                 ? new ObservableCollection<ContainerAppReplicaContainerInfo>()
                 : new ObservableCollection<ContainerAppReplicaContainerInfo>(Replica.Containers);
             SelectedContainer = Containers.FirstOrDefault();
-            WindowTitle = string.Format(FormResources.TitleReplicaDetail, Replica?.Name);
+            WindowTitle = string.Format(AzureResource.TitleReplicaDetail, Replica?.Name);
             SupprotContainerLogs = _management.SupportContainerLogs;
             SupprotEnterContainer = _management.SupportEnterContainer;
         }
@@ -67,7 +67,7 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
                 return;
             }
             ICliStreamSession streamSession = await _management.ExecContainerAsync(ContainerAppName, ResourceGroupName, Replica.RevisionName, Replica.Name, SelectedContainer.Name);
-            string title = string.Format(FormResources.TitleContainerExec, Replica.Name, SelectedContainer.Name);
+            string title = string.Format(AzureResource.TitleContainerExec, Replica.Name, SelectedContainer.Name);
             ShowKeyed("CliStreamSession", new ViewParameters()
                 .Set("Session", streamSession)
                 .Set("Title", title)
@@ -83,7 +83,7 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
                 return;
             }
             ICliStreamSession streamSession = await _management.GetContainerLogsFollowAsync(ContainerAppName, ResourceGroupName, Replica.RevisionName, Replica.Name);
-            string title = string.Format(FormResources.TitleContainerLogs, Replica.Name, SelectedContainer.Name);
+            string title = string.Format(AzureResource.TitleContainerLogs, Replica.Name, SelectedContainer.Name);
             ShowKeyed("CliStreamSession", new ViewParameters()
                .Set("Session", streamSession)
                .Set("Title", title)
@@ -99,7 +99,7 @@ namespace Toolkit.Modules.Azure.ViewModels.AppContainers
                 return;
             }
             IContainerFileProvider provider = await _management.GetContainerFileBrowserAsync(ContainerAppName, ResourceGroupName, Replica.RevisionName, Replica.Name, SelectedContainer.Name);
-            string title = string.Format(FormResources.TitleFileBrowser, Replica.Name, SelectedContainer.Name);
+            string title = string.Format(AzureResource.TitleFileBrowser, Replica.Name, SelectedContainer.Name);
             ShowKeyed("FileBrowser", new ViewParameters()
                 .Set("Provider", provider)
                 .Set("Title", title));

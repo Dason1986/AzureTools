@@ -5,8 +5,8 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Toolkit.Modules.Main.Properties;
 using Toolkit.Modules.Models;
-using Toolkit.Modules.Properties;
 using Toolkit.Modules.Stores;
 
 
@@ -85,8 +85,8 @@ namespace Toolkit.Modules.Main.ViewModels
         private async Task ConfirmAsync()
         {
             List<string> errors = new List<string>();
-            if (string.IsNullOrWhiteSpace(AppName)) errors.Add(MessageResources.AppNameRequired);
-            if (LoginUsePassword && string.IsNullOrWhiteSpace(LoginPassword)) errors.Add(MessageResources.LoginPasswordRequired);
+            if (string.IsNullOrWhiteSpace(AppName)) errors.Add(MainResource.AppNameRequired);
+            if (LoginUsePassword && string.IsNullOrWhiteSpace(LoginPassword)) errors.Add(MainResource.LoginPasswordRequired);
 
             AppProfile profile = new AppProfile()
             {
@@ -108,7 +108,7 @@ namespace Toolkit.Modules.Main.ViewModels
             _store.AddProject(new ProjectInfo { Code = "Project1", Name = "Project1" });
             _store.Save();
             if (this.UseDataEncryption) _store.EnableEncryption();
-            await _dialogService.ShowInfoAsync(MessageResources.ConfigSaveSuccess);
+            await _dialogService.ShowInfoAsync(MainResource.SaveSuccess);
             Completed = true;
             await CloseAsync();
         }

@@ -1,0 +1,168 @@
+<Window x:Class="Toolkit.Modules.SSH.Views.ContainerRuntime.ContainerCreateView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Toolkit.Modules.SSH.ViewModels.ContainerRuntime;assembly=Toolkit.Modules.SSH"
+        xmlns:resSSH="clr-namespace:Toolkit.Modules.SSH.Properties;assembly=Toolkit.Modules.SSH"
+        x:DataType="vm:ContainerCreateViewModel"
+        Title="{Binding WindowTitle}"
+        Width="720"
+        Height="640"
+        MinWidth="600"
+        MinHeight="500"
+        WindowStartupLocation="CenterOwner">
+  <DockPanel Margin="8">
+    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+      <Button Content="{x:Static resSSH:SSHResource.BtnCreate}"
+              Command="{Binding CreateCommand}"
+              Padding="20,8"
+              Margin="0,0,8,0"/>
+      <Button Content="{x:Static resSSH:SSHResource.BtnCancel}"
+              Command="{Binding CancelCommand}"
+              Padding="20,8"/>
+    </StackPanel>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+      <StackPanel Spacing="12">
+        <GroupBox Header="{x:Static resSSH:SSHResource.GrpContainerImage}">
+          <StackPanel Spacing="8" Margin="8">
+            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto">
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static resSSH:SSHResource.LblContainerImage}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+              <ComboBox Grid.Row="0" Grid.Column="1"
+                        ItemsSource="{Binding LocalImages}"
+                        SelectedItem="{Binding SelectedImage}"
+                        PlaceholderText="{x:Static resSSH:SSHResource.HintSelectOrTypeImage}"
+                        IsEditable="True"
+                        IsTextSearchEnabled="True"
+                        HorizontalAlignment="Stretch"/>
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static resSSH:SSHResource.LblContainerName}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+              <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ContainerName}" PlaceholderText="{x:Static resSSH:SSHResource.HintContainerName}"/>
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static resSSH:SSHResource.LblImageLabels}" VerticalAlignment="Top" Margin="0,4,8,0" IsVisible="{Binding HasImageLabels}"/>
+              <ScrollViewer Grid.Row="2" Grid.Column="1" MaxHeight="80" VerticalScrollBarVisibility="Auto" IsVisible="{Binding HasImageLabels}">
+                <ItemsControl ItemsSource="{Binding ImageLabels}">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <WrapPanel/>
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="3" Padding="6,2" Margin="0,0,4,4">
+                        <TextBlock Text="{Binding}" FontSize="11"/>
+                      </Border>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </ScrollViewer>
+            </Grid>
+          </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="{x:Static resSSH:SSHResource.GrpContainerParams}">
+          <StackPanel Spacing="8" Margin="8">
+            <CheckBox Content="{x:Static resSSH:SSHResource.ChkAutoStart}" IsChecked="{Binding AutoStart}"/>
+            <CheckBox Content="{x:Static resSSH:SSHResource.ChkAutoRemove}" IsChecked="{Binding AutoRemove}"/>
+            <CheckBox Content="{x:Static resSSH:SSHResource.ChkPrivileged}" IsChecked="{Binding Privileged}"/>
+            <TextBlock Text="{x:Static resSSH:SSHResource.LblNetwork}" Margin="0,4,0,0"/>
+            <ComboBox ItemsSource="{Binding LocalNetworks}"
+                      SelectedItem="{Binding SelectedNetwork}"
+                      PlaceholderText="{x:Static resSSH:SSHResource.HintSelectNetwork}"
+                      IsEditable="True"
+                      HorizontalAlignment="Stretch"/>
+            <TextBlock Text="{x:Static resSSH:SSHResource.LblContainerCommand}" Margin="0,4,0,0"/>
+            <TextBox Text="{Binding Command}" PlaceholderText="{x:Static resSSH:SSHResource.HintContainerCommand}" AcceptsReturn="True" Height="60" TextWrapping="Wrap"/>
+          </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="{x:Static resSSH:SSHResource.GrpContainerEnv}">
+          <DockPanel Margin="8">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
+              <Button Content="{x:Static resSSH:SSHResource.BtnAdd}" Command="{Binding AddEnvCommand}" Padding="12,4"/>
+            </StackPanel>
+            <DataGrid ItemsSource="{Binding EnvEntries}" AutoGenerateColumns="False" CanUserResizeColumns="True" GridLinesVisibility="Horizontal">
+              <DataGrid.Columns>
+                <DataGridTemplateColumn Header="{x:Static resSSH:SSHResource.ColEnvKey}" Width="*">
+                  <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                      <ComboBox ItemsSource="{Binding $parent[DataGrid].DataContext.SuggestedEnvKeys}"
+                                Text="{Binding Key}"
+                                IsEditable="True"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"/>
+                    </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColEnvValue}" Binding="{Binding Value}" Width="*"/>
+                <DataGridTemplateColumn Header="" Width="60">
+                  <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                      <Button Content="{x:Static resSSH:SSHResource.BtnRemove}" Command="{Binding $parent[DataGrid].DataContext.RemoveEnvCommand}" CommandParameter="{Binding}" Padding="8,2"/>
+                    </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+              </DataGrid.Columns>
+            </DataGrid>
+          </DockPanel>
+        </GroupBox>
+
+        <GroupBox Header="{x:Static resSSH:SSHResource.GrpContainerMounts}">
+          <DockPanel Margin="8">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
+              <Button Content="{x:Static resSSH:SSHResource.BtnAdd}" Command="{Binding AddMountCommand}" Padding="12,4"/>
+            </StackPanel>
+            <DataGrid ItemsSource="{Binding MountEntries}" AutoGenerateColumns="False" CanUserResizeColumns="True" GridLinesVisibility="Horizontal">
+              <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColMountHost}" Binding="{Binding HostPath}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColMountContainer}" Binding="{Binding ContainerPath}" Width="*"/>
+                <DataGridTemplateColumn Header="{x:Static resSSH:SSHResource.ColMountReadOnly}" Width="70">
+                  <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                      <CheckBox IsChecked="{Binding IsReadOnly}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="" Width="60">
+                  <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                      <Button Content="{x:Static resSSH:SSHResource.BtnRemove}" Command="{Binding $parent[DataGrid].DataContext.RemoveMountCommand}" CommandParameter="{Binding}" Padding="8,2"/>
+                    </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+              </DataGrid.Columns>
+            </DataGrid>
+          </DockPanel>
+        </GroupBox>
+
+        <GroupBox Header="{x:Static resSSH:SSHResource.GrpContainerPorts}">
+          <DockPanel Margin="8">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
+              <Button Content="{x:Static resSSH:SSHResource.BtnAdd}" Command="{Binding AddPortCommand}" Padding="12,4"/>
+            </StackPanel>
+            <DataGrid ItemsSource="{Binding PortEntries}" AutoGenerateColumns="False" CanUserResizeColumns="True" GridLinesVisibility="Horizontal">
+              <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColPortHost}" Binding="{Binding HostPort}" Width="*"/>
+                <DataGridTemplateColumn Header="{x:Static resSSH:SSHResource.ColPortContainer}" Width="*">
+                  <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                      <ComboBox ItemsSource="{Binding $parent[DataGrid].DataContext.SuggestedContainerPorts}"
+                                Text="{Binding ContainerPort}"
+                                IsEditable="True"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"/>
+                    </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="" Width="60">
+                  <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                      <Button Content="{x:Static resSSH:SSHResource.BtnRemove}" Command="{Binding $parent[DataGrid].DataContext.RemovePortCommand}" CommandParameter="{Binding}" Padding="8,2"/>
+                    </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+              </DataGrid.Columns>
+            </DataGrid>
+          </DockPanel>
+        </GroupBox>
+      </StackPanel>
+    </ScrollViewer>
+  </DockPanel>
+</Window>

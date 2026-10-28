@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         
         xmlns:vm="clr-namespace:Toolkit.Modules.Azure.ViewModels.KeyVaults;assembly=Toolkit.Modules.Azure"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Azure.Properties;assembly=Toolkit.Modules.Azure"
         x:DataType="vm:KeyVaultEnvEditorViewModel"
-        Title="{x:Static res:FormResources.TitleEditEnv}"
+        Title="{x:Static res:AzureResource.TitleEditEnv}"
         Width="450"
         Height="380"
         MinWidth="400"
@@ -14,45 +14,45 @@
         CanResize="False">
     <StackPanel Margin="15" Spacing="8">
         <DockPanel>
-            <TextBlock Text="{x:Static res:FormResources.LblName}" Classes="field-label" MinWidth="100"/>
+            <TextBlock Text="{x:Static res:AzureResource.LblName}" Classes="field-label" MinWidth="100"/>
             <TextBox Text="{Binding Name}"
                      PlaceholderText="请输入环境名称"/>
         </DockPanel>
 
         <DockPanel>
-            <TextBlock Text="{x:Static res:FormResources.LblKeyVault}" Classes="field-label" MinWidth="100"/>
+            <TextBlock Text="{x:Static res:AzureResource.LblKeyVault}" Classes="field-label" MinWidth="100"/>
             <TextBox Text="{Binding KeyVault}"
                      IsEnabled="{Binding IsEditMode, Converter={StaticResource InvertedBoolean}}"
                      PlaceholderText="请输入KeyVault名称"/>
         </DockPanel>
 
         <DockPanel>
-            <TextBlock Text="{x:Static res:FormResources.LblKeyVaultUrl}" Classes="field-label" MinWidth="100"/>
+            <TextBlock Text="{x:Static res:AzureResource.LblKeyVaultUrl}" Classes="field-label" MinWidth="100"/>
             <TextBox Text="{Binding KeyVaultUrl}"
                      IsEnabled="{Binding IsEditMode, Converter={StaticResource InvertedBoolean}}"
                      PlaceholderText="https://your-vault.vault.azure.net/"/>
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="{x:Static res:FormResources.LblResourceGroup}" Classes="field-label" MinWidth="100"/>
+            <TextBlock Text="{x:Static res:AzureResource.LblResourceGroup}" Classes="field-label" MinWidth="100"/>
             <TextBox Text="{Binding ResourceGroupName}"
                      IsEnabled="{Binding IsEditMode, Converter={StaticResource InvertedBoolean}}"
                      PlaceholderText="请输入资源组名称"/>
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="{x:Static res:FormResources.LblSubscriptionName}" Classes="field-label" MinWidth="100"/>
+            <TextBlock Text="{x:Static res:AzureResource.LblSubscriptionName}" Classes="field-label" MinWidth="100"/>
             <TextBox Text="{Binding SubscriptionName}"
                      IsEnabled="{Binding IsEditMode, Converter={StaticResource InvertedBoolean}}"
                      PlaceholderText="请输入订阅名称"/>
         </DockPanel>
 
         <DockPanel>
-            <TextBlock Text="{x:Static res:FormResources.LblSubscriptionId}" Classes="field-label" MinWidth="100"/>
+            <TextBlock Text="{x:Static res:AzureResource.LblSubscriptionId}" Classes="field-label" MinWidth="100"/>
             <TextBox Text="{Binding SubscriptionId}"
                      IsEnabled="{Binding IsEditMode, Converter={StaticResource InvertedBoolean}}"
                      PlaceholderText="请输入订阅ID"/>
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="{x:Static res:FormResources.LblEnableSoftDelete}" Classes="field-label" MinWidth="100"/>
+            <TextBlock Text="{x:Static res:AzureResource.LblEnableSoftDelete}" Classes="field-label" MinWidth="100"/>
             <CheckBox
                   IsChecked="{Binding EnableSoftDelete}"
                   IsEnabled="{Binding IsEditMode, Converter={StaticResource InvertedBoolean}}"
@@ -62,12 +62,12 @@
 
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <Button Content="{x:Static res:FormResources.BtnCancel}"
+            <Button Content="{x:Static res:AzureResource.BtnCancel}"
                     Command="{Binding CancelCommand}"
                     IsCancel="True"
                     Classes="form-action"
                     Margin="0,0,10,0"/>
-            <Button Content="{x:Static res:FormResources.BtnConfirm}"
+            <Button Content="{x:Static res:AzureResource.BtnConfirm}"
                     Command="{Binding ConfirmCommand}"
                     IsDefault="True"
                     Classes="form-action"/>

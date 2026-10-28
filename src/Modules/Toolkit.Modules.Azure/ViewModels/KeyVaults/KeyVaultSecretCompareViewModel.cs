@@ -10,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Toolkit.Modules.Azure.KeyVaults;
-using Toolkit.Modules.Properties;
+using Toolkit.Modules.Azure.Properties;
 
 namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
 {
@@ -67,7 +67,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             string envName = string.Join("_vs_", EnvNames);
             string defaultFileName = $"Compare_{envName}_{DateTime.Now:yyyyMMddHHmmss}.xlsx";
-            IFileEntry fileEntry = await _dialogService.SaveFileAsync(ModelResources.ExcelFileFilter, defaultFileName);
+            IFileEntry fileEntry = await _dialogService.SaveFileAsync(AzureResource.ExcelFileFilter, defaultFileName);
             if (fileEntry == null) return;
 
             using Stream stream = fileEntry.GetWrite();
@@ -79,7 +79,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             int allExistCount = Results.Count(r => r.Status == CompareStatus.AllExist);
             int partialCount = Results.Count(r => r.Status == CompareStatus.Partial);
-            SummaryText = string.Format(MessageResources.CompareSummaryFormat, Results.Count, allExistCount, partialCount);
+            SummaryText = string.Format(AzureResource.CompareSummaryFormat, Results.Count, allExistCount, partialCount);
         }
     }
 }

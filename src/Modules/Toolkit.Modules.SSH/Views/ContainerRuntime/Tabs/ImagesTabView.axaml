@@ -1,0 +1,49 @@
+<UserControl x:Class="Toolkit.Modules.SSH.Views.ContainerRuntime.Tabs.ImagesTabView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Toolkit.Modules.SSH.ViewModels.ContainerRuntime;assembly=Toolkit.Modules.SSH"
+             xmlns:resSSH="clr-namespace:Toolkit.Modules.SSH.Properties;assembly=Toolkit.Modules.SSH"
+             x:DataType="vm:ImagesTabViewModel">
+  <DockPanel Margin="4">
+    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,4,0,8">
+      <Button Content="{x:Static resSSH:SSHResource.BtnRefresh}"
+              Command="{Binding RefreshCommand}"
+              Padding="15,6"
+              Margin="0,0,8,0"/>
+      <Button Content="{x:Static resSSH:SSHResource.BtnPullImage}"
+              Command="{Binding PullImageCommand}"
+              Padding="15,6"
+              Margin="0,0,8,0"/>
+      <Button Content="{x:Static resSSH:SSHResource.BtnImportImage}"
+              Command="{Binding ImportImageCommand}"
+              Padding="15,6"
+              Margin="0,0,8,0"/>
+      <Button Content="{x:Static resSSH:SSHResource.BtnPrune}"
+              Command="{Binding PruneImagesCommand}"
+              Padding="15,6"/>
+    </StackPanel>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+      <DataGrid Grid.Column="0"
+                ItemsSource="{Binding Images}"
+                SelectedItem="{Binding SelectedImage}"
+                AutoGenerateColumns="False"
+                IsReadOnly="True">
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColImageId}" Binding="{Binding Id}" Width="200"/>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColImageTag}" Binding="{Binding RepoTag}" Width="*"/>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColImageSize}" Binding="{Binding Size}" Width="120"/>
+        </DataGrid.Columns>
+      </DataGrid>
+      <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="8,0,0,0" Spacing="6">
+        <Button Content="{x:Static resSSH:SSHResource.BtnTagImage}" Command="{Binding TagImageCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+        <Button Content="{x:Static resSSH:SSHResource.BtnExportImage}" Command="{Binding ExportImageCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+        <Button Content="{x:Static resSSH:SSHResource.BtnDetail}" Command="{Binding DetailImageCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+        <Button Content="{x:Static resSSH:SSHResource.BtnRemove}" Command="{Binding RemoveImageCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+      </StackPanel>
+    </Grid>
+  </DockPanel>
+</UserControl>

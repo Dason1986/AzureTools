@@ -15,9 +15,9 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Toolkit.Modules.Azure.KeyVaults;
 using Toolkit.Modules.Azure.Models.KeyVaults;
+using Toolkit.Modules.Azure.Properties;
 using Toolkit.Modules.Azure.Stores;
 using Toolkit.Modules.Models;
-using Toolkit.Modules.Properties;
 
 namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
 {
@@ -69,13 +69,13 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
 
             if (string.IsNullOrWhiteSpace(item.Key))
             {
-                await DialogService.ShowInfoAsync(MessageResources.KeyCannotBeEmpty);
+                await DialogService.ShowInfoAsync(AzureResource.KeyCannotBeEmpty);
                 return;
             }
 
             if (Items.Any(x => x.Key.Equals(item.Key, StringComparison.OrdinalIgnoreCase)))
             {
-                await DialogService.ShowInfoAsync(string.Format(MessageResources.KeyAlreadyExists, item.Key));
+                await DialogService.ShowInfoAsync(string.Format(AzureResource.KeyAlreadyExists, item.Key));
                 return;
             }
             item.ProjectId = projectInfo.Id;
@@ -90,7 +90,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             if (SelectedItem == null)
             {
-                await DialogService.ShowInfoAsync(MessageResources.SelectItemToEdit);
+                await DialogService.ShowInfoAsync(AzureResource.SelectItemToEdit);
                 return;
             }
 
@@ -106,11 +106,11 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             if (SelectedItem == null)
             {
-                await DialogService.ShowInfoAsync(MessageResources.SelectItemToDelete);
+                await DialogService.ShowInfoAsync(AzureResource.SelectItemToDelete);
                 return;
             }
 
-            bool confirm = await DialogService.ShowConfirmAsync(string.Format(MessageResources.ConfirmDeleteKey, SelectedItem.Key));
+            bool confirm = await DialogService.ShowConfirmAsync(string.Format(AzureResource.ConfirmDeleteKey, SelectedItem.Key));
             if (!confirm) return;
 
             _keyVaultStore.RemoveKey(SelectedItem);
@@ -134,13 +134,13 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
                     .Select(x => CreateSecretKeyOptionItem(projectInfo.Id, x))
                     .ToList();
                 _keyVaultStore.Import(items);
-                await DialogService.ShowInfoAsync(MessageResources.ImportSuccess);
+                await DialogService.ShowInfoAsync(AzureResource.ImportSuccess);
                 LoadItems();
                 HasChanges = true;
             }
             catch (Exception ex)
             {
-                await DialogService.ShowErrorAsync(ex.Message, MessageResources.ImportFailed);
+                await DialogService.ShowErrorAsync(ex.Message, AzureResource.ImportFailed);
             }
         }
         protected virtual SecretKeyOptionItem CreateSecretKeyOptionItem(Guid projectId, JsonElement element)
@@ -171,7 +171,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             if (Items == null || Items.Count == 0)
             {
-                await DialogService.ShowInfoAsync(MessageResources.NoDataToExport);
+                await DialogService.ShowInfoAsync(AzureResource.NoDataToExport);
                 return;
             }
 
@@ -183,11 +183,11 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
                 List<SecretKeyOptionItem> exportList = Items.ToList();
                 string json = JsonSerializer.Serialize(exportList, jsonOptions);
                 fileEntry.WriteAllText(json);
-                await DialogService.ShowInfoAsync(MessageResources.ExportSuccess);
+                await DialogService.ShowInfoAsync(AzureResource.ExportSuccess);
             }
             catch (Exception ex)
             {
-                await DialogService.ShowErrorAsync(ex.Message, MessageResources.ExportFailed);
+                await DialogService.ShowErrorAsync(ex.Message, AzureResource.ExportFailed);
             }
         }
 
@@ -195,7 +195,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         protected override async Task SaveAsync()
         {
             _keyVaultStore.Save();
-            await DialogService.ShowInfoAsync(MessageResources.SaveSuccess);
+            await DialogService.ShowInfoAsync(AzureResource.SaveSuccess);
             HasChanges = false;
         }
 
@@ -214,7 +214,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         protected override async Task<bool> HandleCloseAsync()
         {
             if (!HasChanges) return true;
-            bool save = await DialogService.ShowConfirmAsync(MessageResources.ConfirmSaveUnsavedChanges, MessageResources.TitleUnsavedChanges);
+            bool save = await DialogService.ShowConfirmAsync(AzureResource.ConfirmSaveUnsavedChanges, AzureResource.TitleUnsavedChanges);
             if (save)
             {
                 _keyVaultStore.Save();

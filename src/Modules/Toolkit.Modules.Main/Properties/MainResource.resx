@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+	
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>1.3</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	
+  <data name="LblTheme" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="ThemeSystem" xml:space="preserve">
+    <value>跟随系统</value>
+  </data>
+  <data name="ThemeLight" xml:space="preserve">
+    <value>浅色</value>
+  </data>
+  <data name="ThemeDark" xml:space="preserve">
+    <value>深色</value>
+  </data>
+  <data name="ModuleMain" xml:space="preserve">
+    <value>管理</value>
+  </data>
+  <data name="MenuProjects" xml:space="preserve">
+    <value>项目管理</value>
+  </data>
+ 
+  <data name="MenuOptions" xml:space="preserve">
+    <value>软件配置</value>
+  </data>
+  <data name="TitleOptions" xml:space="preserve">
+    <value>软件配置</value>
+  </data>
+  <data name="LblAppProfile" xml:space="preserve">
+    <value>程序信息</value>
+  </data>
+  
+  <data name="TitleLogin" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="TitleAppInit" xml:space="preserve">
+    <value>程序初始化</value>
+  </data>
+  <data name="LblSecuritySettings" xml:space="preserve">
+    <value>安全设置</value>
+  </data>
+  <data name="MsgOptionsSaved" xml:space="preserve">
+    <value>配置已保存</value>
+  </data>
+  <data name="LblProjectCode" xml:space="preserve">
+    <value>项目代码</value>
+  </data>
+  <data name="LblProjectName" xml:space="preserve">
+    <value>项目名称</value>
+  </data>
+  <data name="LblProjectCodeExist" xml:space="preserve">
+    <value>项目代码已经存在</value>
+  </data>
+  <data name="MsgConfirmDeleteProject" xml:space="preserve">
+    <value>确定要删除项目 '{0}' 吗？</value>
+  </data>
+  <data name="TitleProjectManage" xml:space="preserve">
+    <value>项目管理</value>
+  </data>
+  <data name="TitleEditProject" xml:space="preserve">
+    <value>编辑项目</value>
+  </data>
+  <data name="BtnEnablePassword" xml:space="preserve">
+    <value>启动密码</value>
+  </data>
+  <data name="BtnDisablePassword" xml:space="preserve">
+    <value>取消密码</value>
+  </data>
+  <data name="TitleEnablePassword" xml:space="preserve">
+    <value>启动密码</value>
+  </data>
+  <data name="TitleDisablePassword" xml:space="preserve">
+    <value>取消密码</value>
+  </data>
+  <data name="PromptEnablePassword" xml:space="preserve">
+    <value>请输入要设置的登录密码</value>
+  </data>
+  <data name="PromptDisablePassword" xml:space="preserve">
+    <value>请输入原密码以验证身份</value>
+  </data>
+  <data name="GrpMode" xml:space="preserve">
+    <value>模式</value>
+  </data>
+  <data name="GrpSecurity" xml:space="preserve">
+    <value>安全</value>
+  </data>
+  
+  <data name="TitleAppWizard" xml:space="preserve">
+    <value>程序配置向导</value>
+  </data>
+  <data name="LblDescription" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="LblDataEncryption" xml:space="preserve">
+    <value>数据加密</value>
+  </data>
+  <data name="LblAppName" xml:space="preserve">
+    <value>程序名称</value>
+  </data>
+  <data name="GrpTenant" xml:space="preserve">
+    <value>租户</value>
+  </data>
+  <data name="BtnAbout" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="TitleAbout" xml:space="preserve">
+    <value>关于 - Azure Tools</value>
+  </data>
+  
+  <data name="BtnConfirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  
+  <data name="ColName" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="ColCode" xml:space="preserve">
+    <value>代码</value>
+  </data>
+  <data name="ColDescription" xml:space="preserve">
+    <value>描述</value>
+  </data>
+
+  <data name="LblUsePassword" xml:space="preserve">
+    <value>使用密码</value>
+  </data>
+  <data name="GrpLogin" xml:space="preserve">
+    <value>登陆</value>
+  </data>
+  <data name="BtnOk" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="BtnCancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="BtnSave" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="BtnDelete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="BtnEdit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="BtnAdd" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="BtnRefresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="LblLoginMethod" xml:space="preserve">
+    <value>登录方式</value>
+  </data>
+  <data name="LblLoginPassword" xml:space="preserve">
+    <value>请输入登录密码</value>
+  </data>
+  <data name="LblPassword" xml:space="preserve">
+    <value>密码</value>
+  </data> 
+  <data name="ConfirmDiscardChanges" xml:space="preserve">
+    <value>确定放弃更改吗？</value>
+  </data>
+  
+  <data name="PasswordEnabledSuccess" xml:space="preserve">
+    <value>密码已启用</value>
+  </data>
+  <data name="PasswordDisabledSuccess" xml:space="preserve">
+    <value>密码已取消</value>
+  </data>
+  <data name="PasswordIncorrect" xml:space="preserve">
+    <value>原密码不正确</value>
+  </data>
+  <data name="PasswordCannotBeEmpty" xml:space="preserve">
+    <value>密码不能为空</value>
+  </data>
+
+  <data name="PasswordErrorExit" xml:space="preserve">
+    <value>密码错误，程序即将退出</value>
+  </data>
+
+  <data name="SelectItemToEdit" xml:space="preserve">
+    <value>请选择要编辑的项</value>
+  </data>
+  
+  <data name="SelectItemToDelete" xml:space="preserve">
+    <value>请选择要删除的项</value>
+  </data>
+  
+  <data name="ConfirmSaveUnsavedChanges" xml:space="preserve">
+    <value>检测到未保存的更改，是否保存？
+选择"是"保存更改，选择"否"放弃更改。</value>
+  </data>
+  
+  <data name="TitleUnsavedChanges" xml:space="preserve">
+    <value>未保存的更改</value>
+  </data>
+  <data name="AppNameRequired" xml:space="preserve">
+    <value>请填写应用名称</value>
+  </data>
+  <data name="SaveSuccess" xml:space="preserve">
+    <value>保存成功</value>
+  </data>
+  <data name="LoginPasswordRequired" xml:space="preserve">
+    <value>请填写进入的密码</value>
+  </data>
+  <data name="TitleDiscardChanges" xml:space="preserve">
+    <value>放弃更改</value>
+  </data>
+</root>

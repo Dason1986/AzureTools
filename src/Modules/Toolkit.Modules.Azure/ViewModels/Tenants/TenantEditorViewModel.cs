@@ -11,8 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Toolkit.Modules.Azure.Properties;
 using Toolkit.Modules.Models;
-using Toolkit.Modules.Properties;
 using Toolkit.Modules.Stores;
 
 
@@ -80,7 +80,6 @@ namespace Toolkit.Modules.Azure.ViewModels.Tenants
         public TenantProfile EditedTenant { get; private set; }
         TenantProfile _tenant;
 
-        public bool? DialogResult { get; private set; }
 
         partial void OnSelectedCredentialChanged(Option<AzureCredential> value)
         {
@@ -122,7 +121,7 @@ namespace Toolkit.Modules.Azure.ViewModels.Tenants
         [RelayCommand]
         private async Task SelectCertificateAsync()
         {
-            IFileEntry fileEntry = await _dialogService.OpenFileAsync(ModelResources.CertificateFileFilter, "certificate");
+            IFileEntry fileEntry = await _dialogService.OpenFileAsync(AzureResource.CertificateFileFilter, "certificate");
             if (fileEntry == null) return;
             CertificateRawData = Convert.ToBase64String(fileEntry.GetBuffer());
         }
@@ -152,12 +151,12 @@ namespace Toolkit.Modules.Azure.ViewModels.Tenants
                 {
                     if (flag)
                     {
-                        await _dialogService.ShowWarningAsync(string.Format(MessageResources.LoginSuccessWithAccount, username));
+                        await _dialogService.ShowWarningAsync(string.Format(AzureResource.LoginSuccessWithAccount, username));
                         return true;
                     }
                     else
                     {
-                        await _dialogService.ShowWarningAsync(MessageResources.LoginFailed);
+                        await _dialogService.ShowWarningAsync(AzureResource.LoginFailed);
                         return false;
                     }
                 }
@@ -171,7 +170,7 @@ namespace Toolkit.Modules.Azure.ViewModels.Tenants
             }
             catch (Exception ex)
             {
-                if (showMessage) await _dialogService.ShowWarningAsync(string.Format(MessageResources.LoginFailedWithDetail, ex.Message));
+                if (showMessage) await _dialogService.ShowWarningAsync(string.Format(AzureResource.LoginFailedWithDetail, ex.Message));
             }
             return false;
         }
@@ -180,7 +179,7 @@ namespace Toolkit.Modules.Azure.ViewModels.Tenants
             List<string> errors = await ValidateInput();
             if (TenantMode == TenantMode.Multiple && Credential == AzureCredential.Browser)
             {
-                errors.Add(MessageResources.MultipleTenantBrowserNotSupported);
+                errors.Add(AzureResource.MultipleTenantBrowserNotSupported);
             }
             if (errors.Count > 0)
             {
@@ -212,21 +211,21 @@ namespace Toolkit.Modules.Azure.ViewModels.Tenants
         private async Task<List<string>> ValidateInput()
         {
             List<string> errors = new List<string>();
-            if (string.IsNullOrWhiteSpace(TenantCode)) errors.Add(FormResources.LblTenantCode);
-            if (string.IsNullOrWhiteSpace(TenantName)) errors.Add(FormResources.LblTenantName);
-            if (string.IsNullOrWhiteSpace(TenantId)) errors.Add(FormResources.LblTenantId);
-            if (!Guid.TryParse(TenantId, out _)) errors.Add(string.Format(MessageResources.GuidFormatInvalid, FormResources.LblTenantId));
+            if (string.IsNullOrWhiteSpace(TenantCode)) errors.Add(AzureResource.LblTenantCode);
+            if (string.IsNullOrWhiteSpace(TenantName)) errors.Add(AzureResource.LblTenantName);
+            if (string.IsNullOrWhiteSpace(TenantId)) errors.Add(AzureResource.LblTenantId);
+            if (!Guid.TryParse(TenantId, out _)) errors.Add(string.Format(AzureResource.GuidFormatInvalid, AzureResource.LblTenantId));
 
             if (_tenant == null && _store.ExistTenant(TenantId))
             {
-                errors.Add(FormResources.LblTenantIdExist);
+                errors.Add(AzureResource.LblTenantIdExist);
             }
             if (Credential == AzureCredential.Certificate || Credential == AzureCredential.CertificatePassword)
             {
-                if (string.IsNullOrWhiteSpace(ClientId)) errors.Add(FormResources.LblClientId);
-                if (!Guid.TryParse(ClientId, out _)) errors.Add(string.Format(MessageResources.GuidFormatInvalid, FormResources.LblClientId));
+                if (string.IsNullOrWhiteSpace(ClientId)) errors.Add(AzureResource.LblClientId);
+                if (!Guid.TryParse(ClientId, out _)) errors.Add(string.Format(AzureResource.GuidFormatInvalid, AzureResource.LblClientId));
 
-                if (Credential == AzureCredential.CertificatePassword && string.IsNullOrWhiteSpace(Password)) errors.Add(MessageResources.CertificatePasswordRequired);
+                if (Credential == AzureCredential.CertificatePassword && string.IsNullOrWhiteSpace(Password)) errors.Add(AzureResource.CertificatePasswordRequired);
             }
             if (Credential == AzureCredential.AzureCli)
             {

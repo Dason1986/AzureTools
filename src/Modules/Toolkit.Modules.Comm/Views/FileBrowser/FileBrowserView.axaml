@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Toolkit.Modules.Comm.ViewModels.FileBrowser;assembly=Toolkit.Modules.Comm"
         xmlns:cli="clr-namespace:AzureTools.Cli;assembly=AzureTools.Abstractions"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Comm.Properties;assembly=Toolkit.Modules.Comm"
         xmlns:ic="using:FluentIcons.Avalonia"
         x:DataType="vm:FileBrowserViewModel"
         Title="{Binding WindowTitle}"
@@ -16,13 +16,13 @@
     <Border DockPanel.Dock="Top" Padding="8" BorderBrush="{DynamicResource AppCardBorder}" BorderThickness="0,0,0,1">
       <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Spacing="6">
-          <Button Content="{x:Static res:FormResources.BtnRefresh}" Command="{Binding RefreshCommand}"/>
-          <Button Content="{x:Static res:FormResources.BtnNewFolder}" Command="{Binding NewFolderCommand}"/>
-          <Button Content="{x:Static res:FormResources.BtnUpload}" Command="{Binding UploadCommand}"/>
-          <Button Content="{x:Static res:FormResources.BtnDownload}" Command="{Binding DownloadCommand}"/>
-          <Button Content="{x:Static res:FormResources.BtnDelete}" Command="{Binding DeleteCommand}"/>
+          <Button Content="{x:Static res:CommResource.BtnRefresh}" Command="{Binding RefreshCommand}"/>
+          <Button Content="{x:Static res:CommResource.BtnNewFolder}" Command="{Binding NewFolderCommand}"/>
+          <Button Content="{x:Static res:CommResource.BtnUpload}" Command="{Binding UploadCommand}"/>
+          <Button Content="{x:Static res:CommResource.BtnDownload}" Command="{Binding DownloadCommand}"/>
+          <Button Content="{x:Static res:CommResource.BtnDelete}" Command="{Binding DeleteCommand}"/>
         </StackPanel>
-        <Button Content="{x:Static res:FormResources.BtnClose}" Command="{Binding CloseCommand}" HorizontalAlignment="Right"/>
+        <Button Content="{x:Static res:CommResource.BtnClose}" Command="{Binding CloseCommand}" HorizontalAlignment="Right"/>
       </Grid>
     </Border>
 
@@ -30,7 +30,7 @@
       <SelectableTextBlock Text="{Binding CurrentPath}" FontFamily="Cascadia Mono,Consolas,Menlo,monospace" FontSize="13" Foreground="{DynamicResource AppSubHeaderText}"/>
     </Border>
 
-    <Grid ColumnDefinitions="200,Auto,2*">
+    <Grid ColumnDefinitions="350,Auto,2*">
       <ListBox Grid.Column="0"
               ItemsSource="{Binding CurrentItems}"
               SelectedItem="{Binding SelectedItem, Mode=TwoWay}"

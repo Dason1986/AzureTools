@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 using Toolkit.Modules.Azure.KeyVaults;
 using Toolkit.Modules.Azure.Models;
 using Toolkit.Modules.Azure.Models.KeyVaults;
+using Toolkit.Modules.Azure.Properties;
 using Toolkit.Modules.Azure.Stores;
 using Toolkit.Modules.Azure.ViewModels.KeyVaults;
 using Toolkit.Modules.Models;
-using Toolkit.Modules.Properties;
 
 namespace AzureTools.Tests.KeyVaults
 {
@@ -68,7 +68,7 @@ namespace AzureTools.Tests.KeyVaults
             _viewModel.SelectedSecretItem = null;
             await _viewModel.UpdateCommand.ExecuteAsync(null);
 
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.NoRecordSelected));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureResource.NoRecordSelected));
             _mockKeyVault.Verify(m => m.Set(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
 
@@ -80,7 +80,7 @@ namespace AzureTools.Tests.KeyVaults
 
             await _viewModel.UpdateCommand.ExecuteAsync(null);
 
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.NoModification));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureResource.NoModification));
             _mockKeyVault.Verify(m => m.Set(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
 
@@ -93,7 +93,7 @@ namespace AzureTools.Tests.KeyVaults
             await _viewModel.UpdateCommand.ExecuteAsync(null);
 
             _mockKeyVault.Verify(m => m.Set("KEY-1", "new"), Times.Once);
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.UpdateSuccess));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureResource.UpdateSuccess));
         }
 
         [Test]
@@ -115,7 +115,7 @@ namespace AzureTools.Tests.KeyVaults
             _viewModel.SelectedSecretItem = null;
             await _viewModel.HistoryCommand.ExecuteAsync(null);
 
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.NoRecordSelected));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureResource.NoRecordSelected));
         }
 
         [Test]
@@ -128,7 +128,7 @@ namespace AzureTools.Tests.KeyVaults
 
             await _viewModel.HistoryCommand.ExecuteAsync(null);
 
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.NoMultipleVersions));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureResource.NoMultipleVersions));
         }
 
         [Test]
@@ -152,7 +152,7 @@ namespace AzureTools.Tests.KeyVaults
             await _viewModel.SetAllExpirationCommand.ExecuteAsync(null);
 
             _mockKeyVault.Verify(m => m.SetExpiration(It.IsAny<string>(), It.IsAny<DateTime>()), Times.Exactly(2));
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.BatchSetExpirationSuccess));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureResource.BatchSetExpirationSuccess));
         }
 
         [Test]
@@ -161,7 +161,7 @@ namespace AzureTools.Tests.KeyVaults
             _viewModel.SelectedSecretItem = null;
             await _viewModel.SetOneExpirationCommand.ExecuteAsync(null);
 
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.NoRecordSelected));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureResource.NoRecordSelected));
         }
 
         [Test]
@@ -171,7 +171,7 @@ namespace AzureTools.Tests.KeyVaults
 
             await _viewModel.SetOneExpirationCommand.ExecuteAsync(null);
 
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.RecordNotInKeyVault));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureResource.RecordNotInKeyVault));
         }
 
         [Test]
@@ -183,7 +183,7 @@ namespace AzureTools.Tests.KeyVaults
             await _viewModel.SetOneExpirationCommand.ExecuteAsync(null);
 
             _mockKeyVault.Verify(m => m.SetExpiration("key1", It.IsAny<DateTime>()), Times.Once);
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.UpdateSuccess));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureResource.UpdateSuccess));
         }
 
         [Test]
@@ -191,7 +191,7 @@ namespace AzureTools.Tests.KeyVaults
         {
             _viewModel.ExportCommand.Execute(null);
 
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.GetConfigDataFirst));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureResource.GetConfigDataFirst));
             Assert.That(_exportFiles.ToXlsxCalled, Is.False);
         }
 
@@ -229,7 +229,7 @@ namespace AzureTools.Tests.KeyVaults
 
             await _viewModel.ValidatorCommand.ExecuteAsync(null);
 
-            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(MessageResources.NoMissingConfig));
+            Assert.That(_messageCenter.LastInfoMessage, Is.EqualTo(AzureResource.NoMissingConfig));
         }
 
         [Test]

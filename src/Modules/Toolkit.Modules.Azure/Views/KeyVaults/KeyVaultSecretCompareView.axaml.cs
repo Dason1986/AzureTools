@@ -9,8 +9,8 @@ using AzureTools.Views;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Toolkit.Modules.Azure.KeyVaults;
+using Toolkit.Modules.Azure.Properties;
 using Toolkit.Modules.Azure.ViewModels.KeyVaults;
-using Toolkit.Modules.Properties;
 
 namespace Toolkit.Modules.Azure.Views.KeyVaults
 {
@@ -48,7 +48,7 @@ namespace Toolkit.Modules.Azure.Views.KeyVaults
             {
                 DataGridTextColumn statusColumn = new DataGridTextColumn
                 {
-                    Header = string.Format(FormResources.ColEnvStatusFormat, envName),
+                    Header = string.Format(AzureResource.ColEnvStatusFormat, envName),
                     Width = new DataGridLength(100),
                     Binding = new Binding
                     {
@@ -61,7 +61,7 @@ namespace Toolkit.Modules.Azure.Views.KeyVaults
 
                 DataGridTextColumn valueColumn = new DataGridTextColumn
                 {
-                    Header = string.Format(FormResources.ColEnvValueFormat, envName),
+                    Header = string.Format(AzureResource.ColEnvValueFormat, envName),
                     Width = new DataGridLength(200),
                     Binding = new Binding
                     {

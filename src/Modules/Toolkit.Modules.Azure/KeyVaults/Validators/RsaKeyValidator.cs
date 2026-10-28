@@ -1,13 +1,13 @@
 using System;
 using System.Security.Cryptography;
-using Toolkit.Modules.Properties;
+using Toolkit.Modules.Azure.Properties;
 
 namespace Toolkit.Modules.Azure.KeyVaults.Validators
 {
     public class RsaKeyValidator : IKeyValidator
     {
         public string Type => "Rsa";
-        public string ErrorMessage => MessageResources.ValidatorRsaInvalid;
+        public string ErrorMessage => AzureResource.ValidatorRsaInvalid;
         public bool Validate(string value, ValidatorContext context)
         {
             if (string.IsNullOrEmpty(value)) return false;

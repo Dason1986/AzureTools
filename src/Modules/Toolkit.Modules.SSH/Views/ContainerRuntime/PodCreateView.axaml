@@ -1,0 +1,84 @@
+<Window x:Class="Toolkit.Modules.SSH.Views.ContainerRuntime.PodCreateView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Toolkit.Modules.SSH.ViewModels.ContainerRuntime;assembly=Toolkit.Modules.SSH"
+        xmlns:resSSH="clr-namespace:Toolkit.Modules.SSH.Properties;assembly=Toolkit.Modules.SSH"
+        x:DataType="vm:PodCreateViewModel"
+        Title="{Binding WindowTitle}"
+        Width="640"
+        Height="560"
+        MinWidth="560"
+        MinHeight="460"
+        WindowStartupLocation="CenterOwner">
+  <DockPanel Margin="8">
+    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+      <Button Content="{x:Static resSSH:SSHResource.BtnDeploy}"
+              Command="{Binding DeployYamlCommand}"
+              IsVisible="{Binding IsYamlMode}"
+              IsEnabled="{Binding !IsBusy}"
+              Padding="20,8"
+              Margin="0,0,8,0"/>
+      <Button Content="{x:Static resSSH:SSHResource.BtnCreate}"
+              Command="{Binding CreatePodCommand}"
+              IsVisible="{Binding !IsYamlMode}"
+              IsEnabled="{Binding !IsBusy}"
+              Padding="20,8"
+              Margin="0,0,8,0"/>
+      <Button Content="{x:Static resSSH:SSHResource.BtnCancel}"
+              Command="{Binding CancelCommand}"
+              Padding="20,8"/>
+    </StackPanel>
+
+    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
+      <RadioButton Content="{x:Static resSSH:SSHResource.RbYamlMode}"
+                   GroupName="PodCreateMode"
+                   IsChecked="{Binding IsYamlMode}"
+                   Padding="8,4"
+                   Margin="0,0,12,0"/>
+      <RadioButton Content="{x:Static resSSH:SSHResource.RbUiMode}"
+                   GroupName="PodCreateMode"
+                   IsChecked="{Binding !IsYamlMode}"
+                   Padding="8,4"/>
+    </StackPanel>
+
+    <StackPanel Spacing="8">
+      <StackPanel IsVisible="{Binding IsYamlMode}">
+        <TextBlock Text="{x:Static resSSH:SSHResource.GrpYamlContent}" Margin="0,0,0,4"/>
+        <TextBox Text="{Binding YamlText}"
+                 PlaceholderText="{x:Static resSSH:SSHResource.HintPasteYaml}"
+                 AcceptsReturn="True"
+                 TextWrapping="NoWrap"
+                 FontFamily="Consolas,monospace"
+                 Height="380"
+                 VerticalContentAlignment="Top"/>
+      </StackPanel>
+
+      <StackPanel Spacing="8" IsVisible="{Binding !IsYamlMode}">
+        <Grid ColumnDefinitions="Auto,*,Auto,Auto">
+          <TextBlock Grid.Column="0" Text="{x:Static resSSH:SSHResource.LblPodName}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+          <TextBox Grid.Column="1" Text="{Binding PodName}" PlaceholderText="{x:Static resSSH:SSHResource.HintPodName}"/>
+          <Button Grid.Column="2" Content="{x:Static resSSH:SSHResource.BtnAddContainer}"
+                  Command="{Binding AddContainerCommand}"
+                  IsEnabled="{Binding !IsBusy}"
+                  Padding="15,6"
+                  Margin="8,0,0,0"/>
+          <Button Grid.Column="3" Content="{x:Static resSSH:SSHResource.BtnRemove}"
+                  Command="{Binding RemovePendingContainerCommand}"
+                  Padding="15,6"
+                  Margin="8,0,0,0"/>
+        </Grid>
+        <DataGrid ItemsSource="{Binding PendingContainers}"
+                  SelectedItem="{Binding SelectedPendingContainer}"
+                  DoubleTapped="PendingGrid_DoubleTapped"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  Height="260">
+          <DataGrid.Columns>
+            <DataGridTextColumn Header="{x:Static resSSH:SSHResource.LblContainerImage}" Binding="{Binding Image}" Width="2*"/>
+            <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColContainerName}" Binding="{Binding Name}" Width="*"/>
+          </DataGrid.Columns>
+        </DataGrid>
+      </StackPanel>
+    </StackPanel>
+  </DockPanel>
+</Window>

@@ -1,10 +1,10 @@
 <Window x:Class="Toolkit.Modules.Main.Views.LoginView"
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Main.Properties;assembly=Toolkit.Modules.Main"
         xmlns:vm="using:Toolkit.Modules.Main.ViewModels"
         x:DataType="vm:LoginViewModel"
-        Title="{x:Static res:FormResources.TitleLogin}"
+        Title="{x:Static res:MainResource.TitleLogin}"
         Width="400"
         Height="250"
         MinWidth="350"
@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{x:Static res:FormResources.LblLoginPassword}"
+            <TextBlock Text="{x:Static res:MainResource.LblLoginPassword}"
                        VerticalAlignment="Center"
                        Margin="0,0,10,0"/>
             <TextBox Grid.Column="1"
@@ -35,12 +35,12 @@
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     Margin="0,20,0,0">
-            <Button Content="{x:Static res:FormResources.BtnCancel}"
+            <Button Content="{x:Static res:MainResource.BtnCancel}"
                     Command="{Binding CancelCommand}"
                     IsCancel="True"
                     Padding="20,8"
                     Margin="0,0,10,0"/>
-            <Button Content="{x:Static res:FormResources.BtnConfirm}"
+            <Button Content="{x:Static res:MainResource.BtnConfirm}"
                     Command="{Binding ConfirmCommand}"
                     IsDefault="True"
                     Padding="20,8"/>

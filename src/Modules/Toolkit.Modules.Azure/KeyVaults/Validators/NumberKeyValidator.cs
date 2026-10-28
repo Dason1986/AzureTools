@@ -1,6 +1,6 @@
 using System;
 using Toolkit.Modules.Azure.Models.KeyVaults;
-using Toolkit.Modules.Properties;
+using Toolkit.Modules.Azure.Properties;
 
 namespace Toolkit.Modules.Azure.KeyVaults.Validators
 {
@@ -8,7 +8,7 @@ namespace Toolkit.Modules.Azure.KeyVaults.Validators
     {
         public string Type => "Number";
 
-        public string ErrorMessage => MessageResources.ValidatorNumberInvalid;
+        public string ErrorMessage => AzureResource.ValidatorNumberInvalid;
         public bool Validate(string value, ValidatorContext context)
         {
             if (string.IsNullOrEmpty(value)) return false;
@@ -18,9 +18,9 @@ namespace Toolkit.Modules.Azure.KeyVaults.Validators
             {
 
                 if (numOpt.Min.HasValue && num < numOpt.Min.Value)
-                    throw new NotSupportedException(string.Format(MessageResources.ValidatorNumberMinExceeded, numOpt.Min));
+                    throw new NotSupportedException(string.Format(AzureResource.ValidatorNumberMinExceeded, numOpt.Min));
                 if (numOpt.Max.HasValue && num > numOpt.Max.Value)
-                    throw new NotSupportedException(string.Format(MessageResources.ValidatorNumberMaxExceeded, numOpt.Max));
+                    throw new NotSupportedException(string.Format(AzureResource.ValidatorNumberMaxExceeded, numOpt.Max));
             }
 
             return true;

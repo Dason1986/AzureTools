@@ -2,7 +2,7 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Toolkit.Modules.Comm.ViewModels.CliStreamSession;assembly=Toolkit.Modules.Comm"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Comm.Properties;assembly=Toolkit.Modules.Comm"
         x:DataType="vm:CliStreamSessionViewModel"
         Title="{Binding WindowTitle}"
         Width="900"
@@ -19,9 +19,9 @@
         <ColumnDefinition Width="Auto"/>
       </Grid.ColumnDefinitions>
       <TextBlock Grid.Column="0" Text="{Binding WindowTitle}" FontWeight="Bold" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
-      <Button Grid.Column="1" Content="{x:Static res:FormResources.BtnClear}" Command="{Binding ClearCommand}" Margin="4,0,0,0"/>
-      <Button Grid.Column="2" Content="{x:Static res:FormResources.BtnStop}" Command="{Binding StopCommand}" IsEnabled="{Binding IsRunning}" Margin="4,0,0,0"/>
-      <Button Grid.Column="3" Content="{x:Static res:FormResources.BtnClose}" Command="{Binding CloseCommand}" Margin="4,0,0,0"/>
+      <Button Grid.Column="1" Content="{x:Static res:CommResource.BtnClear}" Command="{Binding ClearCommand}" Margin="4,0,0,0"/>
+      <Button Grid.Column="2" Content="{x:Static res:CommResource.BtnStop}" Command="{Binding StopCommand}" IsEnabled="{Binding IsRunning}" Margin="4,0,0,0"/>
+      <Button Grid.Column="3" Content="{x:Static res:CommResource.BtnClose}" Command="{Binding CloseCommand}" Margin="4,0,0,0"/>
     </Grid>
 
     <Grid DockPanel.Dock="Bottom" Margin="8,4,8,8" IsVisible="{Binding IsInteractive}">
@@ -31,13 +31,13 @@
       </Grid.ColumnDefinitions>
       <TextBox Grid.Column="0"
                Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}"
-               Watermark="{x:Static res:FormResources.LblInputPlaceholder}"
+               PlaceholderText="{x:Static res:CommResource.LblInputPlaceholder}"
                IsEnabled="{Binding IsRunning}">
         <TextBox.KeyBindings>
           <KeyBinding Gesture="Enter" Command="{Binding SendInputCommand}"/>
         </TextBox.KeyBindings>
       </TextBox>
-      <Button Grid.Column="1" Content="{x:Static res:FormResources.BtnSend}" Command="{Binding SendInputCommand}" IsEnabled="{Binding IsRunning}" Margin="8,0,0,0" VerticalAlignment="Center"/>
+      <Button Grid.Column="1" Content="{x:Static res:CommResource.BtnSend}" Command="{Binding SendInputCommand}" IsEnabled="{Binding IsRunning}" Margin="8,0,0,0" VerticalAlignment="Center"/>
     </Grid>
 
     <ScrollViewer x:Name="LogScroller"

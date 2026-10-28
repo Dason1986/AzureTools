@@ -2,10 +2,10 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Toolkit.Modules.Main.ViewModels.Options;assembly=Toolkit.Modules.Main"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Main.Properties;assembly=Toolkit.Modules.Main"
         xmlns:models="clr-namespace:Toolkit.Modules.Models;assembly=Toolkit.Modules"
         x:DataType="vm:OptionsViewModel"
-        Title="{x:Static res:FormResources.TitleOptions}"
+        Title="{x:Static res:MainResource.TitleOptions}"
         Width="520"
         Height="580"
         MinWidth="460"
@@ -15,7 +15,7 @@
         CanResize="True">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="20" Spacing="14">
-            <GroupBox Header="{x:Static res:FormResources.LblAppProfile}" Padding="14">
+            <GroupBox Header="{x:Static res:MainResource.LblAppProfile}" Padding="14">
                 <StackPanel Spacing="10">
                  
 
@@ -24,7 +24,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{x:Static res:FormResources.LblTheme}"
+                        <TextBlock Text="{x:Static res:MainResource.LblTheme}"
                                    VerticalAlignment="Center"
                                    Margin="0,0,10,0"/>
                         <ComboBox Grid.Column="1"
@@ -43,14 +43,14 @@
                 </StackPanel>
             </GroupBox>
 
-            <GroupBox Header="{x:Static res:FormResources.LblSecuritySettings}" Padding="14">
+            <GroupBox Header="{x:Static res:MainResource.LblSecuritySettings}" Padding="14">
                 <StackPanel Spacing="10">
-                    <Button Content="{x:Static res:FormResources.BtnEnablePassword}"
+                    <Button Content="{x:Static res:MainResource.BtnEnablePassword}"
                             Command="{Binding EnablePasswordCommand}"
                             IsVisible="{Binding !LoginUsePassword}"
                             HorizontalAlignment="Left"
                             Padding="20,6"/>
-                    <Button Content="{x:Static res:FormResources.BtnDisablePassword}"
+                    <Button Content="{x:Static res:MainResource.BtnDisablePassword}"
                             Command="{Binding DisablePasswordCommand}"
                             IsVisible="{Binding LoginUsePassword}"
                             HorizontalAlignment="Left"
@@ -62,12 +62,12 @@
                         HorizontalAlignment="Right"
                         Spacing="10"
                         Margin="0,6,0,0">
-                <Button Content="{x:Static res:FormResources.BtnAbout}"
+                <Button Content="{x:Static res:MainResource.BtnAbout}"
                         Command="{Binding AboutCommand}"/>
-                <Button Content="{x:Static res:FormResources.BtnCancel}"
+                <Button Content="{x:Static res:MainResource.BtnCancel}"
                         IsCancel="True"
                         Command="{Binding CloseCommand}"/>
-                <Button Content="{x:Static res:FormResources.BtnSave}"
+                <Button Content="{x:Static res:MainResource.BtnSave}"
                         IsDefault="True"
                         Command="{Binding SaveCommand}"/>
             </StackPanel>

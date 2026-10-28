@@ -2,7 +2,7 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Toolkit.Modules.Azure.ViewModels.ContainerRegistries;assembly=Toolkit.Modules.Azure"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Azure.Properties;assembly=Toolkit.Modules.Azure"
         xmlns:svc="clr-namespace:Toolkit.Modules.Azure.KeyVaults.ContainerRegistries;assembly=Toolkit.Modules.Azure"
         x:DataType="vm:ContainerRegistryManifestDetailViewModel"
         Title="{Binding WindowTitle}"
@@ -14,7 +14,7 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="10">
             <!-- Basic Info Section -->
-            <GroupBox Header="{x:Static res:FormResources.LblBasicInfo}" Padding="8" Margin="0,0,0,10">
+            <GroupBox Header="{x:Static res:AzureResource.LblBasicInfo}" Padding="8" Margin="0,0,0,10">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -32,24 +32,24 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static res:FormResources.LblName}" FontWeight="Bold" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static res:AzureResource.LblName}" FontWeight="Bold" Margin="0,0,10,5"/>
                     <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Detail.RepositoryName}" TextWrapping="Wrap" Margin="0,0,0,5"/>
-                    <TextBlock Grid.Row="0" Grid.Column="2" Text="{x:Static res:FormResources.LblRegistryUrl}" FontWeight="Bold" Margin="20,0,10,5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="{x:Static res:AzureResource.LblRegistryUrl}" FontWeight="Bold" Margin="20,0,10,5"/>
                     <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Detail.Digest}" TextWrapping="Wrap" Margin="0,0,0,5"/>
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static res:FormResources.LblCreated}" FontWeight="Bold" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static res:AzureResource.LblCreated}" FontWeight="Bold" Margin="0,0,10,5"/>
                     <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Detail.CreatedOn, StringFormat=yyyy-MM-dd HH:mm}" Margin="0,0,0,5"/>
-                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{x:Static res:FormResources.LblLastUpdated}" FontWeight="Bold" Margin="20,0,10,5"/>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{x:Static res:AzureResource.LblLastUpdated}" FontWeight="Bold" Margin="20,0,10,5"/>
                     <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Detail.LastUpdatedOn, StringFormat=yyyy-MM-dd HH:mm}" Margin="0,0,0,5"/>
 
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static res:FormResources.LblArchitecture}" FontWeight="Bold" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static res:AzureResource.LblArchitecture}" FontWeight="Bold" Margin="0,0,10,5"/>
                     <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Detail.Architecture}" Margin="0,0,0,5"/>
-                    <TextBlock Grid.Row="2" Grid.Column="2" Text="{x:Static res:FormResources.LblOperatingSystem}" FontWeight="Bold" Margin="20,0,10,5"/>
+                    <TextBlock Grid.Row="2" Grid.Column="2" Text="{x:Static res:AzureResource.LblOperatingSystem}" FontWeight="Bold" Margin="20,0,10,5"/>
                     <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding Detail.OperatingSystem}" Margin="0,0,0,5"/>
 
-                    <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static res:FormResources.LblSize}" FontWeight="Bold" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static res:AzureResource.LblSize}" FontWeight="Bold" Margin="0,0,10,5"/>
                     <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Detail.SizeInBytes}" Margin="0,0,0,5"/>
-                    <TextBlock Grid.Row="3" Grid.Column="2" Text="{x:Static res:FormResources.LblTags}" FontWeight="Bold" Margin="20,0,10,5"/>
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="{x:Static res:AzureResource.LblTags}" FontWeight="Bold" Margin="20,0,10,5"/>
                     <ItemsControl Grid.Row="3" Grid.Column="3" ItemsSource="{Binding Detail.Tags}" Margin="0,0,0,5">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -65,14 +65,14 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
-                    <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Static res:FormResources.LblAuthor}" FontWeight="Bold" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Static res:AzureResource.LblAuthor}" FontWeight="Bold" Margin="0,0,10,5"/>
                     <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Detail.Author}" TextWrapping="Wrap" Margin="0,0,0,5"/>
-                    <TextBlock Grid.Row="4" Grid.Column="2" Text="{x:Static res:FormResources.LblComment}" FontWeight="Bold" Margin="20,0,10,5"/>
+                    <TextBlock Grid.Row="4" Grid.Column="2" Text="{x:Static res:AzureResource.LblComment}" FontWeight="Bold" Margin="20,0,10,5"/>
                     <TextBlock Grid.Row="4" Grid.Column="3" Text="{Binding Detail.Comment}" TextWrapping="Wrap" Margin="0,0,0,5"/>
 
-                    <TextBlock Grid.Row="5" Grid.Column="0" Text="{x:Static res:FormResources.LblParent}" FontWeight="Bold" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="{x:Static res:AzureResource.LblParent}" FontWeight="Bold" Margin="0,0,10,5"/>
                     <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Detail.Parent}" TextWrapping="Wrap" Margin="0,0,0,5"/>
-                    <TextBlock Grid.Row="5" Grid.Column="2" Text="{x:Static res:FormResources.LblEntrypoint}" FontWeight="Bold" Margin="20,0,10,5"/>
+                    <TextBlock Grid.Row="5" Grid.Column="2" Text="{x:Static res:AzureResource.LblEntrypoint}" FontWeight="Bold" Margin="20,0,10,5"/>
                     <ItemsControl Grid.Row="5" Grid.Column="3" ItemsSource="{Binding Detail.Entrypoint}" Margin="0,0,0,5">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -91,7 +91,7 @@
             </GroupBox>
 
             <!-- Exposed Ports -->
-            <GroupBox Header="{x:Static res:FormResources.LblExposedPorts}" Padding="8" Margin="0,0,0,10">
+            <GroupBox Header="{x:Static res:AzureResource.LblExposedPorts}" Padding="8" Margin="0,0,0,10">
                 <DataGrid ItemsSource="{Binding Detail.ExposedPorts}"
                           AutoGenerateColumns="False"
                           IsReadOnly="True"
@@ -99,10 +99,10 @@
                           CanUserSortColumns="True"
                           MaxHeight="120">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="{x:Static res:FormResources.LblKey}"
+                        <DataGridTextColumn Header="{x:Static res:AzureResource.LblKey}"
                                             Binding="{Binding Key}"
                                             Width="*"/>
-                        <DataGridTextColumn Header="{x:Static res:FormResources.LblValue}"
+                        <DataGridTextColumn Header="{x:Static res:AzureResource.LblValue}"
                                             Binding="{Binding Value}"
                                             Width="*"/>
                     </DataGrid.Columns>
@@ -110,7 +110,7 @@
             </GroupBox>
 
             <!-- Volumes -->
-            <GroupBox Header="{x:Static res:FormResources.LblVolumes}" Padding="8" Margin="0,0,0,10">
+            <GroupBox Header="{x:Static res:AzureResource.LblVolumes}" Padding="8" Margin="0,0,0,10">
                 <ItemsControl ItemsSource="{Binding Detail.Volumes}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -128,7 +128,7 @@
             </GroupBox>
 
             <!-- Environment Variables -->
-            <GroupBox Header="{x:Static res:FormResources.LblEnvironmentVariables}" Padding="8" Margin="0,0,0,10">
+            <GroupBox Header="{x:Static res:AzureResource.LblEnvironmentVariables}" Padding="8" Margin="0,0,0,10">
                 <DataGrid ItemsSource="{Binding Detail.EnvironmentVariables}"
                           AutoGenerateColumns="False"
                           IsReadOnly="True"
@@ -136,10 +136,10 @@
                           CanUserSortColumns="True"
                           MaxHeight="200">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="{x:Static res:FormResources.LblKey}"
+                        <DataGridTextColumn Header="{x:Static res:AzureResource.LblKey}"
                                             Binding="{Binding Key}"
                                             Width="*"/>
-                        <DataGridTextColumn Header="{x:Static res:FormResources.LblValue}"
+                        <DataGridTextColumn Header="{x:Static res:AzureResource.LblValue}"
                                             Binding="{Binding Value}"
                                             Width="*"/>
                     </DataGrid.Columns>
@@ -147,7 +147,7 @@
             </GroupBox>
 
             <!-- Layers -->
-            <GroupBox Header="{x:Static res:FormResources.LblLayers}" Padding="8">
+            <GroupBox Header="{x:Static res:AzureResource.LblLayers}" Padding="8">
                 <ListBox ItemsSource="{Binding Detail.Layers}" MaxHeight="150">
                     <ListBox.ItemTemplate>
                         <DataTemplate>

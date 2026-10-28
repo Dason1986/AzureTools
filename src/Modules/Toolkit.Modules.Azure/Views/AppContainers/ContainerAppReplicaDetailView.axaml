@@ -2,7 +2,7 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Toolkit.Modules.Azure.ViewModels.AppContainers;assembly=Toolkit.Modules.Azure"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Azure.Properties;assembly=Toolkit.Modules.Azure"
         
         x:DataType="vm:ContainerAppReplicaDetailViewModel"
         Title="{Binding WindowTitle}"
@@ -31,25 +31,25 @@
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
 
-      <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static res:FormResources.LblName}" Classes="field-label" Margin="0,5"/>
+      <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static res:AzureResource.LblName}" Classes="field-label" Margin="0,5"/>
       <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Replica.Name}" Margin="0,5" TextWrapping="Wrap"/>
 
-      <TextBlock Grid.Row="0" Grid.Column="2" Text="{x:Static res:FormResources.LblRevision}" Classes="field-label" Margin="0,5"/>
+      <TextBlock Grid.Row="0" Grid.Column="2" Text="{x:Static res:AzureResource.LblRevision}" Classes="field-label" Margin="0,5"/>
       <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Replica.RevisionName}" Margin="0,5" TextWrapping="Wrap"/>
 
-      <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static res:FormResources.LblRunningState}" Classes="field-label" Margin="0,5"/>
+      <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static res:AzureResource.LblRunningState}" Classes="field-label" Margin="0,5"/>
       <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Replica.RunningState}" Margin="0,5"/>
 
-      <TextBlock Grid.Row="1" Grid.Column="2" Text="{x:Static res:FormResources.LblCreated}" Classes="field-label" Margin="0,5"/>
+      <TextBlock Grid.Row="1" Grid.Column="2" Text="{x:Static res:AzureResource.LblCreated}" Classes="field-label" Margin="0,5"/>
       <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Replica.CreatedOn, Converter={StaticResource DateTimeFormat}, ConverterParameter=yyyy-MM-dd HH:mm}" Margin="0,5"/>
 
-      <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static res:FormResources.LblRunningStateDetails}" Classes="field-label" Margin="0,5"/>
+      <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static res:AzureResource.LblRunningStateDetails}" Classes="field-label" Margin="0,5"/>
       <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Replica.RunningStateDetails}" Margin="0,5" TextWrapping="Wrap"/>
     </Grid>
 
     <StackPanel Grid.Row="1" Orientation="Horizontal"   Margin="0,0,0,10">
 
-      <TextBlock Text="{x:Static res:FormResources.LblContainer}" Classes="field-label" VerticalAlignment="Center" Margin="0,0,10,0"/>
+      <TextBlock Text="{x:Static res:AzureResource.LblContainer}" Classes="field-label" VerticalAlignment="Center" Margin="0,0,10,0"/>
       <ComboBox ItemsSource="{Binding Containers}"
                 SelectedItem="{Binding SelectedContainer}"
                 Width="200"
@@ -60,13 +60,13 @@
           </DataTemplate>
         </ComboBox.ItemTemplate>
       </ComboBox>
-      <Button Content="{x:Static res:FormResources.BtnEnterContainer}" IsVisible="{Binding SupprotEnterContainer}" Command="{Binding EnterContainerCommand}"/>
-      <Button Content="{x:Static res:FormResources.BtnContainerLogs}" IsVisible="{Binding SupprotContainerLogs}" Command="{Binding GetLogsCommand}"/>
-      <Button Content="{x:Static res:FormResources.BtnFileBrowser}" IsVisible="{Binding SupprotEnterContainer}" Command="{Binding OpenFileBrowserCommand}"/>
+      <Button Content="{x:Static res:AzureResource.BtnEnterContainer}" IsVisible="{Binding SupprotEnterContainer}" Command="{Binding EnterContainerCommand}"/>
+      <Button Content="{x:Static res:AzureResource.BtnContainerLogs}" IsVisible="{Binding SupprotContainerLogs}" Command="{Binding GetLogsCommand}"/>
+      <Button Content="{x:Static res:AzureResource.BtnFileBrowser}" IsVisible="{Binding SupprotEnterContainer}" Command="{Binding OpenFileBrowserCommand}"/>
 
     </StackPanel>
 
-    <TextBlock Grid.Row="2" Text="{x:Static res:FormResources.LblContainers}" FontWeight="Bold" Margin="0,0,0,5" VerticalAlignment="Top"/>
+    <TextBlock Grid.Row="2" Text="{x:Static res:AzureResource.LblContainers}" FontWeight="Bold" Margin="0,0,0,5" VerticalAlignment="Top"/>
     <DataGrid Grid.Row="2"
               ItemsSource="{Binding Containers}"
               SelectedItem="{Binding SelectedContainer}"
@@ -76,25 +76,25 @@
               CanUserSortColumns="True"
               Margin="0,25,0,0">
       <DataGrid.Columns>
-        <DataGridTextColumn Header="{x:Static res:FormResources.LblName}"
+        <DataGridTextColumn Header="{x:Static res:AzureResource.LblName}"
                             Binding="{Binding Name}"
                             Width="120"/>
-        <DataGridTextColumn Header="{x:Static res:FormResources.LblContainerId}"
+        <DataGridTextColumn Header="{x:Static res:AzureResource.LblContainerId}"
                             Binding="{Binding ContainerId}"
                             Width="*"/>
-        <DataGridCheckBoxColumn Header="{x:Static res:FormResources.LblReady}"
+        <DataGridCheckBoxColumn Header="{x:Static res:AzureResource.LblReady}"
                                 Binding="{Binding IsReady}"
                                 Width="70"/>
-        <DataGridCheckBoxColumn Header="{x:Static res:FormResources.LblStarted}"
+        <DataGridCheckBoxColumn Header="{x:Static res:AzureResource.LblStarted}"
                                 Binding="{Binding IsStarted}"
                                 Width="70"/>
-        <DataGridTextColumn Header="{x:Static res:FormResources.LblRestartCount}"
+        <DataGridTextColumn Header="{x:Static res:AzureResource.LblRestartCount}"
                             Binding="{Binding RestartCount}"
                             Width="80"/>
-        <DataGridTextColumn Header="{x:Static res:FormResources.LblRunningState}"
+        <DataGridTextColumn Header="{x:Static res:AzureResource.LblRunningState}"
                             Binding="{Binding RunningState}"
                             Width="100"/>
-        <DataGridTextColumn Header="{x:Static res:FormResources.LblRunningStateDetails}"
+        <DataGridTextColumn Header="{x:Static res:AzureResource.LblRunningStateDetails}"
                             Binding="{Binding RunningStateDetails}"
                             Width="*"/>
       </DataGrid.Columns>

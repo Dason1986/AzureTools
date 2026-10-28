@@ -1,0 +1,106 @@
+<Window x:Class="Toolkit.Modules.SSH.Views.FirewallManagement.FirewallManagerView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Toolkit.Modules.SSH.ViewModels.FirewallManagement;assembly=Toolkit.Modules.SSH"
+        xmlns:resSSH="clr-namespace:Toolkit.Modules.SSH.Properties;assembly=Toolkit.Modules.SSH"
+        xmlns:models="clr-namespace:Toolkit.Modules.Models;assembly=Toolkit.Modules"
+        x:DataType="vm:FirewallManagerViewModel"
+        Title="{Binding WindowTitle}"
+        Width="860"
+        Height="600"
+        MinWidth="640"
+        MinHeight="420"
+        WindowStartupLocation="CenterOwner">
+  <DockPanel Margin="8">
+    <StackPanel DockPanel.Dock="Top" Margin="0,0,0,8" Spacing="8">
+      <StackPanel Orientation="Horizontal" Spacing="12">
+        <TextBlock Text="{x:Static resSSH:SSHResource.LblPackageOs}" Classes="field-label"/>
+        <TextBlock Text="{Binding OsSummary}"/>
+        <TextBlock Text="{x:Static resSSH:SSHResource.LblFirewallBackend}" Classes="field-label"/>
+        <TextBlock Text="{Binding FirewallSummary}"/>
+        <TextBlock Text="{x:Static resSSH:SSHResource.LblFirewallStatus}" Classes="field-label"/>
+        <TextBlock Text="{Binding FirewallStatus}"/>
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Spacing="8">
+        <Button Content="{x:Static resSSH:SSHResource.BtnRefresh}"
+                Command="{Binding RefreshCommand}"
+                Padding="15,6"/>
+        <Button Content="{Binding ToggleText}"
+                Command="{Binding ToggleEnabledCommand}"
+                IsVisible="{Binding HasToggleSupport}"
+                Padding="15,6"/>
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Spacing="8">
+        <TextBox Text="{Binding NewPort}"
+                 PlaceholderText="{x:Static resSSH:SSHResource.PromptFirewallPort}"
+                 Width="220"
+                 VerticalAlignment="Center"/>
+        <ComboBox ItemsSource="{Binding ProtocolOptions}"
+                  SelectedItem="{Binding SelectedProtocol}"
+                  ItemContainerTheme="{StaticResource OptionComboBoxItemTheme}"
+                  MinWidth="100">
+          <ComboBox.ItemTemplate>
+            <DataTemplate x:DataType="models:IOption">
+              <TextBlock Text="{Binding DisplayName}"/>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox ItemsSource="{Binding ActionOptions}"
+                  SelectedItem="{Binding SelectedAction}"
+                  ItemContainerTheme="{StaticResource OptionComboBoxItemTheme}"
+                  MinWidth="100">
+          <ComboBox.ItemTemplate>
+            <DataTemplate x:DataType="models:IOption">
+              <TextBlock Text="{Binding DisplayName}"/>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button Content="{x:Static resSSH:SSHResource.BtnFirewallAddRule}"
+                Command="{Binding AddRuleCommand}"
+                Padding="15,6"/>
+      </StackPanel>
+    </StackPanel>
+    <StackPanel DockPanel.Dock="Bottom" Margin="0,8,0,0">
+      <ProgressBar IsIndeterminate="True"
+                   IsVisible="{Binding IsBusy}"
+                   Height="4"/>
+      <TextBlock Text="{Binding StatusText}"
+                 Margin="0,4,0,0"
+                 TextWrapping="Wrap"
+                 Opacity="0.75"/>
+      <TextBlock Text="{x:Static resSSH:SSHResource.LblPackageTerminal}"
+                 Classes="field-label"
+                 Margin="0,8,0,4"/>
+      <TextBox Text="{Binding TerminalText}"
+               IsReadOnly="True"
+               FontFamily="Consolas, monospace"
+               TextWrapping="NoWrap"
+               AcceptsReturn="True"
+               Height="120"
+               TextChanged="OnTerminalTextChanged"
+               ScrollViewer.VerticalScrollBarVisibility="Auto"
+               ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+    </StackPanel>
+    <DockPanel>
+      <Button DockPanel.Dock="Top"
+              Content="{x:Static resSSH:SSHResource.BtnFirewallRemoveRule}"
+              Command="{Binding RemoveRuleCommand}"
+              Padding="15,6"
+              Margin="0,0,0,8"
+              HorizontalAlignment="Left"/>
+      <DataGrid ItemsSource="{Binding Rules}"
+                SelectedItem="{Binding SelectedRule}"
+                AutoGenerateColumns="False"
+                IsReadOnly="True">
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColFirewallNumber}" Binding="{Binding Number}" Width="70"/>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColFirewallPort}" Binding="{Binding Port}" Width="140"/>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColFirewallProtocol}" Binding="{Binding Protocol}" Width="90"/>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColFirewallAction}" Binding="{Binding Action}" Width="80"/>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColFirewallDirection}" Binding="{Binding Direction}" Width="80"/>
+          <DataGridTextColumn Header="{x:Static resSSH:SSHResource.ColFirewallSource}" Binding="{Binding Source}" Width="*"/>
+        </DataGrid.Columns>
+      </DataGrid>
+    </DockPanel>
+  </DockPanel>
+</Window>

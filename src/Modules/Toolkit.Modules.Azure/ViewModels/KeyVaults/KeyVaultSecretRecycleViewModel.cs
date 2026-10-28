@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Toolkit.Modules.Properties;
+using Toolkit.Modules.Azure.Properties;
 
 namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
 {
@@ -23,6 +23,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
             _dialogService = dialogService;
             _logger = logger;
             EnvironmentName = option.EnvironmentName;
+            WindowTitle = string.Format(AzureResource.TitleKeyVaultRecycleForm, EnvironmentName);
         }
 
         #endregion
@@ -41,7 +42,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
 
         public string EnvironmentName { get; }
 
-        public string WindowTitle => string.Format(FormResources.TitleKeyVaultRecycleForm, EnvironmentName);
+
 
         #endregion
 
@@ -66,12 +67,12 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             if (SelectedSecretItem == null)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.NoRecordSelected);
+                await _dialogService.ShowInfoAsync(AzureResource.NoRecordSelected);
                 return;
             }
 
             bool confirmed = await _dialogService.ShowConfirmAsync(
-                string.Format(MessageResources.ConfirmDeleteKey, SelectedSecretItem.Name));
+                string.Format(AzureResource.ConfirmDeleteKey, SelectedSecretItem.Name));
 
             if (!confirmed) return;
 
@@ -80,7 +81,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
                 await _keyVault.PurgeDeletedSecretAsync(SelectedSecretItem.Name);
                 DeletedSecrets.Remove(SelectedSecretItem);
                 SelectedSecretItem = DeletedSecrets.FirstOrDefault();
-                await _dialogService.ShowInfoAsync(MessageResources.UpdateSuccess);
+                await _dialogService.ShowInfoAsync(AzureResource.UpdateSuccess);
             }
             catch (Exception ex)
             {
@@ -94,7 +95,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
         {
             if (SelectedSecretItem == null)
             {
-                await _dialogService.ShowInfoAsync(MessageResources.NoRecordSelected);
+                await _dialogService.ShowInfoAsync(AzureResource.NoRecordSelected);
                 return;
             }
 
@@ -103,7 +104,7 @@ namespace Toolkit.Modules.Azure.ViewModels.KeyVaults
                 await _keyVault.RecoverDeletedSecretAsync(SelectedSecretItem.Name);
                 DeletedSecrets.Remove(SelectedSecretItem);
                 SelectedSecretItem = DeletedSecrets.FirstOrDefault();
-                await _dialogService.ShowInfoAsync(MessageResources.UpdateSuccess);
+                await _dialogService.ShowInfoAsync(AzureResource.UpdateSuccess);
             }
             catch (Exception ex)
             {

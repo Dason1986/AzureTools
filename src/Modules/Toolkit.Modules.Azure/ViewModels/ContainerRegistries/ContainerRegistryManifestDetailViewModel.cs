@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
-using Toolkit.Modules.Properties;
+using Toolkit.Modules.Azure.Properties;
 
 namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
 {
@@ -48,7 +48,7 @@ namespace Toolkit.Modules.Azure.ViewModels.ContainerRegistries
             try
             {
                 Detail = await _management.GetManifestDetailAsync(_manifest.RepositoryName, _manifest.Digest);
-                WindowTitle = string.Format(FormResources.TitleManifestDetail, _manifest.RepositoryName);
+                WindowTitle = string.Format(AzureResource.TitleManifestDetail, _manifest.RepositoryName);
             }
             catch (Exception ex)
             {

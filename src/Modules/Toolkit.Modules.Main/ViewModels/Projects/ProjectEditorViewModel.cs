@@ -3,8 +3,8 @@ using AzureTools.ViewModels;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Toolkit.Modules.Main.Properties;
 using Toolkit.Modules.Models;
-using Toolkit.Modules.Properties;
 using Toolkit.Modules.Stores;
 
 namespace Toolkit.Modules.Main.ViewModels.Projects
@@ -44,7 +44,6 @@ namespace Toolkit.Modules.Main.ViewModels.Projects
 
 
 
-        public bool? DialogResult { get; private set; }
 
         #endregion
 
@@ -75,16 +74,16 @@ namespace Toolkit.Modules.Main.ViewModels.Projects
         private List<string> ValidateInput()
         {
             List<string> errors = new List<string>();
-            if (string.IsNullOrWhiteSpace(Code)) errors.Add(FormResources.LblProjectCode);
-            if (string.IsNullOrWhiteSpace(Name)) errors.Add(FormResources.LblProjectName);
+            if (string.IsNullOrWhiteSpace(Code)) errors.Add(MainResource.LblProjectCode);
+            if (string.IsNullOrWhiteSpace(Name)) errors.Add(MainResource.LblProjectName);
 
             if (!IsEditMode && _store.ExistProject(Code))
             {
-                errors.Add(FormResources.LblProjectCodeExist);
+                errors.Add(MainResource.LblProjectCodeExist);
             }
             if (IsEditMode && _store.ExistProject(_project.Id, Code))
             {
-                errors.Add(FormResources.LblProjectCodeExist);
+                errors.Add(MainResource.LblProjectCodeExist);
             }
             return errors;
         }

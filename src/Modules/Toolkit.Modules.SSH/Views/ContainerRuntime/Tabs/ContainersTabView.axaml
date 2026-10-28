@@ -1,0 +1,50 @@
+<UserControl x:Class="Toolkit.Modules.SSH.Views.ContainerRuntime.Tabs.ContainersTabView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Toolkit.Modules.SSH.ViewModels.ContainerRuntime;assembly=Toolkit.Modules.SSH"
+             xmlns:resSSH="clr-namespace:Toolkit.Modules.SSH.Properties;assembly=Toolkit.Modules.SSH"
+             x:DataType="vm:ContainersTabViewModel">
+  <DockPanel Margin="4">
+    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,4,0,8">
+      <Button Content="{x:Static resSSH:SSHResource.BtnRefresh}"
+              Command="{Binding RefreshCommand}"
+              Padding="15,6"
+              Margin="0,0,8,0"/>
+      <Button Content="{x:Static resSSH:SSHResource.BtnCreate}"
+              Command="{Binding CreateContainerCommand}"
+              Padding="15,6"
+              Margin="0,0,8,0"/>
+      <Button Content="{x:Static resSSH:SSHResource.BtnPrune}"
+              Command="{Binding PruneContainersCommand}"
+              Padding="15,6"/>
+    </StackPanel>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="320"/>
+      </Grid.ColumnDefinitions>
+      <TreeView Grid.Column="0" ItemsSource="{Binding ContainerNodes}" SelectedItem="{Binding SelectedNode}">
+        <TreeView.ItemTemplate>
+          <TreeDataTemplate ItemsSource="{Binding Children}" x:DataType="vm:ContainerTreeNode">
+            <Grid ColumnDefinitions="220,*,100,160" Margin="0,2">
+              <TextBlock Grid.Column="0" Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+              <TextBlock Grid.Column="1" Text="{Binding Image}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Foreground="Gray"/>
+              <TextBlock Grid.Column="2" Text="{Binding State}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Foreground="Gray"/>
+              <TextBlock Grid.Column="3" Text="{Binding Status}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Foreground="Gray" Margin="8,0,0,0"/>
+            </Grid>
+          </TreeDataTemplate>
+        </TreeView.ItemTemplate>
+      </TreeView>
+      <DockPanel Grid.Column="1" Margin="8,0,0,0">
+        <StackPanel DockPanel.Dock="Top" Spacing="6">
+          <Button Content="{x:Static resSSH:SSHResource.BtnStart}" Command="{Binding StartCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+          <Button Content="{x:Static resSSH:SSHResource.BtnStop}" Command="{Binding StopCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+          <Button Content="{x:Static resSSH:SSHResource.BtnLogs}" Command="{Binding LogsCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+          <Button Content="{x:Static resSSH:SSHResource.BtnDetail}" Command="{Binding DetailContainerCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+          <Button Content="{x:Static resSSH:SSHResource.BtnMonitor}" Command="{Binding MonitorCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+          <Button Content="{x:Static resSSH:SSHResource.BtnRemove}" Command="{Binding RemoveContainerCommand}" Padding="15,6" HorizontalAlignment="Stretch"/>
+        </StackPanel>
+      </DockPanel>
+    </Grid>
+  </DockPanel>
+</UserControl>

@@ -5,8 +5,8 @@ using AzureTools.ViewModels;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Threading.Tasks;
+using Toolkit.Modules.Main.Properties;
 using Toolkit.Modules.Models;
-using Toolkit.Modules.Properties;
 using Toolkit.Modules.Stores;
 
 namespace Toolkit.Modules.Main.ViewModels.Options
@@ -68,14 +68,14 @@ namespace Toolkit.Modules.Main.ViewModels.Options
         private async Task EnablePasswordAsync()
         {
             string password = await _dialogService.ShowPromptDialogAsync(
-                FormResources.TitleEnablePassword,
-                FormResources.PromptEnablePassword,
+                MainResource.TitleEnablePassword,
+                MainResource.PromptEnablePassword,
                 PromptDialogOption.PasswordOption);
 
             if (password == null) return;
             if (string.IsNullOrEmpty(password))
             {
-                await _dialogService.ShowWarningAsync(MessageResources.PasswordCannotBeEmpty);
+                await _dialogService.ShowWarningAsync(MainResource.PasswordCannotBeEmpty);
                 return;
             }
 
@@ -85,7 +85,7 @@ namespace Toolkit.Modules.Main.ViewModels.Options
             _store.Save();
 
             LoginUsePassword = true;
-            await _dialogService.ShowInfoAsync(MessageResources.PasswordEnabledSuccess);
+            await _dialogService.ShowInfoAsync(MainResource.PasswordEnabledSuccess);
         }
 
         // 取消密码：弹出窗口验证原密码，通过后清除密码并保存
@@ -93,8 +93,8 @@ namespace Toolkit.Modules.Main.ViewModels.Options
         private async Task DisablePasswordAsync()
         {
             string password = await _dialogService.ShowPromptDialogAsync(
-                FormResources.TitleDisablePassword,
-                FormResources.PromptDisablePassword,
+                MainResource.TitleDisablePassword,
+                MainResource.PromptDisablePassword,
                 PromptDialogOption.PasswordOption);
 
             if (password == null) return;
@@ -102,7 +102,7 @@ namespace Toolkit.Modules.Main.ViewModels.Options
             AppProfile profile = _store.GetProfile();
             if (profile == null || !profile.IsAuthenticated(password))
             {
-                await _dialogService.ShowWarningAsync(MessageResources.PasswordIncorrect);
+                await _dialogService.ShowWarningAsync(MainResource.PasswordIncorrect);
                 return;
             }
 
@@ -111,7 +111,7 @@ namespace Toolkit.Modules.Main.ViewModels.Options
             _store.Save();
 
             LoginUsePassword = false;
-            await _dialogService.ShowInfoAsync(MessageResources.PasswordDisabledSuccess);
+            await _dialogService.ShowInfoAsync(MainResource.PasswordDisabledSuccess);
         }
 
         [RelayCommand]
@@ -129,13 +129,13 @@ namespace Toolkit.Modules.Main.ViewModels.Options
             _store.SaveProfile(profile);
             _store.Save();
             HasChanges = false;
-            await _dialogService.ShowInfoAsync(FormResources.MsgOptionsSaved);
+            await _dialogService.ShowInfoAsync(MainResource.MsgOptionsSaved);
         }
 
         [RelayCommand]
         private async Task AboutAsync()
         {
-            await _dialogService.OpenWebViewAsync("https://github.com/dason1986/AzureTools", FormResources.TitleAbout);
+            await _dialogService.OpenWebViewAsync("https://github.com/dason1986/AzureTools", MainResource.TitleAbout);
         }
 
         [RelayCommand]
@@ -148,13 +148,13 @@ namespace Toolkit.Modules.Main.ViewModels.Options
         private async Task<bool> HandleCloseAsync()
         {
             if (!HasChanges) return true;
-            bool save = await _dialogService.ShowConfirmAsync(MessageResources.ConfirmSaveUnsavedChanges, MessageResources.TitleUnsavedChanges);
+            bool save = await _dialogService.ShowConfirmAsync(MainResource.ConfirmSaveUnsavedChanges, MainResource.TitleUnsavedChanges);
             if (save)
             {
                 await SaveCoreAsync();
                 return true;
             }
-            bool discard = await _dialogService.ShowConfirmAsync(MessageResources.ConfirmDiscardChanges, MessageResources.TitleDiscardChanges);
+            bool discard = await _dialogService.ShowConfirmAsync(MainResource.ConfirmDiscardChanges, MainResource.TitleDiscardChanges);
             if (!discard) return false;
             DiscardChanges();
             return true;

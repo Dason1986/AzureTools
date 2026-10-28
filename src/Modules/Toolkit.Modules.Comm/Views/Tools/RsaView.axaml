@@ -2,9 +2,9 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Toolkit.Modules.Comm.ViewModels.Tools;assembly=Toolkit.Modules.Comm"
-        xmlns:res="clr-namespace:Toolkit.Modules.Properties;assembly=Toolkit.Modules.Resources"
+        xmlns:res="clr-namespace:Toolkit.Modules.Comm.Properties;assembly=Toolkit.Modules.Comm"
         x:DataType="vm:RsaViewModel"
-        Title="{x:Static res:FormResources.TitleRsa}"
+        Title="{x:Static res:CommResource.TitleRsa}"
         Width="650"
         Height="600"
         MinWidth="550"
@@ -15,17 +15,17 @@
     <StackPanel Margin="15">
 
       <DockPanel>
-        <Button Content="{x:Static res:FormResources.BtnOk}"
+        <Button Content="{x:Static res:CommResource.BtnOk}"
                    Command="{Binding GenerateCommand}" 
                    Padding="25,10"
                    Margin="0,10,0,0"/>
-        <Button Content="{x:Static res:FormResources.BtnExport}"
+        <Button Content="{x:Static res:CommResource.BtnExport}"
                Command="{Binding ExportCommand}" 
                Padding="25,10"
                Margin="10,10,0,0"/>
       </DockPanel>
  
-      <GroupBox Header="{x:Static res:FormResources.LblPublicKey}"
+      <GroupBox Header="{x:Static res:CommResource.LblPublicKey}"
                 Padding="10">
         <TextBox Text="{Binding PublicKey}"
                  IsReadOnly="True"
@@ -34,7 +34,7 @@
                  TextWrapping="Wrap"/>
       </GroupBox>
 
-      <GroupBox Header="{x:Static res:FormResources.LblPrivateKey}"
+      <GroupBox Header="{x:Static res:CommResource.LblPrivateKey}"
                 Padding="10"
                 Margin="0,10,0,0">
         <TextBox Text="{Binding PrivateKey}"
@@ -44,7 +44,7 @@
                  TextWrapping="Wrap"/>
       </GroupBox>
 
-      <GroupBox Header="{x:Static res:FormResources.LblPublicKeyBase64}"
+      <GroupBox Header="{x:Static res:CommResource.LblPublicKeyBase64}"
                 Padding="10"
                 Margin="0,10,0,0">
         <TextBox Text="{Binding PublicKeyBase64}"
@@ -54,7 +54,7 @@
                  TextWrapping="Wrap"/>
       </GroupBox>
 
-      <GroupBox Header="{x:Static res:FormResources.LblPrivateKeyBase64}"
+      <GroupBox Header="{x:Static res:CommResource.LblPrivateKeyBase64}"
                 Padding="10"
                 Margin="0,10,0,0">
         <TextBox Text="{Binding PrivateKeyBase64}"

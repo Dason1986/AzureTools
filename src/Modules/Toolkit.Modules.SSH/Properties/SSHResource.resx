@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MenuSshHostManage" xml:space="preserve">
+    <value>SSH 主机管理</value>
+  </data>
+  <data name="TitleSshHostManage" xml:space="preserve">
+    <value>SSH 主机管理</value>
+  </data>
+  <data name="TitleEditSshHost" xml:space="preserve">
+    <value>编辑 SSH 主机</value>
+  </data>
+  <data name="LblSshHostName" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="LblSshHost" xml:space="preserve">
+    <value>主机</value>
+  </data>
+  <data name="LblSshPort" xml:space="preserve">
+    <value>端口</value>
+  </data>
+  <data name="LblSshUserName" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="LblSshAuthMode" xml:space="preserve">
+    <value>认证方式</value>
+  </data>
+  <data name="LblSshPassword" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="LblSshPrivateKey" xml:space="preserve">
+    <value>私钥</value>
+  </data>
+  <data name="LblSshPassphrase" xml:space="preserve">
+    <value>私钥口令</value>
+  </data>
+  <data name="LblSshDescription" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="GrpSshAuth" xml:space="preserve">
+    <value>认证</value>
+  </data>
+  <data name="ColSshHostName" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="ColSshHost" xml:space="preserve">
+    <value>主机</value>
+  </data>
+  <data name="ColSshPort" xml:space="preserve">
+    <value>端口</value>
+  </data>
+  <data name="ColSshUserName" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="ColSshAuthMode" xml:space="preserve">
+    <value>认证方式</value>
+  </data>
+  <data name="MsgSshHostNameExist" xml:space="preserve">
+    <value>名称已存在</value>
+  </data>
+  <data name="MsgSshPasswordRequired" xml:space="preserve">
+    <value>密码不能为空</value>
+  </data>
+  <data name="MsgSshPrivateKeyRequired" xml:space="preserve">
+    <value>私钥不能为空</value>
+  </data>
+  <data name="MsgConfirmDeleteSshHost" xml:space="preserve">
+    <value>确认删除 SSH 主机 "{0}" 吗？</value>
+  </data>
+  <data name="PrivateKeyFileFilter" xml:space="preserve">
+    <value>私钥文件|*.pem;*.key;id_rsa*</value>
+  </data>
+  <data name="BtnOk" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="BtnConfirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="BtnCancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="BtnSave" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="BtnDelete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="BtnEdit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="BtnAdd" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="BtnRefresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="SelectItemToEdit" xml:space="preserve">
+    <value>请选择要编辑的项</value>
+  </data>
+  <data name="SelectItemToDelete" xml:space="preserve">
+    <value>请选择要删除的项</value>
+  </data>
+  <data name="GrpSshFeatures" xml:space="preserve">
+    <value>功能模块</value>
+  </data>
+  <data name="FeatureFileBrowser" xml:space="preserve">
+    <value>文件浏览</value>
+  </data>
+  <data name="MsgNoEnabledFeature" xml:space="preserve">
+    <value>该主机未开启任何功能</value>
+  </data>
+  <data name="FeatureTerminal" xml:space="preserve">
+    <value>终端</value>
+  </data>
+  <data name="FeatureDocker" xml:space="preserve">
+    <value>Docker</value>
+  </data>
+  <data name="LblSshDockerPort" xml:space="preserve">
+    <value>Docker 端口</value>
+  </data>
+  <data name="TitleDockerBrowser" xml:space="preserve">
+    <value>Docker 容器管理 - {0}</value>
+  </data>
+  <data name="FeaturePodman" xml:space="preserve">
+    <value>Podman</value>
+  </data>
+  <data name="LblSshPodmanPort" xml:space="preserve">
+    <value>Podman 端口</value>
+  </data>
+  <data name="TitlePodmanBrowser" xml:space="preserve">
+    <value>Podman 容器管理 - {0}</value>
+  </data>
+  <data name="FeaturePackage" xml:space="preserve">
+    <value>包管理</value>
+  </data>
+  <data name="DescPackageFeature" xml:space="preserve">
+    <value>在主机菜单中启用包管理工具，自动识别发行版对应的包管理器（apt/dnf/yum/apk/zypper/pacman）</value>
+  </data>
+  <data name="TitlePackageManager" xml:space="preserve">
+    <value>包管理 - {0}</value>
+  </data>
+  <data name="LblPackageOs" xml:space="preserve">
+    <value>操作系统</value>
+  </data>
+  <data name="LblPackageManager" xml:space="preserve">
+    <value>包管理器</value>
+  </data>
+  <data name="PromptPackageSearchKeyword" xml:space="preserve">
+    <value>输入包名或关键字</value>
+  </data>
+  <data name="BtnPackageInstall" xml:space="preserve">
+    <value>安装</value>
+  </data>
+  <data name="BtnPackageRemove" xml:space="preserve">
+    <value>卸载</value>
+  </data>
+  <data name="ColPackageName" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="ColPackageVersion" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="ColPackageInstalled" xml:space="preserve">
+    <value>已安装</value>
+  </data>
+  <data name="ColPackageDescription" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="TabPackageSearch" xml:space="preserve">
+    <value>搜索结果</value>
+  </data>
+  <data name="TabPackageInstalled" xml:space="preserve">
+    <value>已安装</value>
+  </data>
+  <data name="PromptPackageFilterInstalled" xml:space="preserve">
+    <value>输入关键字过滤已安装列表</value>
+  </data>
+  <data name="BtnPackageUpgrade" xml:space="preserve">
+    <value>升级</value>
+  </data>
+  <data name="BtnPackageDowngrade" xml:space="preserve">
+    <value>降级</value>
+  </data>
+  <data name="LblPackageTerminal" xml:space="preserve">
+    <value>终端信息</value>
+  </data>
+  <data name="MsgPackageUpgrading" xml:space="preserve">
+    <value>正在升级 {0}</value>
+  </data>
+  <data name="MsgPackageUpgradeDone" xml:space="preserve">
+    <value>{0} 升级完成</value>
+  </data>
+  <data name="MsgPackageDowngrading" xml:space="preserve">
+    <value>正在降级 {0}</value>
+  </data>
+  <data name="MsgPackageDowngradeDone" xml:space="preserve">
+    <value>{0} 降级完成</value>
+  </data>
+  <data name="MsgConfirmPackageUpgrade" xml:space="preserve">
+    <value>确认升级软件包 {0}？</value>
+  </data>
+  <data name="MsgConfirmPackageDowngrade" xml:space="preserve">
+    <value>确认降级软件包 {0} 到版本 {1}？</value>
+  </data>
+  <data name="TitlePackageDowngradeVersion" xml:space="preserve">
+    <value>选择降级目标版本</value>
+  </data>
+  <data name="PromptPackageDowngradeVersion" xml:space="preserve">
+    <value>软件包 {0} 当前版本 {1}，请输入降级目标版本：</value>
+  </data>
+  <data name="MsgOsUnknown" xml:space="preserve">
+    <value>未知系统</value>
+  </data>
+  <data name="MsgPackageManagerNotFound" xml:space="preserve">
+    <value>未检测到可用的包管理器</value>
+  </data>
+  <data name="MsgPackageManagerDetected" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="MsgPackageKeywordRequired" xml:space="preserve">
+    <value>请输入搜索关键字</value>
+  </data>
+  <data name="MsgPackageSearchDone" xml:space="preserve">
+    <value>搜索完成，共 {0} 条记录</value>
+  </data>
+  <data name="MsgPackageSearchFailed" xml:space="preserve">
+    <value>操作失败：{0}</value>
+  </data>
+  <data name="MsgPackageInstalledCount" xml:space="preserve">
+    <value>已安装 {0} 个软件包</value>
+  </data>
+  <data name="MsgConfirmPackageInstall" xml:space="preserve">
+    <value>是否安装 [{0}]?</value>
+  </data>
+  <data name="MsgConfirmPackageRemove" xml:space="preserve">
+    <value>是否卸载 [{0}]?</value>
+  </data>
+  <data name="MsgPackageInstalling" xml:space="preserve">
+    <value>正在安装 {0} ...</value>
+  </data>
+  <data name="MsgPackageRemoving" xml:space="preserve">
+    <value>正在卸载 {0} ...</value>
+  </data>
+  <data name="MsgPackageInstallDone" xml:space="preserve">
+    <value>安装完成：{0}</value>
+  </data>
+  <data name="MsgPackageRemoveDone" xml:space="preserve">
+    <value>卸载完成：{0}</value>
+  </data>
+  <data name="MsgPackageOperateFailed" xml:space="preserve">
+    <value>操作失败：{0}</value>
+  </data>
+  <data name="TitleContainerLogs" xml:space="preserve">
+    <value>容器日志 - {0}</value>
+  </data>
+  <data name="TitleContainerMonitor" xml:space="preserve">
+    <value>容器监控 - {0}</value>
+  </data>
+  <data name="TitleContainerDetail" xml:space="preserve">
+    <value>容器详情 - {0}</value>
+  </data>
+  <data name="TitleImageDetail" xml:space="preserve">
+    <value>镜像详情 - {0}</value>
+  </data>
+  <data name="TabContainers" xml:space="preserve">
+    <value>容器</value>
+  </data>
+  <data name="TabImages" xml:space="preserve">
+    <value>镜像</value>
+  </data>
+  <data name="ColContainerName" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="ColContainerImage" xml:space="preserve">
+    <value>镜像</value>
+  </data>
+  <data name="ColContainerState" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="ColContainerStatus" xml:space="preserve">
+    <value>详情</value>
+  </data>
+  <data name="ColImageId" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="ColImageTag" xml:space="preserve">
+    <value>标签</value>
+  </data>
+  <data name="ColImageSize" xml:space="preserve">
+    <value>大小</value>
+  </data>
+  <data name="BtnStart" xml:space="preserve">
+    <value>启动</value>
+  </data>
+  <data name="BtnStop" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="BtnLogs" xml:space="preserve">
+    <value>日志</value>
+  </data>
+  <data name="BtnMonitor" xml:space="preserve">
+    <value>监控</value>
+  </data>
+  <data name="BtnRemove" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="BtnPrune" xml:space="preserve">
+    <value>清理</value>
+  </data>
+  <data name="BtnDetail" xml:space="preserve">
+    <value>详情</value>
+  </data>
+  <data name="MsgDockerLoadFailed" xml:space="preserve">
+    <value>加载 Docker 数据失败：{0}</value>
+  </data>
+  <data name="MsgPodmanLoadFailed" xml:space="preserve">
+    <value>加载 Podman 数据失败：{0}</value>
+  </data>
+  <data name="MsgConfirmRemoveContainer" xml:space="preserve">
+    <value>确认删除容器 {0} 吗？</value>
+  </data>
+  <data name="MsgConfirmRemoveImage" xml:space="preserve">
+    <value>确认删除镜像 {0} 吗？</value>
+  </data>
+  <data name="MsgConfirmPruneContainers" xml:space="preserve">
+    <value>确认清理所有已停止的容器吗？</value>
+  </data>
+  <data name="MsgConfirmPruneImages" xml:space="preserve">
+    <value>确认清理所有悬空镜像吗？</value>
+  </data>
+  <data name="BtnPullImage" xml:space="preserve">
+    <value>拉取镜像</value>
+  </data>
+  <data name="BtnImportImage" xml:space="preserve">
+    <value>上传镜像</value>
+  </data>
+  <data name="BtnExportImage" xml:space="preserve">
+    <value>下载到本机</value>
+  </data>
+  <data name="BtnTagImage" xml:space="preserve">
+    <value>标签管理</value>
+  </data>
+  <data name="MsgImagePullSuccess" xml:space="preserve">
+    <value>镜像拉取完成</value>
+  </data>
+  <data name="MsgImageImportSuccess" xml:space="preserve">
+    <value>镜像上传完成</value>
+  </data>
+  <data name="MsgImageExportSuccess" xml:space="preserve">
+    <value>镜像已下载到：{0}</value>
+  </data>
+  <data name="TitleImageTags" xml:space="preserve">
+    <value>镜像标签管理 - {0}</value>
+  </data>
+  <data name="PromptImageTag" xml:space="preserve">
+    <value>请输入新标签，例如 myrepo/myimage:v1</value>
+  </data>
+  <data name="MsgImageTagRequired" xml:space="preserve">
+    <value>请输入新的镜像标签</value>
+  </data>
+  <data name="MsgConfirmRemoveImageTag" xml:space="preserve">
+    <value>确认移除标签 {0} 吗？</value>
+  </data>
+  <data name="ImageArchiveFileFilter" xml:space="preserve">
+    <value>镜像归档文件|*.tar</value>
+  </data>
+  <data name="TabVolumes" xml:space="preserve">
+    <value>卷</value>
+  </data>
+  <data name="TabNetworks" xml:space="preserve">
+    <value>网络</value>
+  </data>
+  <data name="ColDriver" xml:space="preserve">
+    <value>驱动</value>
+  </data>
+  <data name="ColScope" xml:space="preserve">
+    <value>范围</value>
+  </data>
+  <data name="ColVolumeMountpoint" xml:space="preserve">
+    <value>挂载点</value>
+  </data>
+  <data name="ColNetworkId" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="BtnCreate" xml:space="preserve">
+    <value>创建</value>
+  </data>
+  <data name="TitleCreateVolume" xml:space="preserve">
+    <value>创建卷</value>
+  </data>
+  <data name="TitleCreateNetwork" xml:space="preserve">
+    <value>创建网络</value>
+  </data>
+  <data name="PromptVolumeName" xml:space="preserve">
+    <value>请输入卷名称：</value>
+  </data>
+  <data name="PromptNetworkName" xml:space="preserve">
+    <value>请输入网络名称：</value>
+  </data>
+  <data name="MsgConfirmRemoveVolume" xml:space="preserve">
+    <value>确认删除卷 {0} 吗？</value>
+  </data>
+  <data name="MsgConfirmPruneVolumes" xml:space="preserve">
+    <value>确认清理所有未使用的卷吗？</value>
+  </data>
+  <data name="MsgConfirmRemoveNetwork" xml:space="preserve">
+    <value>确认删除网络 {0} 吗？</value>
+  </data>
+  <data name="MsgConfirmPruneNetworks" xml:space="preserve">
+    <value>确认清理所有未使用的网络吗？</value>
+  </data>
+  <data name="TitleNetworkDetail" xml:space="preserve">
+    <value>网络详情 - {0}</value>
+  </data>
+  <data name="MsgConfirmDisconnectNetwork" xml:space="preserve">
+    <value>确认将容器 {0} 从网络断开吗？</value>
+  </data>
+  <data name="TitleSelectContainer" xml:space="preserve">
+    <value>选择容器</value>
+  </data>
+  <data name="BtnJoin" xml:space="preserve">
+    <value>加入</value>
+  </data>
+  <data name="BtnLeave" xml:space="preserve">
+    <value>移出</value>
+  </data>
+  <data name="ColIpAddress" xml:space="preserve">
+    <value>IP 地址</value>
+  </data>
+  <data name="ColDetailName" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="ColDetailValue" xml:space="preserve">
+    <value>值</value>
+  </data>
+  <data name="TabDetailBasicInfo" xml:space="preserve">
+    <value>基本信息</value>
+  </data>
+  <data name="TabDetailEnv" xml:space="preserve">
+    <value>环境变量</value>
+  </data>
+  <data name="TabDetailPorts" xml:space="preserve">
+    <value>端口</value>
+  </data>
+  <data name="TabDetailMounts" xml:space="preserve">
+    <value>挂载</value>
+  </data>
+  <data name="TabDetailNetworks" xml:space="preserve">
+    <value>网络</value>
+  </data>
+  <data name="TabDetailRawJson" xml:space="preserve">
+    <value>原始 JSON</value>
+  </data>
+  <data name="TabPods" xml:space="preserve">
+    <value>Pod</value>
+  </data>
+  <data name="ColPodContainers" xml:space="preserve">
+    <value>容器数</value>
+  </data>
+  <data name="ColPodCreated" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="MsgConfirmRemovePod" xml:space="preserve">
+    <value>确定删除 Pod {0} 吗？</value>
+  </data>
+  <data name="MsgConfirmPrunePods" xml:space="preserve">
+    <value>确定清理所有已退出的 Pod 吗？</value>
+  </data>
+  <data name="BtnCreatePod" xml:space="preserve">
+    <value>创建 Pod</value>
+  </data>
+  <data name="TitleCreatePod" xml:space="preserve">
+    <value>创建 Pod</value>
+  </data>
+  <data name="RbYamlMode" xml:space="preserve">
+    <value>YAML 部署</value>
+  </data>
+  <data name="RbUiMode" xml:space="preserve">
+    <value>界面创建</value>
+  </data>
+  <data name="GrpYamlContent" xml:space="preserve">
+    <value>YAML 内容</value>
+  </data>
+  <data name="LblPodName" xml:space="preserve">
+    <value>Pod 名称</value>
+  </data>
+  <data name="HintPodName" xml:space="preserve">
+    <value>输入 Pod 名称</value>
+  </data>
+  <data name="HintPasteYaml" xml:space="preserve">
+    <value>粘贴 Kubernetes YAML 内容</value>
+  </data>
+  <data name="BtnDeploy" xml:space="preserve">
+    <value>部署</value>
+  </data>
+  <data name="MsgYamlRequired" xml:space="preserve">
+    <value>请粘贴要部署的 YAML 内容</value>
+  </data>
+  <data name="MsgPodNameRequired" xml:space="preserve">
+    <value>请输入 Pod 名称</value>
+  </data>
+  <data name="MsgPodCreated" xml:space="preserve">
+    <value>Pod {0} 创建成功</value>
+  </data>
+  <data name="MsgPodDeployed" xml:space="preserve">
+    <value>YAML 部署成功</value>
+  </data>
+  <data name="TitleAddContainerToPod" xml:space="preserve">
+    <value>向 Pod {0} 添加容器</value>
+  </data>
+  <data name="BtnAddContainer" xml:space="preserve">
+    <value>添加容器</value>
+  </data>
+  <data name="MsgPodContainerCount" xml:space="preserve">
+    <value>容器数：{0}</value>
+  </data>
+  <data name="MsgContainerRequired" xml:space="preserve">
+    <value>请先添加至少一个容器</value>
+  </data>
+  <data name="TitleEditPod" xml:space="preserve">
+    <value>管理 Pod：{0}</value>
+  </data>
+  <data name="BtnDone" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="TabDetailImageConfig" xml:space="preserve">
+    <value>配置</value>
+  </data>
+  <data name="TabDetailRepo" xml:space="preserve">
+    <value>仓库标签</value>
+  </data>
+  <data name="TabDetailLabels" xml:space="preserve">
+    <value>镜像标签</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Compute" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Compute.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TabSshHostBasic" xml:space="preserve">
+    <value>基本</value>
+  </data>
+  <data name="TabDocker" xml:space="preserve">
+    <value>Docker</value>
+  </data>
+  <data name="TabTerminal" xml:space="preserve">
+    <value>终端</value>
+  </data>
+  <data name="TabFileBrowser" xml:space="preserve">
+    <value>文件浏览</value>
+  </data>
+  <data name="TabFeatureModule" xml:space="preserve">
+    <value>功能模块</value>
+  </data>
+  <data name="LblSshDockerApiMode" xml:space="preserve">
+    <value>Docker API 模式</value>
+  </data>
+  <data name="LblSshPodmanApiMode" xml:space="preserve">
+    <value>Podman API 模式</value>
+  </data>
+  <data name="DockerApiModeCli" xml:space="preserve">
+    <value>命令行 (CLI)</value>
+  </data>
+  <data name="DockerApiModeHttp" xml:space="preserve">
+    <value>HTTP 隧道</value>
+  </data>
+  <data name="LblSshFeatureEnable" xml:space="preserve">
+    <value>启用此功能</value>
+  </data>
+  <data name="TitleCreateContainer" xml:space="preserve">
+    <value>创建容器</value>
+  </data>
+  <data name="GrpContainerImage" xml:space="preserve">
+    <value>镜像</value>
+  </data>
+  <data name="GrpContainerParams" xml:space="preserve">
+    <value>容器参数</value>
+  </data>
+  <data name="GrpContainerEnv" xml:space="preserve">
+    <value>环境变量</value>
+  </data>
+  <data name="GrpContainerMounts" xml:space="preserve">
+    <value>挂载目录</value>
+  </data>
+  <data name="GrpContainerPorts" xml:space="preserve">
+    <value>端口映射</value>
+  </data>
+  <data name="LblContainerImage" xml:space="preserve">
+    <value>镜像</value>
+  </data>
+  <data name="LblImageLabels" xml:space="preserve">
+    <value>镜像标签</value>
+  </data>
+  <data name="LblNetwork" xml:space="preserve">
+    <value>网络</value>
+  </data>
+  <data name="HintSelectNetwork" xml:space="preserve">
+    <value>选择网络或输入网络名</value>
+  </data>
+  <data name="LblMonitorCpu" xml:space="preserve">
+    <value>CPU：{0:F1}%</value>
+  </data>
+  <data name="LblMonitorDisk" xml:space="preserve">
+    <value>磁盘 I/O：读 {0}，写 {1}</value>
+  </data>
+  <data name="LblMonitorMemory" xml:space="preserve">
+    <value>内存：{0:F1}%</value>
+  </data>
+  <data name="LblMonitorNetwork" xml:space="preserve">
+    <value>网络 I/O：接收 {0}，发送 {1}</value>
+  </data>
+  <data name="LblContainerName" xml:space="preserve">
+    <value>容器名称</value>
+  </data>
+  <data name="LblContainerCommand" xml:space="preserve">
+    <value>启动命令</value>
+  </data>
+  <data name="HintSelectOrTypeImage" xml:space="preserve">
+    <value>选择或输入镜像</value>
+  </data>
+  <data name="HintContainerName" xml:space="preserve">
+    <value>留空自动生成</value>
+  </data>
+  <data name="HintContainerCommand" xml:space="preserve">
+    <value>留空使用镜像默认命令</value>
+  </data>
+  <data name="ChkAutoStart" xml:space="preserve">
+    <value>开机启动</value>
+  </data>
+  <data name="ChkAutoRemove" xml:space="preserve">
+    <value>一次性容器</value>
+  </data>
+  <data name="ChkPrivileged" xml:space="preserve">
+    <value>容器提权</value>
+  </data>
+  <data name="ColEnvKey" xml:space="preserve">
+    <value>变量名</value>
+  </data>
+  <data name="ColEnvValue" xml:space="preserve">
+    <value>变量值</value>
+  </data>
+  <data name="ColMountHost" xml:space="preserve">
+    <value>主机路径</value>
+  </data>
+  <data name="ColMountContainer" xml:space="preserve">
+    <value>容器路径</value>
+  </data>
+  <data name="ColMountReadOnly" xml:space="preserve">
+    <value>只读</value>
+  </data>
+  <data name="ColPortHost" xml:space="preserve">
+    <value>主机端口</value>
+  </data>
+  <data name="ColPortContainer" xml:space="preserve">
+    <value>容器端口</value>
+  </data>
+  <data name="MsgImageRequired" xml:space="preserve">
+    <value>请选择或输入镜像</value>
+  </data>
+  <data name="MsgContainerCreated" xml:space="preserve">
+    <value>容器创建成功，ID：{0}</value>
+  </data>
+  <data name="MsgEnvValueConflict" xml:space="preserve">
+    <value>环境变量 {0} 当前值为 "{1}"，镜像默认值为 "{2}"。是否使用镜像默认值？</value>
+  </data>
+  <data name="ColOsVersion" xml:space="preserve">
+    <value>系统</value>
+  </data>
+  <data name="BtnSearch" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="BtnPullDirect" xml:space="preserve">
+    <value>直接拉取</value>
+  </data>
+  <data name="MsgImageDirectRequired" xml:space="preserve">
+    <value>请输入要直接拉取的镜像名称</value>
+  </data>
+  <data name="ColImageName" xml:space="preserve">
+    <value>镜像名称</value>
+  </data>
+  <data name="ColImageDescription" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="ColImageStars" xml:space="preserve">
+    <value>星标</value>
+  </data>
+  <data name="ColImageOfficial" xml:space="preserve">
+    <value>官方</value>
+  </data>
+  <data name="MsgImageSearchRequired" xml:space="preserve">
+    <value>请输入镜像查询关键字</value>
+  </data>
+  <data name="PromptImageSearchKeyword" xml:space="preserve">
+    <value>请输入镜像名称，例如 nginx</value>
+  </data>
+  <data name="TitleImageSearch" xml:space="preserve">
+    <value>搜索镜像</value>
+  </data>
+  <data name="FeatureFirewall" xml:space="preserve">
+    <value>防火墙</value>
+  </data>
+  <data name="DescFirewallFeature" xml:space="preserve">
+    <value>在主机菜单中启用防火墙管理，自动识别防火墙工具（ufw/firewalld/iptables），支持端口规则增删与防火墙启停</value>
+  </data>
+  <data name="TitleFirewallManager" xml:space="preserve">
+    <value>防火墙管理 - {0}</value>
+  </data>
+  <data name="LblFirewallBackend" xml:space="preserve">
+    <value>防火墙</value>
+  </data>
+  <data name="LblFirewallStatus" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="FirewallActionAllow" xml:space="preserve">
+    <value>允许</value>
+  </data>
+  <data name="FirewallActionDeny" xml:space="preserve">
+    <value>拒绝</value>
+  </data>
+  <data name="MsgFirewallRunning" xml:space="preserve">
+    <value>启用中</value>
+  </data>
+  <data name="MsgFirewallStopped" xml:space="preserve">
+    <value>已停用</value>
+  </data>
+  <data name="MsgFirewallNotFound" xml:space="preserve">
+    <value>未识别远端主机的防火墙工具（支持 ufw/firewalld/iptables）</value>
+  </data>
+  <data name="MsgFirewallDetected" xml:space="preserve">
+    <value>{0}（{1}）</value>
+  </data>
+  <data name="MsgFirewallRuleCount" xml:space="preserve">
+    <value>共 {0} 条规则</value>
+  </data>
+  <data name="MsgFirewallEnabling" xml:space="preserve">
+    <value>正在启用防火墙...</value>
+  </data>
+  <data name="MsgFirewallDisabling" xml:space="preserve">
+    <value>正在停用防火墙...</value>
+  </data>
+  <data name="MsgFirewallAddingRule" xml:space="preserve">
+    <value>正在添加规则 {0}/{1}...</value>
+  </data>
+  <data name="MsgFirewallRemovingRule" xml:space="preserve">
+    <value>正在删除规则 [{0}]...</value>
+  </data>
+  <data name="MsgFirewallRuleAdded" xml:space="preserve">
+    <value>规则已添加</value>
+  </data>
+  <data name="MsgFirewallRuleRemoved" xml:space="preserve">
+    <value>规则已删除</value>
+  </data>
+  <data name="MsgFirewallOperateFailed" xml:space="preserve">
+    <value>操作失败：{0}</value>
+  </data>
+  <data name="MsgFirewallPortInvalid" xml:space="preserve">
+    <value>请输入有效端口号或端口范围（如 22 或 1000:2000）</value>
+  </data>
+  <data name="MsgConfirmFirewallEnable" xml:space="preserve">
+    <value>是否启用防火墙？启用后可能影响现有连接</value>
+  </data>
+  <data name="MsgConfirmFirewallDisable" xml:space="preserve">
+    <value>是否停用防火墙？停用后主机将失去防火墙保护</value>
+  </data>
+  <data name="MsgConfirmFirewallRemoveRule" xml:space="preserve">
+    <value>是否删除规则 [{0}]?</value>
+  </data>
+  <data name="PromptFirewallPort" xml:space="preserve">
+    <value>端口或端口范围，如 22 或 1000:2000</value>
+  </data>
+  <data name="BtnFirewallAddRule" xml:space="preserve">
+    <value>添加规则</value>
+  </data>
+  <data name="BtnFirewallRemoveRule" xml:space="preserve">
+    <value>删除规则</value>
+  </data>
+  <data name="BtnFirewallEnable" xml:space="preserve">
+    <value>启用防火墙</value>
+  </data>
+  <data name="BtnFirewallDisable" xml:space="preserve">
+    <value>停用防火墙</value>
+  </data>
+  <data name="ColFirewallNumber" xml:space="preserve">
+    <value>编号</value>
+  </data>
+  <data name="ColFirewallPort" xml:space="preserve">
+    <value>端口</value>
+  </data>
+  <data name="ColFirewallProtocol" xml:space="preserve">
+    <value>协议</value>
+  </data>
+  <data name="ColFirewallAction" xml:space="preserve">
+    <value>动作</value>
+  </data>
+  <data name="ColFirewallDirection" xml:space="preserve">
+    <value>方向</value>
+  </data>
+  <data name="ColFirewallSource" xml:space="preserve">
+    <value>来源</value>
+  </data>
+</root>

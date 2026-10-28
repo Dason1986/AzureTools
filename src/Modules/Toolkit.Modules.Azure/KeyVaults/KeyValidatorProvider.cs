@@ -28,7 +28,9 @@ namespace Toolkit.Modules.Azure.KeyVaults
             new BooleanKeyFactory(),
             new GuidKeyFactory(),
             new NumberKeyFactory(),
-            new PfxPasswordKeyFactory()
+            new PfxPasswordKeyFactory(),
+            new EmailKeyFactory(),
+            new EmailsKeyFactory()
         });
 
         public IKeyFactory GetFactory(string key)

@@ -1,0 +1,31 @@
+<Window x:Class="Toolkit.Modules.SSH.Views.ContainerRuntime.ContainerMonitorView"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Toolkit.Modules.SSH.ViewModels.ContainerRuntime;assembly=Toolkit.Modules.SSH"
+        xmlns:sp="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
+        x:DataType="vm:ContainerMonitorViewModel"
+        Title="{Binding WindowTitle}"
+        Width="880"
+        Height="640"
+        MinWidth="640"
+        MinHeight="480"
+        WindowStartupLocation="CenterOwner">
+  <Grid Margin="8" RowDefinitions="*,*" ColumnDefinitions="*,*" RowSpacing="8" ColumnSpacing="8">
+    <DockPanel Grid.Row="0" Grid.Column="0">
+      <TextBlock DockPanel.Dock="Top" Text="{Binding CpuDisplayText}" FontSize="11"/>
+      <sp:AvaPlot x:Name="CpuPlot"/>
+    </DockPanel>
+    <DockPanel Grid.Row="0" Grid.Column="1">
+      <TextBlock DockPanel.Dock="Top" Text="{Binding MemoryDisplayText}" FontSize="11"/>
+      <sp:AvaPlot x:Name="MemPlot"/>
+    </DockPanel>
+    <DockPanel Grid.Row="1" Grid.Column="0">
+      <TextBlock DockPanel.Dock="Top" Text="{Binding DiskDisplayText}" FontSize="11"/>
+      <sp:AvaPlot x:Name="DiskPlot"/>
+    </DockPanel>
+    <DockPanel Grid.Row="1" Grid.Column="1">
+      <TextBlock DockPanel.Dock="Top" Text="{Binding NetworkDisplayText}" FontSize="11"/>
+      <sp:AvaPlot x:Name="NetPlot"/>
+    </DockPanel>
+  </Grid>
+</Window>

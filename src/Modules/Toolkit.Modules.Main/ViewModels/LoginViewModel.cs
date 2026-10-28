@@ -6,7 +6,7 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Toolkit.Modules.Properties;
+using Toolkit.Modules.Main.Properties;
 
 namespace Toolkit.Modules.Main.ViewModels
 {
@@ -29,7 +29,7 @@ namespace Toolkit.Modules.Main.ViewModels
         {
             if (string.IsNullOrWhiteSpace(Password))
             {
-                await _dialogService.ShowInfoAsync(MessageResources.LoginPasswordRequired);
+                await _dialogService.ShowInfoAsync(MainResource.LoginPasswordRequired);
                 return;
             }
             PasswordHash = ComputeHash(Password);
